@@ -1,0 +1,6 @@
+/_gitignore
+.vscode
+bin
+obj
+*.db
+wwwroot
