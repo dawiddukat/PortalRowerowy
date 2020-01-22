@@ -1,0 +1,16 @@
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\appsettings.json
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\PortalRowerowy.API.deps.json
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\PortalRowerowy.API.runtimeconfig.json
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\PortalRowerowy.API.runtimeconfig.dev.json
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\PortalRowerowy.API.dll
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\PortalRowerowy.API.pdb
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.csprojAssemblyReference.cache
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.RazorAssemblyInfo.cache
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.RazorAssemblyInfo.cs
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.AssemblyInfoInputs.cache
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.AssemblyInfo.cs
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.RazorTargetAssemblyInfo.cache
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.dll
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.pdb
