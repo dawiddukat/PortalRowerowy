@@ -18,8 +18,11 @@ namespace PortalRowerowy.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
-        {
+        public async Task<IActionResult> Register(/*[FromBody]*/UserForRegisterDto userForRegisterDto)
+        {   
+            //if (!ModelState.IsValid)
+            //return BadRequest(ModelState);
+
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower(); //z małych liter użytkownik
 
             if (await _repository.UserExist(userForRegisterDto.Username))
