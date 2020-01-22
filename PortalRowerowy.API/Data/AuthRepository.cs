@@ -20,7 +20,7 @@ namespace PortalRowerowy.API.Data
             throw new System.NotImplementedException();
         }
 
-        public async Task<User> Register(User user, string password)
+        public async Task<User> Register(User user, string password) //rejestracja użytkownika
         {   
             byte[] passwordHash, passwordSalt;
             CreatePasswordHashSalt(password, out passwordHash, out passwordSalt);
