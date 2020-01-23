@@ -14,8 +14,8 @@ namespace PortalRowerowy.API.Models
         public DateTime DateOfBirth { get; set; }
         public string TypeBicycle { get; set; }
         public DateTime Created { get; set; }
-        public DateTime LastActive { get; set; }   
-        public string Country { get; set; }           
+        public DateTime LastActive { get; set; }
+        public string Country { get; set; }
         //public string Voivodeship { get; set; }
         //public string County { get; set; }   
         public string City { get; set; }
@@ -26,25 +26,25 @@ namespace PortalRowerowy.API.Models
         public string Description { get; set; }
         //Zakładka PASJE, ZAINTERESOWANIE
         public string Interests { get; set; }
-        public string DreamBicycle { get; set;  }
+        public string DreamBicycle { get; set; }
         //ZAKŁADKA ZDJĘCIA
         public ICollection<UserPhoto> UserPhotos { get; set; }
         //Zakładka Ogłoszenia
         public ICollection<SellBicycle> SellBicycles { get; set; }
         //ZAKŁADKA WYPRAWY
         public ICollection<Adventure> Adventures { get; set; }
-        
 
 
 
 
-        
 
 
 
 
-        
-        
+
+
+
+
 
     }
 }

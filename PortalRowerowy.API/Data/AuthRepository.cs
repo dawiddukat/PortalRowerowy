@@ -20,10 +20,10 @@ namespace PortalRowerowy.API.Data
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
 
-            if(user == null)
-                return null; 
+            if (user == null)
+                return null;
 
-            if(!VeryfiPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            if (!VeryfiPasswordHash(password, user.PasswordHash, user.PasswordSalt))
                 return null;
 
             return user;
@@ -31,7 +31,7 @@ namespace PortalRowerowy.API.Data
 
 
         public async Task<User> Register(User user, string password) //rejestracja użytkownika
-        {   
+        {
             byte[] passwordHash, passwordSalt;
             CreatePasswordHashSalt(password, out passwordHash, out passwordSalt);
 
@@ -47,36 +47,36 @@ namespace PortalRowerowy.API.Data
         public async Task<bool> UserExist(string username)
         {
             if (await _context.Users.AnyAsync(x => x.Username == username))
-                return true;      
-             
+                return true;
+
             return false;
         }
         #endregion
 
-        
+
         #region method private
         private void CreatePasswordHashSalt(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
-            using(var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
-            }            
+            }
         }
 
 
         private bool VeryfiPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
-            using(var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
             {
                 var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
                 for (int i = 0; i < computedHash.Length; i++)
                 {
-                    if (computedHash[i]!= passwordHash[i])
-                        return false;     
+                    if (computedHash[i] != passwordHash[i])
+                        return false;
                 }
-                return true;    
+                return true;
             }
         }
 

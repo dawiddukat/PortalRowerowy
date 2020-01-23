@@ -1,0 +1,26 @@
+[
+  '{{repeat(25)}}',
+  {
+       Username: '{{firstName("male")}}',
+    Password: 'password',
+    Bicycles: '{{random("KROSS", "GIANT", "KELLYS", "MERIDA")}}',
+    City: '{{city()}}',
+    Country: 'Polska',    
+        TypeBicycle:'{{random("MTB", "ROAD", "CITY", "EBIKE")}}',
+    Created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+
+    DateOfBirth: '{{date(new Date(1950,0,1), new Date(), "YYYY-MM-dd")}}',     
+    Description: '{{lorem(1, "paragraphs")}}',    
+  DreamBicycle: '{{random("KROSS", "GIANT", "KELLYS", "MERIDA")}}',
+    Gender: '{{"mężczyzna"}}',
+      Interests: '{{lorem(1, "paragraphs")}}', 
+  LastActive: function(){return this.Created;},
+  Profession: '{{random("nauczyciel", "górnik", "spawacz", "progamista")}}',
+    UserPhotos: [{
+      url: function(num) {
+        return 'https://randomuser.me/api/portraits/men/' + num.integer(1,99) + '.jpg';},
+      isMain:true,
+      Description: '{{lorem()}}',
+      DateAdded:'{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}' }]
+  }
+]

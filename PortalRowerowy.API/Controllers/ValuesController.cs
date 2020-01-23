@@ -37,7 +37,7 @@ namespace PortalRowerowy.API.Controllers
         // GET api/values/5
         [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetValue (int id)
+        public async Task<IActionResult> GetValue(int id)
         {
             //return "value";
             var value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id);
@@ -47,7 +47,7 @@ namespace PortalRowerowy.API.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> AddValue ([FromBody] Value value)
+        public async Task<IActionResult> AddValue([FromBody] Value value)
         {
             _context.Values.Add(value);
             await _context.SaveChangesAsync();
@@ -73,10 +73,10 @@ namespace PortalRowerowy.API.Controllers
         {
             var data = await _context.Values.FindAsync(id);
 
-                if(data == null)
-                    return NoContent();
+            if (data == null)
+                return NoContent();
 
-           
+
             _context.Values.Remove(data);
             await _context.SaveChangesAsync();
             return Ok(data);
