@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PortalRowerowy.API.Migrations
 {
-    public partial class ExtendedUser : Migration
+    public partial class ExtendedDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

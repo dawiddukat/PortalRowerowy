@@ -9,8 +9,8 @@ using PortalRowerowy.API.Data;
 namespace PortalRowerowy.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200123180956_ExtendedUser")]
-    partial class ExtendedUser
+    [Migration("20200123191009_ExtendedDB")]
+    partial class ExtendedDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
