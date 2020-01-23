@@ -31,7 +31,7 @@
     <!-- Example single danger button -->
     <div *ngIf="loggedIn()" class="dropdown">
       <a class="btn btn-secondary dropdown-toggle text-light">
-        Witaj użytkowniku!
+        Witaj {{ authService.decodedToken?.unique_name | titlecase }}!
       </a>
 
     <div class="dropdown-menu">
