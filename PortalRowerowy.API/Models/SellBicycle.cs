@@ -13,6 +13,8 @@ namespace PortalRowerowy.API.Models
         //public string Voivodeship { get; set; }
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
+        public User User { get; set; }
+        public int UserId { get; set; }
 
     }
 }

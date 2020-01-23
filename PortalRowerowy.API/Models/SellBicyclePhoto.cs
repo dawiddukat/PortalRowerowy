@@ -13,5 +13,7 @@ namespace PortalRowerowy.API.Models
         public DateTime DateAdded { get; set; }
 
         public bool IsMain { get; set; }
+        public SellBicycle SellBicycle { get; set; }
+        public int SellBicycleId { get; set; }
     }
 }

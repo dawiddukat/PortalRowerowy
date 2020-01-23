@@ -79,7 +79,7 @@ namespace PortalRowerowy.API.Migrations
                     Distance = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<int>(nullable: true)
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,7 +89,7 @@ namespace PortalRowerowy.API.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -103,7 +103,7 @@ namespace PortalRowerowy.API.Migrations
                     TypeBicycle = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<int>(nullable: true)
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -113,7 +113,7 @@ namespace PortalRowerowy.API.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -126,7 +126,7 @@ namespace PortalRowerowy.API.Migrations
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     IsMain = table.Column<bool>(nullable: false),
-                    UserId = table.Column<int>(nullable: true)
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -136,7 +136,7 @@ namespace PortalRowerowy.API.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -149,7 +149,7 @@ namespace PortalRowerowy.API.Migrations
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     IsMain = table.Column<bool>(nullable: false),
-                    AdventureId = table.Column<int>(nullable: true)
+                    AdventureId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -159,7 +159,7 @@ namespace PortalRowerowy.API.Migrations
                         column: x => x.AdventureId,
                         principalTable: "Adventures",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -172,7 +172,7 @@ namespace PortalRowerowy.API.Migrations
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
                     IsMain = table.Column<bool>(nullable: false),
-                    SellBicycleId = table.Column<int>(nullable: true)
+                    SellBicycleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -182,7 +182,7 @@ namespace PortalRowerowy.API.Migrations
                         column: x => x.SellBicycleId,
                         principalTable: "SellBicycles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

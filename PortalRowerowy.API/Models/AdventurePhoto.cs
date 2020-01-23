@@ -14,5 +14,7 @@ namespace PortalRowerowy.API.Models
         public DateTime DateAdded { get; set; }
 
         public bool IsMain { get; set; }
+        public Adventure Adventure { get; set; }
+        public int AdventureId { get; set; }
     }
 }

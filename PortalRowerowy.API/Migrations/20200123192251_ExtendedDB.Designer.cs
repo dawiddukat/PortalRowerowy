@@ -9,7 +9,7 @@ using PortalRowerowy.API.Data;
 namespace PortalRowerowy.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200123191009_ExtendedDB")]
+    [Migration("20200123192251_ExtendedDB")]
     partial class ExtendedDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,7 +29,7 @@ namespace PortalRowerowy.API.Migrations
 
                     b.Property<int>("Distance");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -43,7 +43,7 @@ namespace PortalRowerowy.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AdventureId");
+                    b.Property<int>("AdventureId");
 
                     b.Property<DateTime>("DateAdded");
 
@@ -75,7 +75,7 @@ namespace PortalRowerowy.API.Migrations
 
                     b.Property<string>("Url");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -95,7 +95,7 @@ namespace PortalRowerowy.API.Migrations
 
                     b.Property<bool>("IsMain");
 
-                    b.Property<int?>("SellBicycleId");
+                    b.Property<int>("SellBicycleId");
 
                     b.Property<string>("Url");
 
@@ -159,7 +159,7 @@ namespace PortalRowerowy.API.Migrations
 
                     b.Property<string>("Url");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -182,37 +182,42 @@ namespace PortalRowerowy.API.Migrations
 
             modelBuilder.Entity("PortalRowerowy.API.Models.Adventure", b =>
                 {
-                    b.HasOne("PortalRowerowy.API.Models.User")
+                    b.HasOne("PortalRowerowy.API.Models.User", "User")
                         .WithMany("Adventures")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PortalRowerowy.API.Models.AdventurePhoto", b =>
                 {
-                    b.HasOne("PortalRowerowy.API.Models.Adventure")
+                    b.HasOne("PortalRowerowy.API.Models.Adventure", "Adventure")
                         .WithMany("AdventurePhotos")
-                        .HasForeignKey("AdventureId");
+                        .HasForeignKey("AdventureId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PortalRowerowy.API.Models.SellBicycle", b =>
                 {
-                    b.HasOne("PortalRowerowy.API.Models.User")
+                    b.HasOne("PortalRowerowy.API.Models.User", "User")
                         .WithMany("SellBicycles")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PortalRowerowy.API.Models.SellBicyclePhoto", b =>
                 {
-                    b.HasOne("PortalRowerowy.API.Models.SellBicycle")
+                    b.HasOne("PortalRowerowy.API.Models.SellBicycle", "SellBicycle")
                         .WithMany("SellBicyclePhotos")
-                        .HasForeignKey("SellBicycleId");
+                        .HasForeignKey("SellBicycleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("PortalRowerowy.API.Models.UserPhoto", b =>
                 {
-                    b.HasOne("PortalRowerowy.API.Models.User")
+                    b.HasOne("PortalRowerowy.API.Models.User", "User")
                         .WithMany("UserPhotos")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
