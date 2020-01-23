@@ -2,8 +2,9 @@ using System;
 
 namespace PortalRowerowy.API.Models
 {
-    public class PhotoBicycleToSell
+    public class AdventurePhoto
     {
+        
         public int Id { get; set; }
 
         public string Url { get; set; }

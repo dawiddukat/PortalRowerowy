@@ -9,7 +9,7 @@ namespace PortalRowerowy.API.Models
 
         //public string Url { get; set; }
         
-        public ICollection<PhotoAdventure> PhotosAdventure { get; set; }
+        public ICollection<AdventurePhoto> AdventurePhotos { get; set; }
 
         public int Distance { get; set; }
 
