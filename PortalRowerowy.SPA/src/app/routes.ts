@@ -6,12 +6,14 @@ import { NewsComponent } from './news/news.component'
 import { AdventuresComponent } from './adventures/adventures.component'
 import { MessagesComponent } from './messages/messages.component'
 import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component'
+import { EventsComponent } from './events/events.component';
 
 export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'użytkownicy', component: UserListComponent },
     { path: 'przyjaciele', component: FriendsComponent },
-    { path: 'wydarzenia', component: NewsComponent },
+    { path: 'wydarzenia', component: EventsComponent },
+    { path: 'news', component: NewsComponent },
     { path: 'wyprawy', component: AdventuresComponent },
     { path: 'wiadomości', component: MessagesComponent },
     { path: 'giełda', component: SellbicyclesComponent },
