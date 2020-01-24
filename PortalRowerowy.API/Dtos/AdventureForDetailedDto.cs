@@ -12,7 +12,7 @@ namespace PortalRowerowy.API.Dtos
 
         public string Url { get; set; }
 
-        public ICollection<AdventurePhoto> AdventurePhotos { get; set; }
+        //public ICollection<AdventurePhoto> AdventurePhotos { get; set; }
         public int Distance { get; set; }
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }

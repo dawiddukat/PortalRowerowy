@@ -6,7 +6,7 @@ namespace PortalRowerowy.API.Dtos
 {
     public class AdventureForListDto
     {
-        public ICollection<AdventurePhoto> AdventurePhotos { get; set; }
+        public ICollection<AdventureForDetailedDto> AdventurePhotos { get; set; }
         
         public string adventureName { get; set; }
         public int Distance { get; set; }
