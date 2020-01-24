@@ -16,6 +16,8 @@ import { FriendsComponent } from './friends/friends.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NewsComponent } from './news/news.component';
 import { EventsComponent } from './events/events.component';
+import { AdventuresComponent } from './adventures/adventures.component';
+import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component';
 
 
 
@@ -33,19 +35,20 @@ export function tokenGetter() {
       FriendsComponent,
       MessagesComponent,
       NewsComponent,
-      EventsComponent
+      EventsComponent,
+      AdventuresComponent,
+      SellbicyclesComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
-      JwtModule.forRoot({
-         config: {
-            tokenGetter: tokenGetter,
-            whitelistedDomains: ['localhost:5000'],
-            blacklistedRoutes: ['localhost:50000/api/auth']
-         }
-      })],
+      JwtModule.forRoot(\\r\\nconfig
+   ],
+   blacklistedRoutes: [
+      'localhost
+   ]
+})],
       
    providers: [
       AuthService, 
