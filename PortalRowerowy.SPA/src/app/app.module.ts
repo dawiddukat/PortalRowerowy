@@ -18,6 +18,8 @@ import { NewsComponent } from './news/news.component';
 import { EventsComponent } from './events/events.component';
 import { AdventuresComponent } from './adventures/adventures.component';
 import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './routes';
 
 
 export function tokenGetter() {
@@ -48,7 +50,8 @@ export function tokenGetter() {
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:50000/api/auth']
          }
-      })],
+      }),
+    RouterModule.forRoot(appRoutes)],
       
    providers: [
       AuthService, 

@@ -1,21 +1,34 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Portal Rowerowy</a>
+  <a class="navbar-brand" [routerLink] ="['/home']" href="#">Portal Rowerowy</a>
  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button> -->
  <!-- <div class="collapse navbar-collapse" id="navbarsExampleDefault"> -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Użytkownicy</a>
+        <a class="nav-link" [routerLink] ="['/użytkownicy']" href="#">Użytkownicy</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Przyjaciele</a>
+        <a class="nav-link" [routerLink] ="['/home']" href="#">Przyjaciele</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Wiadomości</a>
+        <a class="nav-link" [routerLink] ="['/wydarzenia']" href="#">Wydarzenia</a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="logout()">Wyloguj</a>
+        <a class="nav-link" [routerLink] ="['/wyprawy']" href="#">Wyprawy</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink] ="['/giełda']" href="#">Giełda</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink] ="['/wiadomości']" href="#">Wiadomości</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link"  href="#" (click)="logout()">Wyloguj</a>
       </li>
     <!--<li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
@@ -28,6 +41,7 @@
     </ul>
 
 
+
     <!-- Example single danger button -->
     <div *ngIf="loggedIn()" class="dropdown">
       <a class="btn btn-secondary dropdown-toggle text-light">
@@ -36,6 +50,9 @@
 
     <div class="dropdown-menu">
         <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edytuj profil</a>
+       <!-- <u1 class="dropdown-menu-left"> [routerLink] ="['/giełda']" href="#"><li>Giełda</li>
+          </u1>-->
+        
         <a class="dropdown-item" href="#">Another </a>
         <a class="dropdown-item" href="#">Something else here</a>
     <div class="dropdown-divider"></div>
