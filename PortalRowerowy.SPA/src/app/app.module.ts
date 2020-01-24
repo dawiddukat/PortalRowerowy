@@ -14,6 +14,8 @@ import { UserService } from './_services/user.service';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { FriendsComponent } from './friends/friends.component';
 import { MessagesComponent } from './messages/messages.component';
+import { NewsComponent } from './news/news.component';
+import { EventsComponent } from './events/events.component';
 
 
 
@@ -29,7 +31,9 @@ export function tokenGetter() {
       RegisterComponent,
       UserListComponent,
       FriendsComponent,
-      MessagesComponent
+      MessagesComponent,
+      NewsComponent,
+      EventsComponent
    ],
    imports: [
       BrowserModule,
@@ -41,9 +45,8 @@ export function tokenGetter() {
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:50000/api/auth']
          }
-      })
-
-   ],
+      })],
+      
    providers: [
       AuthService, 
       AlertifyService,
