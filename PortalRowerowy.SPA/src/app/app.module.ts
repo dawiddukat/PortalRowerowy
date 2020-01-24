@@ -20,7 +20,6 @@ import { AdventuresComponent } from './adventures/adventures.component';
 import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component';
 
 
-
 export function tokenGetter() {
    return localStorage.getItem('token');
 }
@@ -43,12 +42,13 @@ export function tokenGetter() {
       BrowserModule,
       HttpClientModule,
       FormsModule,
-      JwtModule.forRoot(\\r\\nconfig
-   ],
-   blacklistedRoutes: [
-      'localhost
-   ]
-})],
+      JwtModule.forRoot({
+         config: {
+            tokenGetter: tokenGetter,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:50000/api/auth']
+         }
+      })],
       
    providers: [
       AuthService, 
