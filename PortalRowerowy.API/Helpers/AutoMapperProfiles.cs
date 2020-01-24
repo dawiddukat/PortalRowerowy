@@ -14,7 +14,8 @@ namespace PortalRowerowy.API.Helpers
                 {
                     opt.MapFrom(src => src.UserPhotos.FirstOrDefault(p => p.IsMain).Url);
                 })
-                .ForMember(dest => dest.Age, opt =>{
+                .ForMember(dest => dest.Age, opt =>
+                {
                     opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
                 });
             CreateMap<User, UserForDetailedDto>()
@@ -22,10 +23,16 @@ namespace PortalRowerowy.API.Helpers
                  {
                      opt.MapFrom(src => src.UserPhotos.FirstOrDefault(p => p.IsMain).Url);
                  })
-                 .ForMember(dest => dest.Age, opt =>{
-                    opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
-                    });
-            CreateMap<UserPhoto, UserForDetailedDto>();
+                 .ForMember(dest => dest.Age, opt =>
+                 {
+                     opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
+                 }); 
+          CreateMap<UserPhoto, UserForDetailedDto>();
+
+            CreateMap<SellBicycle, SellBicycleForListDto>();
+            CreateMap<SellBicycle, SellBicycleForDetailedDto>();
+            CreateMap<Adventure, AdventureForListDto>();
+            CreateMap<Adventure, AdventureForDetailedDto>();
         }
     }
 }

@@ -9,8 +9,8 @@ using PortalRowerowy.API.Data;
 namespace PortalRowerowy.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200124013326_ExtendedDB2")]
-    partial class ExtendedDB2
+    [Migration("20200124104220_ExtendedDB")]
+    partial class ExtendedDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,11 +23,15 @@ namespace PortalRowerowy.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AdventureName");
+
                     b.Property<DateTime>("DateAdded");
 
                     b.Property<string>("Description");
 
                     b.Property<int>("Distance");
+
+                    b.Property<string>("Url");
 
                     b.Property<int>("UserId");
 
@@ -71,6 +75,8 @@ namespace PortalRowerowy.API.Migrations
 
                     b.Property<int>("Price");
 
+                    b.Property<string>("SellBicycleName");
+
                     b.Property<string>("TypeBicycle");
 
                     b.Property<string>("Url");
@@ -96,8 +102,6 @@ namespace PortalRowerowy.API.Migrations
                     b.Property<bool>("IsMain");
 
                     b.Property<int>("SellBicycleId");
-
-                    b.Property<string>("SellBicycleName");
 
                     b.Property<string>("Url");
 

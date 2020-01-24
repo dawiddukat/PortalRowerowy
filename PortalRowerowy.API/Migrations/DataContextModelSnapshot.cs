@@ -21,11 +21,15 @@ namespace PortalRowerowy.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AdventureName");
+
                     b.Property<DateTime>("DateAdded");
 
                     b.Property<string>("Description");
 
                     b.Property<int>("Distance");
+
+                    b.Property<string>("Url");
 
                     b.Property<int>("UserId");
 
@@ -96,8 +100,6 @@ namespace PortalRowerowy.API.Migrations
                     b.Property<bool>("IsMain");
 
                     b.Property<int>("SellBicycleId");
-
-                    b.Property<string>("SellBicycleName");
 
                     b.Property<string>("Url");
 

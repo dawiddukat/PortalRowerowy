@@ -76,6 +76,8 @@ namespace PortalRowerowy.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    AdventureName = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
                     Distance = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     DateAdded = table.Column<DateTime>(nullable: false),
@@ -98,6 +100,7 @@ namespace PortalRowerowy.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    SellBicycleName = table.Column<string>(nullable: true),
                     Url = table.Column<string>(nullable: true),
                     Price = table.Column<int>(nullable: false),
                     TypeBicycle = table.Column<string>(nullable: true),

@@ -6,7 +6,7 @@ namespace PortalRowerowy.API.Data
 {
     public interface ISellBicycleRepository : IGenericRepository
     {
-        Task<IEnumerable<User>> GetUsers();
-        Task<User> GetUser(int id);
+        Task<IEnumerable<SellBicycle>> GetSellBicycles();
+        Task<SellBicycle> GetSellBicycle(int id);
     }
 }

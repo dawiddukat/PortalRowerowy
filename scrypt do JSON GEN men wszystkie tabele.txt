@@ -24,6 +24,7 @@
       DateAdded:'{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}' }],
   
       Adventures: [{
+      AdventureName: '{{random("Morze", "Góry")}}  
       Distance: '{{integer(0, 5000)}}',  
       Description: '{{lorem()}}',
       DateAdded:'{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}' }],

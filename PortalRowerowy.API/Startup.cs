@@ -41,7 +41,9 @@ namespace PortalRowerowy.API
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IGenericRepository, GenericRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();            
+            services.AddScoped<ISellBicycleRepository, SellBicycleRepository>();
+            services.AddScoped<IAdventureRepository, AdventureRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         .AddJwtBearer(options => {
                             options.TokenValidationParameters = new TokenValidationParameters
