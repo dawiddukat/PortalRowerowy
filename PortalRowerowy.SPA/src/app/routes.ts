@@ -10,13 +10,18 @@ import { EventsComponent } from './events/events.component';
 import { AuthGuard } from './_guards/auth.guard'
 
 export const appRoutes: Routes = [
-    { path: 'home', component: HomeComponent },
-    { path: 'użytkownicy', component: UserListComponent, canActivate: [AuthGuard] },
-    { path: 'przyjaciele', component: FriendsComponent, canActivate: [AuthGuard]  },
-    { path: 'wydarzenia', component: EventsComponent, canActivate: [AuthGuard]  },
-    { path: 'news', component: NewsComponent, canActivate: [AuthGuard]  },
-    { path: 'wyprawy', component: AdventuresComponent, canActivate: [AuthGuard]  },
-    { path: 'wiadomości', component: MessagesComponent, canActivate: [AuthGuard]  },
-    { path: 'giełda', component: SellbicyclesComponent, canActivate: [AuthGuard]  },
-    { path: '**', redirectTo: 'home', pathMatch: 'full'},
+    { path: '', component: HomeComponent },
+    { path: '',
+        runGuardsAndResolvers: 'always',
+        canActivate: [AuthGuard],
+        children: [
+            { path: 'użytkownicy', component: UserListComponent}, // canActivate: [AuthGuard] },
+            { path: 'przyjaciele', component: FriendsComponent}, // canActivate: [AuthGuard]  },
+            { path: 'wydarzenia', component: EventsComponent}, // canActivate: [AuthGuard]  },
+            { path: 'news', component: NewsComponent}, // canActivate: [AuthGuard]  },
+            { path: 'wyprawy', component: AdventuresComponent}, // canActivate: [AuthGuard]  },
+            { path: 'wiadomości', component: MessagesComponent}, // canActivate: [AuthGuard]  },
+            { path: 'giełda', component: SellbicyclesComponent}, // canActivate: [AuthGuard]  },
+        ]},
+    { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
