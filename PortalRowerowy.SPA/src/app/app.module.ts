@@ -20,6 +20,7 @@ import { AdventuresComponent } from './adventures/adventures.component';
 import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
+import { AuthGuard } from './_guards/auth.guard';
 
 
 export function tokenGetter() {
@@ -56,7 +57,8 @@ export function tokenGetter() {
    providers: [
       AuthService, 
       AlertifyService,
-      UserService
+      UserService,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent

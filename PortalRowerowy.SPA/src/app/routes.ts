@@ -7,15 +7,16 @@ import { AdventuresComponent } from './adventures/adventures.component'
 import { MessagesComponent } from './messages/messages.component'
 import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component'
 import { EventsComponent } from './events/events.component';
+import { AuthGuard } from './_guards/auth.guard'
 
 export const appRoutes: Routes = [
     { path: 'home', component: HomeComponent },
-    { path: 'użytkownicy', component: UserListComponent },
-    { path: 'przyjaciele', component: FriendsComponent },
-    { path: 'wydarzenia', component: EventsComponent },
-    { path: 'news', component: NewsComponent },
-    { path: 'wyprawy', component: AdventuresComponent },
-    { path: 'wiadomości', component: MessagesComponent },
-    { path: 'giełda', component: SellbicyclesComponent },
+    { path: 'użytkownicy', component: UserListComponent, canActivate: [AuthGuard] },
+    { path: 'przyjaciele', component: FriendsComponent, canActivate: [AuthGuard]  },
+    { path: 'wydarzenia', component: EventsComponent, canActivate: [AuthGuard]  },
+    { path: 'news', component: NewsComponent, canActivate: [AuthGuard]  },
+    { path: 'wyprawy', component: AdventuresComponent, canActivate: [AuthGuard]  },
+    { path: 'wiadomości', component: MessagesComponent, canActivate: [AuthGuard]  },
+    { path: 'giełda', component: SellbicyclesComponent, canActivate: [AuthGuard]  },
     { path: '**', redirectTo: 'home', pathMatch: 'full'},
 ];

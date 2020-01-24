@@ -20,9 +20,9 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.authService.register(this.model).subscribe(() => {
-      this.alertify.success('Rejestracja udana');
+      this.alertify.success("Rejestracja udana");
     }, error => {
-      this.alertify.error('Wystąpił błąd rejestracji!');
+      this.alertify.error("Wystąpił błąd rejestracji!");
     });
 
   }
@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
       // error notification
   // Shorthand for:
   // alertify.notify( message, 'error', [wait, callback]);
-    this.alertify.message('Anulowano');
+    this.alertify.message("Anulowano");
   }
 
 }
