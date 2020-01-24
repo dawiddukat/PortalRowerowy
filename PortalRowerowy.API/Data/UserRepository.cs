@@ -16,13 +16,13 @@ namespace PortalRowerowy.API.Data
 
         public async Task<User> GetUser(int id)
         {
-            var user = await _context.Users.Include(p => p.UserPhotos).Include(a => a.Adventures).Include(s => s.SellBicycles).FirstOrDefaultAsync(u => u.Id == id); //jak przypisać Adventures, UserPhotos, SellBicycles??
+            var user = await _context.Users.Include(p => p.UserPhotos)./*Include(a => a.Adventures).Include(s => s.SellBicycles).*/FirstOrDefaultAsync(u => u.Id == id); //jak przypisać Adventures, UserPhotos, SellBicycles??
             return user;
         }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            var users = await _context.Users.Include(p => p.UserPhotos).Include(a => a.Adventures).Include(s => s.SellBicycles).ToListAsync();
+            var users = await _context.Users.Include(p => p.UserPhotos)./*Include(a => a.Adventures).Include(s => s.SellBicycles).*/ToListAsync();
             return users;
         }
     }

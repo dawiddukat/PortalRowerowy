@@ -1,0 +1,31 @@
+<form #registerForm="ngForm" (ngSubmit)="register()">
+  <h2 class="text-center text-primary">
+    Zapisz się!
+  </h2>
+  <hr>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Nazwa użytkownika" required name="username" [(ngModel)]="model.username">
+  </div>
+  
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Hasło" required name="password" [(ngModel)]="model.password">
+  </div>
+
+ <!--Rozwijalna lista z pytaniem odnosiła się do Values <app-register [valuesFromHome]="values" (cancelRegister)="cancelRegisterMode($event)"> </app-register><div class="form-group">
+    <label for="favouritValue">
+      Jaka jest Twoja ulubiona wartość?
+    </label>
+    <select class="form-control" id="favouritValue">
+      <option *ngFor="let value of valuesFromHome" [value]="value"> {{ value.name }}
+      </option>
+    </select>
+  </div>-->
+
+
+  <div class="form-group text-center"> 
+    <hr>
+    <button class="btn btn-success" type="submit">Rejestracja</button>
+    <br>
+    <button class="btn btn-default" type="button" (click)="cancel()">Anuluj</button>
+  </div>
+</form>
