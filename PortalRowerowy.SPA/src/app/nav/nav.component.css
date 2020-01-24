@@ -1,8 +1,9 @@
-.navbar-nav {
-    margin-right: 0px;
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer;
 }
 
-.navbar-nav .nav-item {
-    padding: 0px;
+img {
+    max-height: 50px;
+    border: 2px solid white;
+    display: inline;
 }
-

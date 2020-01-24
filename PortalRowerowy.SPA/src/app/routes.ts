@@ -6,7 +6,7 @@ import { NewsComponent } from './news/news.component'
 import { AdventuresComponent } from './adventures/adventures.component'
 import { MessagesComponent } from './messages/messages.component'
 import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component'
-import { EventsComponent } from './events/events.component';
+import { EventsComponent } from './events/events.component'
 import { AuthGuard } from './_guards/auth.guard'
 
 export const appRoutes: Routes = [
