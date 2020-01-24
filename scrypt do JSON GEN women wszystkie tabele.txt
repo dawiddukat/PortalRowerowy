@@ -38,6 +38,7 @@
   
 
       SellBicycles: [{
+      SellBicycleName: '{{random("KROSS", "GIANT", "KELLYS", "MERIDA")}}',   
       Price: '{{integer(0, 40000)}}', 
       TypeBicycle:'{{random("MTB", "ROAD", "CITY", "EBIKE")}}',
       Description: '{{lorem()}}',

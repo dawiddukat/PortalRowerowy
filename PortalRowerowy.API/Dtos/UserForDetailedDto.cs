@@ -27,11 +27,11 @@ namespace PortalRowerowy.API.Dtos
         public string Interests { get; set; }
         public string DreamBicycle { get; set; }
         //ZAKŁADKA ZDJĘCIA
-        public ICollection<UserPhoto> UserPhotos { get; set; }
+        public ICollection<UserPhotosForDetailedDto> UserPhotos { get; set; }
         //Zakładka Ogłoszenia
-        public ICollection<SellBicycle> SellBicycles { get; set; }
+        public ICollection<SellBicycleForDetailedDto> SellBicycles { get; set; }
         //ZAKŁADKA WYPRAWY
-        public ICollection<Adventure> Adventures { get; set; }
+        public ICollection<AdventureForDetailedDto> Adventures { get; set; }
 
         public string PhotoUrl { get; set;}
     }

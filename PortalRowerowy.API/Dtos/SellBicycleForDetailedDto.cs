@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using PortalRowerowy.API.Models;
 
-namespace PortalRowerowy.API.Models
+namespace PortalRowerowy.API.Dtos
 {
-    public class SellBicycle
+    public class SellBicycleForDetailedDto
     {
         public int Id { get; set; }
         public string SellBicycleName { get; set; }
@@ -14,8 +15,5 @@ namespace PortalRowerowy.API.Models
         //public string Voivodeship { get; set; }
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
-        public User User { get; set; }
-        public int UserId { get; set; }
-
     }
 }
