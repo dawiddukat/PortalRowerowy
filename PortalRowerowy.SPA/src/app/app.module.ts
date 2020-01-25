@@ -23,6 +23,7 @@ import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
+import { UserCardComponent } from './users/user-card/user-card.component';
 
 
 export function tokenGetter() {
@@ -41,7 +42,8 @@ export function tokenGetter() {
       NewsComponent,
       EventsComponent,
       AdventuresComponent,
-      SellbicyclesComponent
+      SellbicyclesComponent,
+      UserCardComponent,
    ],
    imports: [
       BrowserModule,
