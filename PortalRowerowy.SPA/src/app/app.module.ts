@@ -24,6 +24,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserCardComponent } from './users/user-card/user-card.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
 
 
 export function tokenGetter() {
@@ -44,6 +45,7 @@ export function tokenGetter() {
       AdventuresComponent,
       SellbicyclesComponent,
       UserCardComponent,
+      UserDetailComponent
    ],
    imports: [
       BrowserModule,

@@ -8,6 +8,7 @@ import { MessagesComponent } from './messages/messages.component'
 import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component'
 import { EventsComponent } from './events/events.component'
 import { AuthGuard } from './_guards/auth.guard'
+import { UserDetailComponent } from './users/user-detail/user-detail.component'
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -15,8 +16,9 @@ export const appRoutes: Routes = [
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
         children: [
-            { path: 'użytkownicy', component: UserListComponent}, // canActivate: [AuthGuard] },
-            { path: 'przyjaciele', component: FriendsComponent}, // canActivate: [AuthGuard]  },
+            { path: 'uzytkownicy', component: UserListComponent}, // canActivate: [AuthGuard] },
+            { path: 'przyjaciele', component: FriendsComponent},
+            { path: 'uzytkownicy/:id', component: UserDetailComponent}, // canActivate: [AuthGuard]  },
             { path: 'wydarzenia', component: EventsComponent}, // canActivate: [AuthGuard]  },
             { path: 'news', component: NewsComponent}, // canActivate: [AuthGuard]  },
             { path: 'wyprawy', component: AdventuresComponent}, // canActivate: [AuthGuard]  },

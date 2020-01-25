@@ -1,7 +1,7 @@
-<div class="card mb-2" [routerLink]="['/użytkownicy/', user.id]" routerLinkActive="router-link-active">
+<div class="card text-dark mb-2 btn" [routerLink]="['/uzytkownicy/', user.id]">
 
-  <div class="card-body p-2">
-    <h6 class="card-title text-capitalize text-center mb-1"><i class="fa fa-user"></i>
+  <div class="card-body p-2 ">
+    <h6 class="card-title text-capitalize text-dark text-center mb-1" routerLinkActive="active"><i class="fa fa-user"></i>
       {{user.username}}
     </h6>
   
@@ -10,17 +10,17 @@
     <img src="{{user.photoUrl || '../../../../../assets/user.png'}}" class="card-img-top" alt="{{user.username}}">
     <ul class="list-inline text-center user-icons animate">
       <li class="list-inline-item" (click)="(user.id)">
-        <button class="btn btn-warning btn-sm">
+        <button class="btn btn-outline-dark btn-sm">
           <i class="fa fa-bicycle"></i>
         </button>
       </li>
       <li class="list-inline-item">
-        <button class="btn btn-warning btn-sm" [routerLink]="['/uzytkownicy/', user.id]" routerLinkActive="router-link-active" >
+        <button class="btn btn-outline-danger btn-sm" [routerLink]="['/uzytkownicy/', user.id]" routerLinkActive="router-link-active" >
           <i class="fa fa-plus-square"></i>
         </button>
       </li>
       <li class="list-inline-item">
-        <button class="btn btn-warning btn-sm" [routerLink]="['/uzytkownicy/', user.id]" [queryParams]="{tab: 5}">
+        <button class="btn btn-outline-info btn-sm" [routerLink]="['/uzytkownicy/', user.id]" [queryParams]="{tab: 5}">
           <i class="fa fa-envelope"></i>
         </button>
       </li>
