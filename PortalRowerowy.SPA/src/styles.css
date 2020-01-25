@@ -3,3 +3,12 @@
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
 @import '../node_modules/alertifyjs/build/css/alertify.min.css';
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+@import '../node_modules/bootswatch/dist/minty/bootstrap.min.css';
+
+
+body {
+    background-image: url("../src/img/caesar-aldhela-abad0BA8OEg-unsplash.jpg");
+    background-color: #cccccc;
+    background-size: cover;
+    background-repeat: no-repeat;
+   }

@@ -1,27 +1,26 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark "> 
+<nav class="navbar navbar-expand-md  navbar-dark bg-primary "> 
   <div class="container">
     <a class="navbar-brand" [routerLink]="['/home']">Rower, lubię Go!</a>
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/użytkownicy']" href="#">Użytkownicy</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/użytkownicy']">Użytkownicy</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/wydarzenia']" href="#">Events</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/wydarzenia']">Events</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/news']" href="#">News</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/news']">News</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/wyprawy']" href="#">Wyprawy</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/wyprawy']">Wyprawy</a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['/giełda']" href="#">Giełda</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/giełda']">Giełda</a>
       </li>
     </ul>
    
     <div *ngIf="loggedIn()" class="dropdown" dropdown >
-      <a class="btn btn-secondary dropdown-toggle text-light" dropdownToggle>
+      <a class="btn btn-success dropdown-toggle text-light" dropdownToggle>
         Witaj {{ authService.decodedToken?.unique_name | titlecase }}!
       </a>
       <div class="dropdown-menu mt-3" *dropdownMenu>
