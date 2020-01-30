@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace PortalRowerowy.API.Dtos
 {
@@ -18,6 +19,7 @@ namespace PortalRowerowy.API.Dtos
         public string City { get; set; }
 
         public string PhotoUrl { get; set;}
+        public ICollection<UserPhotosForDetailedDto> UserPhotos { get; set; }
         
     }
 }
