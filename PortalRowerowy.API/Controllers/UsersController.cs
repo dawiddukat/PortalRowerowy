@@ -25,7 +25,6 @@ namespace PortalRowerowy.API.Controllers
         [HttpGet] //pobieranie wszystkich użytkowników
         public async Task<IActionResult> GetUsers()
         {
-
             var users = await _repo.GetUsers();
 
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);

@@ -15,8 +15,5 @@ namespace PortalRowerowy.API.Dtos
         //public string Voivodeship { get; set; }
         //public string Description { get; set; }
         public DateTime DateAdded { get; set; }
-
-        public int UserId { get; set; }
-
     }
 }
