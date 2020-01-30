@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Adventure } from 'src/app/_models/adventure';
+import { AdventureService } from 'src/app/_services/adventure.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 
 @Component({
   selector: 'app-adventures',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdventuresComponent implements OnInit {
 
-  constructor() { }
+  adventures: Adventure[];
+
+  constructor(private adventureService: AdventureService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.loadAdventures();
   }
 
+
+  loadAdventures() {
+    this.adventureService.getAdventures().subscribe((adventures: Adventure[]) => {
+      this.adventures = adventures;
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
 }
