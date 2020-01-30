@@ -1,4 +1,7 @@
 
+.card {
+    min-width: 220px;
+}
 
 .card-img {
     transform: scale(1.0, 1.0);
