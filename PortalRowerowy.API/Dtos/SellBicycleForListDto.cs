@@ -16,7 +16,7 @@ namespace PortalRowerowy.API.Dtos
         //public string Description { get; set; }
         public DateTime DateAdded { get; set; }
 
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
 
     }
 }

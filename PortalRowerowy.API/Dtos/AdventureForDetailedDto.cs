@@ -8,7 +8,7 @@ namespace PortalRowerowy.API.Dtos
     {
         public int Id { get; set; }
 
-        public string adventureName { get; set; }
+        public string AdventureName { get; set; }
 
         public string Url { get; set; }
 
