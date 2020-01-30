@@ -25,6 +25,8 @@ import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserCardComponent } from './users/user-card/user-card.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { UserDetailResolver } from './_resolvers/user-detail.resolver';
+import { UserListResolver } from './_resolvers/user-list.resolver';
 
 
 export function tokenGetter() {
@@ -67,7 +69,9 @@ export function tokenGetter() {
       AuthService, 
       AlertifyService,
       UserService,
-      AuthGuard
+      AuthGuard,
+      UserDetailResolver,
+      UserListResolver
    ],
    bootstrap: [
       AppComponent
