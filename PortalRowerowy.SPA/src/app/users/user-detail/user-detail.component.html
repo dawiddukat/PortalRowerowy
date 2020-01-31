@@ -1,39 +1,39 @@
 <div class="container mt-3">
   <div class="row">
-  <h1>Profil {{user.username}}</h1>
+    <h1>Profil {{user.username}}</h1>
   </div>
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{user?.photoUrl}}" alt="{{user?.username}}">
+        <img class="card-img-top img-thumbnail" src="{{user.photoUrl}}" alt="{{user.username}}">
         <div class="card-body">
           <div>
             <strong>Nazwa użytkownika: </strong>
-            <p class="text-capitalize"> {{user?.username}} </p>
+            <p class="text-capitalize"> {{user.username}} </p>
           </div>
           <div>
             <strong>Wiek: </strong>
-            <p> {{user?.age}} </p>
+            <p> {{user.age}} </p>
           </div>
           <div>
             <strong>Płeć: </strong>
-            <p> {{user?.gender}} </p>
+            <p> {{user.gender}} </p>
           </div>
           <div>
             <strong>Lokalizacja: </strong>
-            <p> {{user?.country}}, {{user?.city}} </p>
+            <p> {{user.country}},{{user.voivodeship}} ,{{user.city}} </p>
           </div>
           <div>
             <strong>Typ roweru: </strong>
-            <p> {{user?.typeBicycle}} </p>
+            <p> {{user.typeBicycle}} </p>
           </div>
           <div>
             <strong>Data utworzenia konta: </strong>
-            <p> {{user?.created}} </p>
+            <p> {{user.created}} </p>
           </div>
           <div>
             <strong>Ostatnia aktywność: </strong>
-            <p> {{user?.lastActive}} </p>
+            <p> {{user.lastActive}} </p>
           </div>
         </div>
         <div class="card-footer">
@@ -48,68 +48,57 @@
       <div class="tab-panel">
         <tabset class="user-tabset" #userTabs>
           <tab heading="Informacje {{user.username}}">
-            <table class="user-table" >
+            <table class="user-table">
               <tr>
                 <td class="user-table-tb">
                   <h5>Rowery:</h5>
-                    <p>{{user?.bicycles}}</p>
-                  
+                  <p>{{user.bicycles}}</p>
+
                 </td>
                 <td>
-                  <h5>Zawód:</h5>
-                    <p>{{user?.profession}}</p>
+                  <h5>Wymarzony rower:</h5>
+                  <p>{{user.dreamBicycle}}</p>
+
                 </td>
               </tr>
               <tr>
                 <td>
                   <h5>O mnie:</h5>
-                    <p>{{user?.description}}</p>
-                  
+                  <p>{{user.description}}</p>
+
                 </td>
                 <td>
                   <h5>Zainteresowania:</h5>
-                    <p>{{user?.interests}}</p>
+                  <p>{{user.interests}}</p>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <h5>Wymarzony rower:</h5>
-                    <p>{{user?.dreamBicycle}}</p>
+                  <h5>Zawód:</h5>
+                  <p>{{user.profession}}</p>
               </tr>
             </table>
           </tab>
-          <tab heading = "Zdjęcia">
-                  <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+          <tab heading="Zdjęcia">
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
           </tab>
-          <tab heading = "Sprzedawane rowery">
-              <tr>
-                <td>
-                  <h5>Rowery:</h5>
-                    <p>{{user.sellBicycles}}</p>
-        
-                </td>
-                <td>
-                  <h5>Zawód:</h5>
-                    <p>{{user.profession}}</p>
-                </td>
-              </tr>
-            
-          </tab>
-          <tab heading = "Wyprawy">
+          <tab heading="Sprzedawane rowery">
             <tr>
-                <td>
-                  <h5>Rowery:</h5>
-                    <p>{{user.adventures}}</p>
-                  
-                </td>
-                <td>
-                  <h5>Zawód:</h5>
-                    <p>{{user.profession}}</p>
-                </td>
-              </tr>
-            </tab>
+              <td>
+                <h5>Rowery:</h5>
+                <p>{{user.sellBicycles}}</p>
+              </td>
+            </tr>
+          </tab>
+          <tab heading="Wyprawy">
+            <tr>
+              <td>
+                <h5>Wyprawy:</h5>
+                <p>{{user.adventures}}</p>
+              </td>
+            </tr>
+          </tab>
         </tabset>
-        
       </div>
     </div>
   </div>

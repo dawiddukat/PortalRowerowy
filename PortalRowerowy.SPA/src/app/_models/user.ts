@@ -3,8 +3,8 @@ import { SellBicycle } from './SellBicycle';
 import { Adventure } from './Adventure';
 
 export interface User {
-    /*Podstawowe informacje*/
-    id: number;
+        /*Podstawowe informacje*/
+        id: number;
         username: string;
         gender: string;
         age: number;
@@ -12,20 +12,21 @@ export interface User {
         created: Date;
         lastActive: Date;
         country: string;
+        voivodeship: string;
         city: string;
         /*info*/
         bicycles: string;
         profession: string;
-                /*o mnie */
+        /*o mnie */
         description: string;
-                /*zainteresowanie*/
+        /*zainteresowanie*/
         interests: string;
         dreamBicycle: string;
-                /*zdjęcia*/
+        /*zdjęcia*/
         userPhotos: UserPhoto[];
-                /*sprzedawane rowery*/
+        /*sprzedawane rowery*/
         sellBicycles: SellBicycle[];
-                /*wyprawy*/
+        /*wyprawy*/
         adventures: Adventure[];
         photoUrl: string;
 }

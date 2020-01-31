@@ -16,7 +16,7 @@ namespace PortalRowerowy.API.Models
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
         public string Country { get; set; }
-        //public string Voivodeship { get; set; }
+        public string Voivodeship { get; set; }
         //public string County { get; set; }   
         public string City { get; set; }
         //DODATKOWE INFORMACJE - ZAKŁADKA INFO

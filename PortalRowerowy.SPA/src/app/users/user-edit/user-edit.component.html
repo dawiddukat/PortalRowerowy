@@ -1,3 +1,136 @@
-<p>
-  {{user.username}}
-</p>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col sm-4">
+      <h1>Twój profil - Edycja</h1>
+    </div>
+    <div class="col-sm-8">
+      <div class="alert alert-info">
+        <p>
+          <strong>
+          Informacja:
+          </strong>
+          Dokonałeś zmian. Wszelkie niezapisane zmiany zostaną utracone!
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <img class="card-img-top img-thumbnail" src="{{user.photoUrl}}" alt="{{user.username}}">
+          <div class="card-body">
+            <div>
+              <strong>Nazwa użytkownika: </strong>
+              <p class="text-capitalize"> {{user.username}} </p>
+            </div>
+            <div>
+              <strong>Wiek: </strong>
+              <p> {{user.age}} </p>
+            </div>
+            <div>
+              <strong>Płeć: </strong>
+              <p> {{user.gender}} </p>
+            </div>
+            <div>
+              <strong>Lokalizacja: </strong>
+              <p> {{user.country}},{{user.voivodeship}},{{user.city}} </p>
+            </div>
+            <div>
+              <strong>Typ roweru: </strong>
+              <p> {{user.typeBicycle}} </p>
+            </div>
+            <div>
+              <strong>Data utworzenia konta: </strong>
+              <p> {{user.created}} </p>
+            </div>
+            <div>
+              <strong>Ostatnia aktywność: </strong>
+              <p> {{user.lastActive}} </p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-success btn-block">Zapisz zmiany</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <form>
+          <div class="tab-panel">
+            <tabset class="user-tabset" #userTabs>
+              <tab heading="Informacje - Edycja">
+                <table class="user-table">
+                  <tr>
+                    <td class="user-table-tb">
+                      <h5>Kraj:</h5>
+                      <textarea class="form-control" name="country" rows="1" [(ngModel)]="user.country"></textarea>
+                    </td>
+                    <td>
+                      <h5>Województwo:</h5>
+                      <textarea class="form-control" name="voivodeship" rows="1"
+                        [(ngModel)]="user.voivodeship"></textarea>
+                    </td>
+                    <td>
+                      <h5>Miasto:</h5>
+                      <textarea class="form-control" name="city" rows="1" [(ngModel)]="user.city"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h5>Typ rowerów:</h5>
+                      <textarea class="form-control" name="typeBicycle" rows="1"
+                        [(ngModel)]="user.typeBicycle"></textarea>
+                    </td>
+                    <td>
+                      <h5>Rowery:</h5>
+                      <textarea class="form-control" name="bicycles" rows="1" [(ngModel)]="user.bicycles"></textarea>
+                    </td>
+                    <td>
+                      <h5>Wymarzony rower:</h5>
+                      <textarea class="form-control" name="dreamBicycle" rows="1"
+                        [(ngModel)]="user.dreamBicycle"></textarea>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h5>O mnie:</h5>
+                      <textarea class="form-control" name="description" rows="10"
+                        [(ngModel)]="user.description"></textarea>
+                    </td>
+                    <td>
+                      <h5>Zainteresowania:</h5>
+                      <textarea class="form-control" name="interests" rows="10" [(ngModel)]="user.interests"></textarea>
+                    </td>
+                    <td>
+                      <h5>Zawód:</h5>
+                      <textarea class="form-control" name="profession" rows="10"
+                        [(ngModel)]="user.profession"></textarea>
+                    </td>
+                  </tr>
+                </table>
+              </tab>
+              <tab heading="Zdjęcia">
+                <p>Edycja zdjęć do zrobienia</p>>
+              </tab>
+              <tab heading="Sprzedawane rowery">
+                <tr>
+                  <td>
+                    <h5>Rowery:</h5>
+                    <p>{{user.sellBicycles}}</p>
+                  </td>
+                </tr>
+
+              </tab>
+              <tab heading="Wyprawy">
+                <tr>
+                  <td>
+                    <h5>Wyprawy:</h5>
+                    <p>{{user.adventures}}</p>
+                  </td>
+                </tr>
+              </tab>
+            </tabset>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
