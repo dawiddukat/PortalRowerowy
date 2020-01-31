@@ -37,7 +37,6 @@ export class UserDetailComponent implements OnInit {
         imagePercent: 100,
         preview: false,
         imageAnimation: NgxGalleryAnimation.Slide,
-        
         /*    },
             // max-width 800
             {
@@ -51,8 +50,7 @@ export class UserDetailComponent implements OnInit {
             },
             // max-width 400
             {*/
-        //breakpoint: 400,
-        
+        // breakpoint: 400,
       }
     ];
 

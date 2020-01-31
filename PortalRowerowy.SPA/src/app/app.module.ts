@@ -1,11 +1,12 @@
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -21,23 +22,24 @@ import { NewsComponent } from './news/news.component';
 import { EventsComponent } from './events/events.component';
 import { AdventuresComponent } from './adventures/adventures.component';
 import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component';
-import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserCardComponent } from './users/user-card/user-card.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
 import { UserListResolver } from './_resolvers/user-list.resolver';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { UserEditResolver } from './_resolvers/user-edit.resolver';
 
 
 export function tokenGetter() {
    return localStorage.getItem('token');
 }
 
-export class CustomHammerConfig extends HammerGestureConfig  {
+export class CustomHammerConfig extends HammerGestureConfig {
    overrides = {
-       pinch: { enable: false },
-       rotate: { enable: false }
+      pinch: { enable: false },
+      rotate: { enable: false }
    };
 }
 
@@ -55,7 +57,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       AdventuresComponent,
       SellbicyclesComponent,
       UserCardComponent,
-      UserDetailComponent
+      UserDetailComponent,
+      UserEditComponent
    ],
    imports: [
       BrowserModule,
@@ -65,27 +68,27 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       NgxGalleryModule,
       JwtModule.forRoot({
          config: {
+            // tslint:disable-next-line: object-literal-shorthand
             tokenGetter: tokenGetter,
             whitelistedDomains: ['localhost:5000'],
             blacklistedRoutes: ['localhost:50000/api/auth']
          }
       }),
-    RouterModule.forRoot(appRoutes),
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot()
-   
-
-   ],   
+      RouterModule.forRoot(appRoutes),
+      BsDropdownModule.forRoot(),
+      TabsModule.forRoot()
+   ],
    providers: [
-      AuthService, 
+      AuthService,
       AlertifyService,
       UserService,
       AuthGuard,
       UserDetailResolver,
       UserListResolver,
       {
-         provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig 
-     },
+         provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig
+      },
+      UserEditResolver,
    ],
    bootstrap: [
       AppComponent

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md  navbar-dark bg-primary "> 
+<nav class="navbar navbar-expand-md  navbar-dark bg-primary ">
   <div class="container-fluid">
     <a class="navbar-brand" [routerLink]="['/home']">Rower, lubię Go!</a>
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
@@ -18,18 +18,20 @@
         <a class="nav-link" [routerLink]="['/giełda']">Giełda</a>
       </li>
     </ul>
-   
-    <div *ngIf="loggedIn()" class="dropdown" dropdown >
+
+    <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <a class="btn btn-success dropdown-toggle text-light" dropdownToggle>
         Witaj {{ authService.decodedToken?.unique_name | titlecase }}!
       </a>
       <div class="dropdown-menu mt-3" *dropdownMenu>
-       <a class="dropdown-item" [routerLink]="['/przyjaciele']" href="#"><i class="fa fa-users"> </i> Przyjaciele</a>
-        <a class="dropdown-item" [routerLink]="['/wiadomości']" href="#"> <i class="fa fa-telegram"> </i>  Wiadomości</a>
-        <a class="dropdown-item" href="#" [routerLink]="['/wiadomości']"><i class="fa fa-user"></i> Edytuj profil</a>
-                <div class="dropdown-divider"></div>
+        <a class="dropdown-item" [routerLink]="['/przyjaciele']" href="#"><i class="fa fa-users"> </i> Przyjaciele</a>
+        <a class="dropdown-item" [routerLink]="['/wiadomości']" href="#"> <i class="fa fa-telegram"> </i> Wiadomości</a>
+        <a class="dropdown-item" href="#" [routerLink]="['uzytkownik/edycja']"><i class="fa fa-user"></i> Edytuj
+          profil</a>
+        <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#" (click)="logout()"> <i class="fa fa-bicycle"> </i> Wyloguj</a>
-      </div>    </div>
+      </div>
+    </div>
 
 
     <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
@@ -41,5 +43,5 @@
         type="submit">Zaloguj</button>
     </form>
 
-    </div>
+  </div>
 </nav>
