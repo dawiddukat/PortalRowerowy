@@ -91,12 +91,9 @@
             </tr>
           </tab>
           <tab heading="Wyprawy">
-            <tr>
-              <td>
-                <h5>Wyprawy:</h5>
-                <p>{{user.adventures}}</p>
-              </td>
-            </tr>
+            <h5>Szukam</h5>
+            <p>{{user.adventures}}</p>
+            <ngx-gallery [options]="galleryOptions" [images]="galleryAdventures"></ngx-gallery>
           </tab>
         </tabset>
       </div>

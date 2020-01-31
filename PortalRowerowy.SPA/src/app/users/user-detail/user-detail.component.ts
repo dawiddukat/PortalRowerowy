@@ -4,6 +4,7 @@ import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { Adventure } from 'src/app/_models/Adventure';
 
 @Component({
   selector: 'app-user-detail',
@@ -13,8 +14,10 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 export class UserDetailComponent implements OnInit {
 
   user: User;
+  adventure: Adventure;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  galleryAdventures: NgxGalleryImage[];
 
   constructor(private userService: UserService,
     // tslint:disable-next-line: align
@@ -27,6 +30,7 @@ export class UserDetailComponent implements OnInit {
     //this.loadUser();
     this.route.data.subscribe(data => {
       this.user = data.user;
+      this.adventure = data.adventure;
     });
 
     this.galleryOptions = [
@@ -55,6 +59,7 @@ export class UserDetailComponent implements OnInit {
     ];
 
     this.galleryImages = this.getImages();
+    this.galleryAdventures = this.getAdventures();
     /* {
          small: 'assets/1-small.jpg',
          medium: 'assets/1-medium.jpg',
@@ -94,4 +99,30 @@ export class UserDetailComponent implements OnInit {
     // }
 
   }
+
+
+
+getAdventures() {
+    const adventuresUrls = [];
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.user.adventures.length; i++) {
+      adventuresUrls.push({
+        small: this.user.adventures[i].url,
+        medium: this.user.adventures[i].url,
+        big: this.user.adventures[i].url,
+        descriptio: this.user.adventures[i].description,
+      });
+    }
+    return adventuresUrls;
+    // loadUser() {
+    //   this.userService.getUser(+this.route.snapshot.params.id).
+    //   subscribe((user: User) => {
+    //     this.user = user;
+    //   }, error => {
+    //     this.alertify.error(error);
+    //   });
+    // }
+
+  }
+
 }
