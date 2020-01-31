@@ -40,6 +40,16 @@ npm install alertifyjs --save
 
 npm install bootstrap font-awesome
 
+npm install ngx-gallery --save
+
+NALEŻY RÓWNIEŻ DOKONAĆ ZMIAN W APP.MODULE.TS
+
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+"PROVIDERS"
+      {
+         provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig
+      },
+
 
 7. RUN:
 
