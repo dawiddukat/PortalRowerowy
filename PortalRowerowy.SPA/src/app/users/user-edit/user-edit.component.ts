@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { User } from 'src/app/_models/user';
 import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -13,6 +13,12 @@ export class UserEditComponent implements OnInit {
 
   user: User;
   @ViewChild('editForm', null) editForm: NgForm;
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotfication($event: any) {
+    if (this.editForm.dirty) {
+      $event.returnValue = true;
+    }
+  }
 
   constructor(private route: ActivatedRoute, private alertify: AlertifyService) { }
 
@@ -26,7 +32,6 @@ export class UserEditComponent implements OnInit {
     console.log(this.user);
     this.alertify.success('Profil pomyślnie zaktualizowany.');
     this.editForm.reset(this.user);
-
   }
 
 }
