@@ -1,18 +1,18 @@
-import { Routes } from '@angular/router'
-import { HomeComponent } from './home/home.component'
-import { UserListComponent } from './users/user-list/user-list.component'
-import { FriendsComponent } from './friends/friends.component'
-import { NewsComponent } from './news/news.component'
-import { AdventuresComponent } from './adventures/adventures.component'
-import { MessagesComponent } from './messages/messages.component'
-import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component'
-import { EventsComponent } from './events/events.component'
-import { AuthGuard } from './_guards/auth.guard'
-import { UserDetailComponent } from './users/user-detail/user-detail.component'
-import { UserDetailResolver } from './_resolvers/user-detail.resolver'
-import { UserListResolver } from './_resolvers/user-list.resolver'
-import { UserEditComponent } from './users/user-edit/user-edit.component'
-import { UserEditResolver } from './_resolvers/user-edit.resolver'
+import { Routes } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { FriendsComponent } from './friends/friends.component';
+import { NewsComponent } from './news/news.component';
+import { AdventuresComponent } from './adventures/adventures.component';
+import { MessagesComponent } from './messages/messages.component';
+import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component';
+import { EventsComponent } from './events/events.component';
+import { AuthGuard } from './_guards/auth.guard';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { UserDetailResolver } from './_resolvers/user-detail.resolver';
+import { UserListResolver } from './_resolvers/user-list.resolver';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { UserEditResolver } from './_resolvers/user-edit.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -24,6 +24,7 @@ export const appRoutes: Routes = [
             { path: 'uzytkownicy', component: UserListComponent, resolve: { users: UserListResolver } }, // canActivate: [AuthGuard] },
             { path: 'przyjaciele', component: FriendsComponent },
             { path: 'uzytkownik/edycja', component: UserEditComponent, resolve: { user: UserEditResolver } },
+            // tslint:disable-next-line: max-line-length
             { path: 'uzytkownicy/:id', component: UserDetailComponent, resolve: { user: UserDetailResolver } }, // canActivate: [AuthGuard]  },
             { path: 'wydarzenia', component: EventsComponent }, // canActivate: [AuthGuard]  },
             { path: 'news', component: NewsComponent }, // canActivate: [AuthGuard]  },
