@@ -5,7 +5,7 @@ import { FriendsComponent } from './friends/friends.component';
 import { NewsComponent } from './news/news.component';
 import { AdventuresComponent } from './adventures/adventures.component';
 import { MessagesComponent } from './messages/messages.component';
-import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component';
+import { SellBicyclesComponent } from './sellbicycles/sellbicycles.component';
 import { EventsComponent } from './events/events.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
@@ -32,7 +32,7 @@ export const appRoutes: Routes = [
             { path: 'news', component: NewsComponent }, // canActivate: [AuthGuard]  },
             { path: 'wyprawy', component: AdventuresComponent }, // canActivate: [AuthGuard]  },
             { path: 'wiadomości', component: MessagesComponent }, // canActivate: [AuthGuard]  },
-            { path: 'giełda', component: SellbicyclesComponent }, // canActivate: [AuthGuard]  },
+            { path: 'giełda', component: SellBicyclesComponent }, // canActivate: [AuthGuard]  },
 ]
     },
 { path: '**', redirectTo: '', pathMatch: 'full' }

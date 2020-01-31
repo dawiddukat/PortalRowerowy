@@ -21,7 +21,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { NewsComponent } from './news/news.component';
 import { EventsComponent } from './events/events.component';
 import { AdventuresComponent } from './adventures/adventures.component';
-import { SellbicyclesComponent } from './sellbicycles/sellbicycles.component';
+import { SellBicyclesComponent } from './sellbicycles/sellbicycles.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserCardComponent } from './users/user-card/user-card.component';
@@ -56,7 +56,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       NewsComponent,
       EventsComponent,
       AdventuresComponent,
-      SellbicyclesComponent,
+      SellBicyclesComponent,
       UserCardComponent,
       UserDetailComponent,
       UserEditComponent

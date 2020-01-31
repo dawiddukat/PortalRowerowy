@@ -1,3 +1,15 @@
-<p>
-  sellbicycles works!
-</p>
+<div class="mce-container-body ml-5 mr-4 ">
+  <div class="row">
+    <div class="row">
+      <div *ngFor="let sellBicycle of sellBicycles" style="text-align: center;">
+        <!--<app-user-card [sellBicycle] = 'sellBicycle'> </app-user-card>-->
+        <div class="card-body p-2 ">
+          <h6 class="card-title text-capitalize text-dark text-center mb-1" routerLinkActive="active"><i
+              class="fa fa-bicycle"></i>
+            {{sellBicycle.sellBicycleName}}
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
