@@ -1,5 +1,8 @@
 <div class="container mt-3">
   <div class="row">
+  <h1>Profil {{user.username}}</h1>
+  </div>
+  <div class="row">
     <div class="col-sm-4">
       <div class="card">
         <img class="card-img-top img-thumbnail" src="{{user?.photoUrl}}" alt="{{user?.username}}">
@@ -43,9 +46,9 @@
     </div>
     <div class="col-sm-8">
       <div class="tab-panel">
-        <tabset class="user-tabset">
-          <tab heading = "Informacje">
-            <table class="user-table">
+        <tabset class="user-tabset" #userTabs>
+          <tab heading="Informacje {{user.username}}">
+            <table class="user-table" >
               <tr>
                 <td class="user-table-tb">
                   <h5>Rowery:</h5>
@@ -76,18 +79,9 @@
             </table>
           </tab>
           <tab heading = "Zdjęcia">
-            <table style="width: 100%">
-              <tr>
-                <td>
-                  <h5>Zdjęcia:</h5>
-                  <!--<ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>-->
-                   
-              </td>
-              </tr>
-            </table>
+                  <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
           </tab>
           <tab heading = "Sprzedawane rowery">
-            <table style="width: 100%">
               <tr>
                 <td>
                   <h5>Rowery:</h5>
@@ -99,11 +93,10 @@
                     <p>{{user.profession}}</p>
                 </td>
               </tr>
-            </table>
+            
           </tab>
           <tab heading = "Wyprawy">
-            <table style="width: 100%">
-              <tr>
+            <tr>
                 <td>
                   <h5>Rowery:</h5>
                     <p>{{user.adventures}}</p>
@@ -114,8 +107,7 @@
                     <p>{{user.profession}}</p>
                 </td>
               </tr>
-            </table>
-          </tab>
+            </tab>
         </tabset>
         
       </div>
