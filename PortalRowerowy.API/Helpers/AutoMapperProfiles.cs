@@ -26,9 +26,9 @@ namespace PortalRowerowy.API.Helpers
                  .ForMember(dest => dest.Age, opt =>
                  {
                      opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
-                 }); 
-          CreateMap<UserPhoto, UserForDetailedDto>();
-
+                 });
+            CreateMap<UserPhoto, UserForDetailedDto>();
+            CreateMap<UserForUpdateDto, User>();
             CreateMap<SellBicycle, SellBicycleForListDto>();
             CreateMap<SellBicycle, SellBicycleForDetailedDto>();
             CreateMap<Adventure, AdventureForListDto>();

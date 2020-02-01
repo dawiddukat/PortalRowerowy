@@ -35,16 +35,5 @@ namespace PortalRowerowy.API.Models
         public ICollection<Adventure> Adventures { get; set; }
 
 
-
-
-
-
-
-
-
-
-
-
-
     }
 }
