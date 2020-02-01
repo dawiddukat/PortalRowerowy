@@ -37,6 +37,7 @@ export class UserEditComponent implements OnInit {
       .subscribe(next => {
         this.alertify.success('Profil pomyślnie zaktualizowano');
         this.editForm.reset(this.user); },
+        // tslint:disable-next-line: no-shadowed-variable
         error => {
         this.alertify.error(error);
       }
