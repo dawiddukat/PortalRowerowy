@@ -20,10 +20,17 @@ namespace PortalRowerowy.API.Data
             return user;
         }
 
+
+
         public async Task<IEnumerable<User>> GetUsers()
         {
             var users = await _context.Users.Include(p => p.UserPhotos).Include(a => a.Adventures).Include(s => s.SellBicycles).ToListAsync();
             return users;
+        }
+        public async Task<UserPhoto> GetUserPhoto(int id)
+        {
+            var userPhoto = await _context.UserPhotos.FirstOrDefaultAsync(p => p.Id == id);
+            return userPhoto;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace PortalRowerowy.API.Controllers
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
         private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
-        private Cloudinary _claudinary;
+        private Cloudinary _cloudinary;
 
         public UserPhotosController (IUserRepository repository, IMapper mapper, IOptions<CloudinarySettings> cloudinaryConfig) {
             _cloudinaryConfig = cloudinaryConfig;
@@ -35,18 +35,18 @@ namespace PortalRowerowy.API.Controllers
                 _cloudinaryConfig.Value.ApiSecret
             );
 
-            _claudinary = new Cloudinary(account);
+            _cloudinary = new Cloudinary(account);
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPhotoForUser(int userId, PhotoForCreationDto photoForCreationDto)
+        public async Task<IActionResult> AddPhotoForUser(int userId, UserPhotoForCreationDto userPhotoForCreationDto)
         {
              if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             var userFromRepo = await _repository.GetUser(userId);
 
-            var file = photoForCreationDto.File;
+            var file = userPhotoForCreationDto.File;
             var uploadResult = new ImageUploadResult();
 
             if (file.Length > 0)
@@ -59,24 +59,39 @@ namespace PortalRowerowy.API.Controllers
                         Transformation = new Transformation().Width(500).Height(500).Crop("fill").Gravity("face")
                     };
 
-                    uploadResult = _claudinary.Upload(uploadParams);
+                    uploadResult = _cloudinary.Upload(uploadParams);
                 }
             }
 
-            photoForCreationDto.Url = uploadResult.Uri.ToString();
-            photoForCreationDto.PublicId = uploadResult.PublicId;
+            userPhotoForCreationDto.Url = uploadResult.Uri.ToString();
+            userPhotoForCreationDto.PublicId = uploadResult.PublicId;
 
-            var photo = _mapper.Map<UserPhoto>(photoForCreationDto);
+            var userPhoto = _mapper.Map<UserPhoto>(userPhotoForCreationDto);
 
             if (!userFromRepo.UserPhotos.Any(p => p.IsMain))
-                photo.IsMain = true;
+                userPhoto.IsMain = true;
 
-            userFromRepo.UserPhotos.Add(photo);
+            userFromRepo.UserPhotos.Add(userPhoto);
 
             if (await _repository.SaveAll())
-                return Ok();
+            {
+                var userPhotoToReturn = _mapper.Map<UserPhotoForReturnDto>(userPhoto);
+                return CreatedAtRoute("GetPhoto", new { id = userPhoto.Id}, userPhotoToReturn);
+
+            }
 
             return BadRequest("Nie można dodać zdjęcia");
+        }
+
+        [HttpGet("{id}", Name = "GetPhoto")]
+
+        public async Task<IActionResult> GetUserPhoto(int id)
+        {
+            var userPhotoFromRepo = await _repository.GetUserPhoto(id);
+
+            var userPhotoForReturn = _mapper.Map<UserPhotoForReturnDto>(userPhotoFromRepo);
+
+            return Ok(userPhotoForReturn);
         }
     }
 }

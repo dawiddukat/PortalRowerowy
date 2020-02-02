@@ -8,5 +8,6 @@ namespace PortalRowerowy.API.Data
     {
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
+        Task<UserPhoto> GetUserPhoto(int id);
     }
 }
