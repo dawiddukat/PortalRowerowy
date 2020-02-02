@@ -34,6 +34,9 @@ namespace PortalRowerowy.API.Models
         //ZAKŁADKA WYPRAWY
         public ICollection<Adventure> Adventures { get; set; }
 
-
+        internal static object FindFirst(string nameIdentifier)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
