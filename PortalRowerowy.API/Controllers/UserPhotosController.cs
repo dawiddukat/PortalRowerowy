@@ -16,15 +16,17 @@ using PortalRowerowy.API.Models;
 namespace PortalRowerowy.API.Controllers
 {
     [Authorize]
-    [Route ("api/users/{userId}/photos")]
+    [Route("api/users/{userId}/photos")]
     [ApiController]
-    public class UserPhotosController : ControllerBase {
+    public class UserPhotosController : ControllerBase
+    {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
         private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
         private Cloudinary _cloudinary;
 
-        public UserPhotosController (IUserRepository repository, IMapper mapper, IOptions<CloudinarySettings> cloudinaryConfig) {
+        public UserPhotosController(IUserRepository repository, IMapper mapper, IOptions<CloudinarySettings> cloudinaryConfig)
+        {
             _cloudinaryConfig = cloudinaryConfig;
             _mapper = mapper;
             _repository = repository;
@@ -41,7 +43,7 @@ namespace PortalRowerowy.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]UserPhotoForCreationDto userPhotoForCreationDto)
         {
-             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             var userFromRepo = await _repository.GetUser(userId);
@@ -51,7 +53,7 @@ namespace PortalRowerowy.API.Controllers
 
             if (file.Length > 0)
             {
-                using ( var stream = file.OpenReadStream())
+                using (var stream = file.OpenReadStream())
                 {
                     var uploadParams = new ImageUploadParams()
                     {
@@ -76,7 +78,7 @@ namespace PortalRowerowy.API.Controllers
             if (await _repository.SaveAll())
             {
                 var userPhotoToReturn = _mapper.Map<UserPhotoForReturnDto>(userPhoto);
-                return CreatedAtRoute("GetPhoto", new { id = userPhoto.Id}, userPhotoToReturn);
+                return CreatedAtRoute("GetPhoto", new { id = userPhoto.Id }, userPhotoToReturn);
 
             }
 
@@ -93,5 +95,32 @@ namespace PortalRowerowy.API.Controllers
 
             return Ok(userPhotoForReturn);
         }
+
+        [HttpPost("{id}/setMain")]
+        public async Task<IActionResult> SetMainUserPhoto(int userId, int id)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var user = await _repository.GetUser(userId);
+
+            if (!user.UserPhotos.Any(p => p.Id == id))
+                return Unauthorized();
+            
+            var userPhotoFromRepo = await _repository.GetUserPhoto(id);
+
+            if (userPhotoFromRepo.IsMain)
+                return BadRequest("To już jest główne zdjęcie!");
+
+            var currentMainUserPhoto = await _repository.GetMainPhotoForUser(userId);
+            currentMainUserPhoto.IsMain = false;
+            userPhotoFromRepo.IsMain = true;
+
+            if (await _repository.SaveAll())
+                return NoContent();
+            
+            return BadRequest("Nie można ustawić zdjęcia jako głównego!");
+        }
+
     }
 }
