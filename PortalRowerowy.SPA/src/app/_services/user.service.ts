@@ -12,7 +12,7 @@ import { User } from '../_models/user';
 export class UserService {
 
   // baseUrl = 'http://localhost:5000/api/';
-    baseUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +26,10 @@ export class UserService {
 
   updateUser(id: number, user: User) {
     return this.http.put(this.baseUrl + 'users/' + id, user);
+  }
+
+  setMainUserPhoto(userId: number, id: number) {
+    return this.http.post(this.baseUrl + 'users/' + userId + '/photos/' + id + '/setMain', {});
   }
 }
 

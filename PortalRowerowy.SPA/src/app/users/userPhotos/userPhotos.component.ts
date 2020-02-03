@@ -3,6 +3,9 @@ import { UserPhoto } from '../../_models/userPhoto';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/_services/auth.service';
+import { UserService } from 'src/app/_services/user.service';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { User } from 'src/app/_models/user';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -17,10 +20,11 @@ export class UserPhotosComponent implements OnInit {
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
+  currentMain: UserPhoto;
 
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private userService: UserService, private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.initializeUploader();
@@ -57,5 +61,17 @@ export class UserPhotosComponent implements OnInit {
         this.userPhotos.push(userPhoto);
       }
     };
+  }
+
+  setMainUserPhoto(userPhoto: UserPhoto) {
+    this.userService.setMainUserPhoto(this.authService.decodedToken.nameid, userPhoto.id).subscribe(() => {
+      console.log('Sukces, zdjęcie ustawione jako główne!');
+      this.currentMain = this.userPhotos.filter(p => p.isMain === true)[0];
+      this.currentMain.isMain = false;
+      userPhoto.isMain = true;
+    },
+      error => {
+        this.alertify.error(error);
+      });
   }
 }
