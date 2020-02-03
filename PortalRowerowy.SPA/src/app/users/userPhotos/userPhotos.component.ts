@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'app-userPhotos',
   templateUrl: './userPhotos.component.html',
   styleUrls: ['./userPhotos.component.css']
@@ -39,6 +40,22 @@ export class UserPhotosComponent implements OnInit {
       autoUpload: false,
       maxFileSize: 10 * 1024 * 1024
     });
-  }
 
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+
+    this.uploader.onSuccessItem = (item, response, status, headers) => {
+      if (response) {
+        const res: UserPhoto = JSON.parse(response);
+        const userPhoto = {
+          id: res.id,
+          url: res.url,
+          dateAdded: res.dateAdded,
+          description: res.description,
+          isMain: res.isMain
+        };
+
+        this.userPhotos.push(userPhoto);
+      }
+    };
+  }
 }
