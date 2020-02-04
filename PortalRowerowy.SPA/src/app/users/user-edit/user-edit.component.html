@@ -104,7 +104,7 @@
                 </table>
               </tab>
               <tab heading="Zdjęcia">
-                <app-userPhotos [userPhotos]="user.userPhotos">
+                <app-userPhotos [userPhotos]="user.userPhotos" (getUserPhotoChange)="updateMainUserPhoto($event)">
                 </app-userPhotos>
               </tab>
               <tab heading="Sprzedawane rowery">
