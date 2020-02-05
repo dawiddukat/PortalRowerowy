@@ -12,16 +12,16 @@ export class AuthGuard implements CanActivate {
   /**
    *
    */
-  constructor(private authService: AuthService, private router: Router, private alertyfi: AlertifyService) {
-    
+  constructor(private authService: AuthService, private router: Router, private alertify: AlertifyService) {
+
   }
 
   canActivate(): boolean | UrlTree {
-    if(this.authService.loggedIn()){
+    if (this.authService.loggedIn()) {
       return true;
     }
 
-    this.alertyfi.error("Nie masz uprawnień");
+    this.alertify.error("Nie masz uprawnień");
     this.router.navigate(['/home']);
     return false;
   }

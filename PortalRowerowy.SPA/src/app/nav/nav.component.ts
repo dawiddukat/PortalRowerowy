@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { Router } from '@angular/router';
+import { User } from '../_models/user';
 declare let alertify: any;
 
 @Component({
@@ -10,6 +11,9 @@ declare let alertify: any;
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
+
+
+  @Input() user: User;
 
 
   model: any = {};

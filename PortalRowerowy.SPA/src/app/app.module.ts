@@ -62,7 +62,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       UserCardComponent,
       UserDetailComponent,
       UserEditComponent,
-      UserPhotosComponent
+      UserPhotosComponent,
    ],
    imports: [
       BrowserModule,

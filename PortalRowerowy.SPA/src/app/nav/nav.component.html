@@ -20,9 +20,11 @@
     </ul>
 
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
+      <a href="/uzytkownicy/{{authService.currentUser.id}}">
       <span class="mr-2">
       <img src="{{authService.currentUser.photoUrl}}">
       </span>
+    </a>
       <a class="btn btn-success dropdown-toggle text-light" dropdownToggle>
         Witaj {{ authService.decodedToken?.unique_name | titlecase }}!
       </a>
