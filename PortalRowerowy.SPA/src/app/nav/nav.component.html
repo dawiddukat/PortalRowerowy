@@ -22,7 +22,7 @@
     <div *ngIf="loggedIn()" class="dropdown" dropdown>
       <a href="/uzytkownicy/{{authService.currentUser.id}}">
       <span class="mr-2">
-      <img src="{{authService.currentUser.photoUrl}}">
+      <img src="{{photoUrl}}">
       </span>
     </a>
       <a class="btn btn-success dropdown-toggle text-light" dropdownToggle>

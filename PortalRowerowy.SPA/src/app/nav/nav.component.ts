@@ -17,11 +17,13 @@ export class NavComponent implements OnInit {
 
 
   model: any = {};
+  photoUrl: string;
 
   // tslint:disable-next-line: no-shadowed-variable
   constructor(public authService: AuthService, private alertify: AlertifyService, private router: Router) { }
 
   ngOnInit() {
+    this.authService.currentUserPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
 

@@ -71,7 +71,10 @@ export class UserPhotosComponent implements OnInit {
       this.currentMain = this.userPhotos.filter(p => p.isMain === true)[0];
       this.currentMain.isMain = false;
       userPhoto.isMain = true;
-      this.getUserPhotoChange.emit(userPhoto.url);
+      // this.getUserPhotoChange.emit(userPhoto.url);
+      this.authService.changeUserPhoto(userPhoto.url);
+      this.authService.currentUser.photoUrl = userPhoto.url;
+      localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
     },
       error => {
         this.alertify.error(error);
