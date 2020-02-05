@@ -21,13 +21,13 @@ export class NavComponent implements OnInit {
   }
 
 
-  login(){
+  login() {
     this.authService.login(this.model).subscribe(next => {
-      this.alertify.success('Zalogowałeś się do aplikacji')
+      this.alertify.success('Zalogowałeś się do aplikacji');
     }, error => {
       this.alertify.error('Wystąpił błąd logowania');
-    },() => {
-      this.router.navigate(['/wydarzenia'])
+    }, () => {
+      this.router.navigate(['/uzytkownicy']);
     });
   }
 
@@ -38,8 +38,11 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.authService.decodedToken = null;
+    this.authService.currentUser = null;
     this.alertify.message('Zostałeś wylogowany');
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home']);
   }
 
 
