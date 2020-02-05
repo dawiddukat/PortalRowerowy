@@ -106,7 +106,7 @@ namespace PortalRowerowy.API.Controllers
 
             if (!user.UserPhotos.Any(p => p.Id == id))
                 return Unauthorized();
-            
+
             var userPhotoFromRepo = await _repository.GetUserPhoto(id);
 
             if (userPhotoFromRepo.IsMain)
@@ -118,9 +118,41 @@ namespace PortalRowerowy.API.Controllers
 
             if (await _repository.SaveAll())
                 return NoContent();
-            
+
             return BadRequest("Nie można ustawić zdjęcia jako głównego!");
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUserPhoto(int userId, int id)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var user = await _repository.GetUser(userId);
+
+            if (!user.UserPhotos.Any(p => p.Id == id))
+                return Unauthorized();
+
+            var userPhotoFromRepo = await _repository.GetUserPhoto(id);
+
+            if (userPhotoFromRepo.IsMain)
+                return BadRequest("Nie można usunąć zdjęcia głównego!");
+
+            if (userPhotoFromRepo.public_id != null)
+            {
+                var deleteParams = new DeletionParams(userPhotoFromRepo.public_id);
+                var result = _cloudinary.Destroy(deleteParams);
+
+                if (result.Result == "ok")
+                    _repository.Delete(userPhotoFromRepo);
+            }
+
+            if (userPhotoFromRepo.public_id == null)
+                _repository.Delete(userPhotoFromRepo);
+
+            if (await _repository.SaveAll())
+                return Ok();
+            return BadRequest("Nie udało się usunąć zdjęcia");
+        }
     }
 }
