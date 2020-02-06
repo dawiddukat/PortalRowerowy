@@ -80,4 +80,15 @@ export class UserPhotosComponent implements OnInit {
         this.alertify.error(error);
       });
   }
+
+  deletePhoto(id: number) {
+    this.alertify.confirm('Czy jesteś pewien, czy chcesz usunąć zdjęcie?', () => {
+      this.userService.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
+        this.userPhotos.splice(this.userPhotos.findIndex(p => p.id === id), 1);
+        this.alertify.success('Zdjęcie zostało usunięte!');
+      }, error => {
+        this.alertify.error('Nie udało się usunąć zdjęcia!');
+      });
+    });
+  }
 }

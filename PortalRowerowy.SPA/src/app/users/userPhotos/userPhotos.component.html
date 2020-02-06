@@ -7,7 +7,9 @@
           [disabled] = "userPhoto.isMain"
           [ngClass]="userPhoto.isMain ? 'btn-success active': 'btn-info'" >
           Główne</button>
-        <button type="button" class="btn btn-sm btn-danger mr-1"><i class="fa fa-trash-o"></i></button>
+        <button type="button" class="btn btn-sm btn-danger mr-1"
+          [disabled]="userPhoto.isMain"
+          (click)="deletePhoto(userPhoto.id)"><i class="fa fa-trash-o"></i></button>
       </div>
     </div>
   </div>
