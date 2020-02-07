@@ -3,18 +3,62 @@
     Zapisz się!
   </h2>
   <hr>
+
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Nazwa użytkownika" formControlName="username">
-  </div>
-  
-  <div class="form-group">
-    <input type="password" class="form-control" placeholder="Hasło" formControlName="password">
-  </div>
-  <div class="form-group">
-    <input type="password" class="form-control" placeholder="Potwierdź hasło" formControlName="confirmPassword">
+    <input type="text" class="form-control" placeholder="Nazwa użytkownika" formControlName="username"
+      [ngClass]="{ 'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}">
+    <div class="invalid-feedback">Podaj nazwę użytkownika!</div>
   </div>
 
- <!--Rozwijalna lista z pytaniem odnosiła się do Values <app-register [valuesFromHome]="values" (cancelRegister)="cancelRegisterMode($event)"> </app-register><div class="form-group">
+
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Hasło" formControlName="password"
+      [ngClass]="{ 'is-invalid': registerForm.get('password').errors && registerForm.get('password').touched}">
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">
+      Hasło jest wymagane!
+    </div>
+
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('password').hasError('minlength') && registerForm.get('password').touched">
+      Hasło nie może mieć mniej niż 6 znaków!
+    </div>
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('password').hasError('maxlength') && registerForm.get('password').touched">
+      Hasło nie może mieć więcej niż 12 znaków!
+    </div>
+  </div>
+<!-- 
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Potwierdź hasło" formControlName="confirmPassword"
+      [ngClass]="{ 'is-invalid': registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched  
+      || "registerForm.get('confrimPassword').hasError('mismatch') && registerForm.get('passwordConfirm').touched"}">
+    <div class="invalid-feedback"
+      *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
+      Hasło jest wymagane!
+    </div>
+    <div class="invalid-feedback"
+    *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword').touched">
+    Hasło jest wymagane!
+  </div>
+  </div> -->
+
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Potwierdź hasło" formControlName="confirmPassword"
+           [ngClass]="{ 'is-invalid': registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched
+                                   || registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch')}">
+    <div class="invalid-feedback"
+         *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
+      Hasło jest wymagane!
+    </div>
+    <div class="invalid-feedback"
+         *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword').touched">
+      Hasła muszą pasować!
+    </div>
+  </div>
+
+
+  <!--Rozwijalna lista z pytaniem odnosiła się do Values <app-register [valuesFromHome]="values" (cancelRegister)="cancelRegisterMode($event)"> </app-register><div class="form-group">
     <label for="favouritValue">
       Jaka jest Twoja ulubiona wartość?
     </label>
@@ -25,7 +69,7 @@
   </div>-->
 
 
-  <div class="form-group text-center"> 
+  <div class="form-group text-center">
     <hr>
     <button class="btn btn-success" type="submit">Rejestracja</button>
     <br>
@@ -33,5 +77,5 @@
   </div>
 </form>
 
-<p>Wartości z formularza: {{registerForm.value | json }}</p>
-<p>Wartości z formularza: {{registerForm.status | json }}</p>
+<!-- <p>Wartości z formularza: {{registerForm.value | json }}</p>
+<p>Wartości z formularza: {{registerForm.status | json }}</p> -->
