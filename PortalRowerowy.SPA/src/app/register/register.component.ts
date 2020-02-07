@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -19,10 +19,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl(),
-      confirmPassword: new FormControl(),
-      
+      username: new FormControl('Podaj nazwę użytkownika', Validators.required),
+      password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
+      confirmPassword: new FormControl('', Validators.required )
     });
   }
 
@@ -38,9 +37,9 @@ export class RegisterComponent implements OnInit {
 
   cancel() {
     this.cancelRegister.emit(false);
-      // error notification
-  // Shorthand for:
-  // alertify.notify( message, 'error', [wait, callback]);
+    // error notification
+    // Shorthand for:
+    // alertify.notify( message, 'error', [wait, callback]);
     this.alertify.message("Anulowano");
   }
 
