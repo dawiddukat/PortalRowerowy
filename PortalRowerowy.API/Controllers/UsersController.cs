@@ -34,7 +34,7 @@ namespace PortalRowerowy.API.Controllers
             return Ok(usersToReturn);
         }
 
-        [HttpGet("{id}")] //pobieranie użytkownika
+        [HttpGet("{id}", Name = "GetUser")] //pobieranie użytkownika
         public async Task<IActionResult> GetUser(int id)
         {
             var user = await _repo.GetUser(id);

@@ -40,14 +40,20 @@ namespace PortalRowerowy.API.Controllers
             if (await _repository.UserExist(userForRegisterDto.Username))
                 return BadRequest("Użytkownik o takiej nazwie już istnieje!");
 
-            var userToCreate = new User
-            {
-                Username = userForRegisterDto.Username
-            };
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
+            
+            //  new User // zastąpienie powyższą metodą
+            // {
+            //     Username = userForRegisterDto.Username
+            // };
 
             var createdUser = await _repository.Register(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201);
+            //return StatusCode(201);
+            var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
+
+            
+            return CreatedAtRoute("GetUser", new {controller = "Users", Id = createdUser.Id}, userToReturn );
         }
 
         [HttpPost("login")]
