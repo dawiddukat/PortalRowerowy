@@ -46,13 +46,13 @@
   <div class="form-group">
     <input type="password" class="form-control" placeholder="Potwierdź hasło" formControlName="confirmPassword"
            [ngClass]="{ 'is-invalid': registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').touched
-                                   || registerForm.get('confirmPassword').touched && registerForm.hasError('mismatch')}">
+                                   || registerForm.get('confirmPassword').touched && registerForm.hasError('missmatch')}">
     <div class="invalid-feedback"
          *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
-      Hasło jest wymagane!
+      Potwierdzenie hasła jest wymagane!
     </div>
     <div class="invalid-feedback"
-         *ngIf="registerForm.hasError('mismatch') && registerForm.get('confirmPassword').touched">
+         *ngIf="registerForm.hasError('missmatch') && registerForm.get('confirmPassword').touched">
       Hasła muszą pasować!
     </div>
   </div>
