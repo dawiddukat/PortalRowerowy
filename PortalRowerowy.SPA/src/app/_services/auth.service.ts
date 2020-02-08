@@ -20,32 +20,32 @@ export class AuthService {
   userPhotoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
   currentUserPhotoUrl = this.userPhotoUrl.asObservable();
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
-changeUserPhoto(photoUrl: string) {
-  this.userPhotoUrl.next(photoUrl);
-}
+  changeUserPhoto(photoUrl: string) {
+    this.userPhotoUrl.next(photoUrl);
+  }
 
 
-login(model: any) {
-  return this.http.post(this.baseUrl + 'login', model)
-    .pipe(map((response: any) => {
-      const user = response;
-      if (user) {
-        localStorage.setItem('token', user.token);
-        localStorage.setItem('user', JSON.stringify(user.user));
-        this.decodedToken = this.jwtHelper.decodeToken(user.token);
-        this.currentUser = user.user;
-        //console.log(this.decodedToken);
-        this.changeUserPhoto(this.currentUser.photoUrl);
-      }
+  login(model: any) {
+    return this.http.post(this.baseUrl + 'login', model)
+      .pipe(map((response: any) => {
+        const user = response;
+        if (user) {
+          localStorage.setItem('token', user.token);
+          localStorage.setItem('user', JSON.stringify(user.user));
+          this.decodedToken = this.jwtHelper.decodeToken(user.token);
+          this.currentUser = user.user;
+          // console.log(this.decodedToken);
+          this.changeUserPhoto(this.currentUser.photoUrl);
+        }
 
-    }));
-}
+      }));
+  }
 
-  register(model: any) {
-    return this.http.post(this.baseUrl + 'register', model);
+  register(user: User) {
+    return this.http.post(this.baseUrl + 'register', user);
   }
 
   loggedIn() {

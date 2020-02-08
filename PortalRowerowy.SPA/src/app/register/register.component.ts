@@ -3,6 +3,8 @@ import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap';
+import { User } from '../_models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,19 +13,19 @@ import { BsDatepickerConfig } from 'ngx-bootstrap';
 })
 export class RegisterComponent implements OnInit {
 
-  //@Input() valuesFromHome: any;
+  // @Input() valuesFromHome: any;
   @Output() cancelRegister = new EventEmitter();
-  model: any = {};
+  user: User;
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private authService: AuthService, private alertify: AlertifyService, private fb: FormBuilder) { }
+  constructor(private authService: AuthService, private alertify: AlertifyService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.bsConfig = {
       containerClass: 'theme-blue'
     },
-    this.createRegisterForm();
+      this.createRegisterForm();
     // this.registerForm = new FormGroup({
     //   username: new FormControl('', Validators.required),
     //   password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
@@ -42,7 +44,7 @@ export class RegisterComponent implements OnInit {
       country: ['', Validators.required],
       voivodeship: ['', Validators.required],
       city: ['', Validators.required]
-    }, {validator: this.passwordMatchValidator});
+    }, { validator: this.passwordMatchValidator });
   }
 
   passwordMatchValidator(fg: FormGroup) {
@@ -50,12 +52,27 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    if (this.registerForm.valid) {
+      this.user = Object.assign({}, this.registerForm.value);
+
+      this.authService.register(this.user).subscribe(() => {
+        this.alertify.success('Rejestracja udana');
+      }, error => {
+        this.alertify.error('Wystąpił błąd rejestracji!');
+      }, () => {
+        this.authService.login(this.user).subscribe(() => {
+          this.router.navigate(['/uzytkownicy']);
+
+        });
+      });
+    }
+
     // this.authService.register(this.model).subscribe(() => {
     //   this.alertify.success("Rejestracja udana");
     // }, error => {
     //   this.alertify.error("Wystąpił błąd rejestracji!");
     // });
-    console.log(this.registerForm.value);
+    // console.log(this.registerForm.value);
 
   }
 
@@ -64,7 +81,7 @@ export class RegisterComponent implements OnInit {
     // error notification
     // Shorthand for:
     // alertify.notify( message, 'error', [wait, callback]);
-    this.alertify.message("Anulowano");
+    this.alertify.message('Anulowano');
   }
 
 }
