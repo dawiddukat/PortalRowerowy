@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortalRowerowy.API.Data;
 using PortalRowerowy.API.Dtos;
+using PortalRowerowy.API.Helpers;
 
 namespace PortalRowerowy.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]

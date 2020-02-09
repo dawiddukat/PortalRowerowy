@@ -61,7 +61,7 @@ export class UserPhotosComponent implements OnInit {
         };
 
         this.userPhotos.push(userPhoto);
-        if (userPhoto.isMain){
+        if (userPhoto.isMain) {
           this.authService.changeUserPhoto(userPhoto.url);
           this.authService.currentUser.photoUrl = userPhoto.url;
           localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
