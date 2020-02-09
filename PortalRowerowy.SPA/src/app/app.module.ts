@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
-import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, ButtonsModule } from 'ngx-bootstrap';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { RouterModule } from '@angular/router';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -33,6 +33,8 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { UserPhotosComponent } from './users/userPhotos/userPhotos.component';
+import { MainPipe } from './_pipes/main-pipe.module';
+
 
 
 export function tokenGetter() {
@@ -63,7 +65,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       UserDetailComponent,
       UserEditComponent,
       UserPhotosComponent,
-      
+
    ],
    imports: [
       BrowserModule,
@@ -85,6 +87,10 @@ export class CustomHammerConfig extends HammerGestureConfig {
       TabsModule.forRoot(),
       BsDatepickerModule.forRoot(),
       FileUploadModule,
+      ButtonsModule.forRoot(),
+      MainPipe
+
+
 
    ],
    providers: [

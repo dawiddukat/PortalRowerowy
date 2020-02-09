@@ -5,6 +5,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { Adventure } from 'src/app/_models/Adventure';
+import { TimeAgoPipe } from '../../_pipes/time-ago-pipe';
 
 @Component({
   selector: 'app-user-detail',

@@ -29,11 +29,11 @@
           </div>
           <div>
             <strong>Data utworzenia konta: </strong>
-            <p> {{user.created}} </p>
+            <p> {{user.created |  date: 'longDate'}} </p>
           </div>
           <div>
             <strong>Ostatnia aktywność: </strong>
-            <p> {{user.lastActive}} </p>
+            <p> {{ user.lastActive | timeAgo}} </p>
           </div>
         </div>
         <div class="card-footer">
