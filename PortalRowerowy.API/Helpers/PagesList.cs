@@ -17,7 +17,7 @@ namespace PortalRowerowy.API.Helpers
         {
             CurrentPage = pageNumber;
             PageSize = pageSize;
-            totalCount = TotalCount;
+            TotalCount = totalCount;
             TotalPages = (int)Math.Ceiling(totalCount/(double)pageSize);
             this.AddRange(items);
         }

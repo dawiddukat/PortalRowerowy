@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PortalRowerowy.API.Helpers;
 using PortalRowerowy.API.Models;
 
 namespace PortalRowerowy.API.Data
@@ -23,10 +24,10 @@ namespace PortalRowerowy.API.Data
 
 
 
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<PagesList<User>> GetUsers(UserParams userParams)
         {
-            var users = await _context.Users.Include(p => p.UserPhotos).Include(a => a.Adventures).Include(s => s.SellBicycles).ToListAsync();
-            return users;
+            var users =  _context.Users.Include(p => p.UserPhotos).Include(a => a.Adventures).Include(s => s.SellBicycles);
+            return await PagesList<User>.CreateListAsync(users, userParams.PageNumber, userParams.PageSize);
         }
         public async Task<UserPhoto> GetUserPhoto(int id)
         {
