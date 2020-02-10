@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
-import { BsDropdownModule, TabsModule, BsDatepickerModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, ButtonsModule, PaginationModule } from 'ngx-bootstrap';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { RouterModule } from '@angular/router';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -79,7 +79,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
             // tslint:disable-next-line: object-literal-shorthand
             tokenGetter: tokenGetter,
             whitelistedDomains: ['localhost:5000'],
-            blacklistedRoutes: ['localhost:50000/api/auth']
+            blacklistedRoutes: ['localhost:5000/api/auth']
          }
       }),
       RouterModule.forRoot(appRoutes),
@@ -88,10 +88,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
       BsDatepickerModule.forRoot(),
       FileUploadModule,
       ButtonsModule.forRoot(),
-      MainPipe
-
-
-
+      MainPipe,
+      PaginationModule.forRoot()
    ],
    providers: [
       AuthService,
