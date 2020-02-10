@@ -16,7 +16,7 @@ export class UserListComponent implements OnInit {
 
   user: User = JSON.parse(localStorage.getItem('user'));
 
-  genderList = [{ value: 'Wszystkie', display: 'Wszystkie'},
+  genderList = [{ value: 'Wszystkie', display: 'Wszystkie' },
   { value: 'mężczyzna', display: 'Mężczyźni' },
   { value: 'kobieta', display: 'Kobiety' }];
 
@@ -50,7 +50,7 @@ export class UserListComponent implements OnInit {
     this.loadUsers();
   }
 
-  resetFilters(){
+  resetFilters() {
     this.userParams.gender = 'Wszystkie';
     this.userParams.typeBicycle = 'Wszystkie';
     this.userParams.minAge = 0;
@@ -59,7 +59,7 @@ export class UserListComponent implements OnInit {
   }
 
   loadUsers() {
-    this.userService.getUsers(this.pagination.currentPage, 
+    this.userService.getUsers(this.pagination.currentPage,
       this.pagination.itemsPerPage, this.userParams)
       .subscribe((res: PaginationResult<User[]>) => {
         this.users = res.result;
