@@ -33,7 +33,7 @@ namespace PortalRowerowy.API.Data
 
             users = users.Where(u => u.Id != userParams.UserId);
             //users = users.Where(u => u.Gender == userParams.Gender); //wybieranie płci => UsersController
-                        if(userParams.Gender != null)
+                        if(userParams.Gender != "Wszystkie")
             users = users.Where(u => u.Gender == userParams.Gender);
 
             if (userParams.MinAge != 0 || userParams.MaxAge != 100)
@@ -43,7 +43,7 @@ namespace PortalRowerowy.API.Data
                 users = users.Where(u => u.DateOfBirth >= minDate && u.DateOfBirth <= maxDate);
             }
 
-            if(userParams.TypeBicycle != null)
+            if(userParams.TypeBicycle != "Wszystkie")
             users = users.Where(u => u.TypeBicycle == userParams.TypeBicycle);
 
 
