@@ -38,5 +38,8 @@ namespace PortalRowerowy.API.Models
         {
             throw new NotImplementedException();
         }
+
+        public ICollection<Like> UserLikes { get; set; } // użytkownik lubi
+        public ICollection<Like> UserIsLiked { get; set; } // użytkownik jest lubiany
     }
 }
