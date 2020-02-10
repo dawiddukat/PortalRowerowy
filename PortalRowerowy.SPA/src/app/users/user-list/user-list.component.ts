@@ -43,6 +43,7 @@ export class UserListComponent implements OnInit {
     this.userParams.typeBicycle = 'Wszystkie';
     this.userParams.minAge = 0;
     this.userParams.maxAge = 100;
+    this.userParams.orderBy = 'LastActive';
   }
 
   pageChanged(event: any): void {
@@ -55,6 +56,7 @@ export class UserListComponent implements OnInit {
     this.userParams.typeBicycle = 'Wszystkie';
     this.userParams.minAge = 0;
     this.userParams.maxAge = 100;
+    this.userParams.orderBy = 'LastActive';
     this.loadUsers();
   }
 

@@ -35,6 +35,7 @@ export class UserService {
       params = params.append('maxAge', userParams.maxAge);
       params = params.append('gender', userParams.gender);
       params = params.append('typeBicycle', userParams.typeBicycle);
+      params = params.append('orderBy', userParams.orderBy);
     }
 
 
