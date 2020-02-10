@@ -19,7 +19,10 @@ namespace PortalRowerowy.API.Data
 
         public async Task<User> GetUser(int id)
         {
-            var user = await _context.Users.Include(p => p.UserPhotos).Include(a => a.Adventures).Include(s => s.SellBicycles).FirstOrDefaultAsync(u => u.Id == id); //jak przypisać Adventures, UserPhotos, SellBicycles??
+            var user = await _context.Users.Include(p => p.UserPhotos)
+            .Include(a => a.Adventures)
+            .Include(s => s.SellBicycles)
+            .FirstOrDefaultAsync(u => u.Id == id); //jak przypisać Adventures, UserPhotos, SellBicycles??
             return user;
         }
 
@@ -29,7 +32,9 @@ namespace PortalRowerowy.API.Data
         {
             var users = _context.Users.Include(p => p.UserPhotos)
             .Include(a => a.Adventures)
-            .Include(s => s.SellBicycles).AsQueryable();
+            .Include(s => s.SellBicycles)
+            .OrderByDescending(u => u.LastActive)
+            .AsQueryable();
 
             users = users.Where(u => u.Id != userParams.UserId);
             //users = users.Where(u => u.Gender == userParams.Gender); //wybieranie płci => UsersController
@@ -45,6 +50,18 @@ namespace PortalRowerowy.API.Data
 
             if(userParams.TypeBicycle != "Wszystkie")
             users = users.Where(u => u.TypeBicycle == userParams.TypeBicycle);
+
+            if (!string.IsNullOrEmpty(userParams.OrderBy)){
+                switch(userParams.OrderBy){
+                    case "created": users = users.OrderByDescending(u => u.Created);
+                    break;
+                    default:
+                    users = users.OrderByDescending(u => u.LastActive);
+                    break;
+                }
+            }          
+
+
 
 
             return await PagesList<User>.CreateListAsync(users, userParams.PageNumber, userParams.PageSize);

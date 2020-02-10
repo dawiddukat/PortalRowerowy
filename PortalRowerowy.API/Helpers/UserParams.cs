@@ -12,12 +12,10 @@ namespace PortalRowerowy.API.Helpers
         }
 
         public int UserId { get; set; }
-        public string Gender {get; set;} = "Wszystkie";
+        public string Gender { get; set; } = "Wszystkie";
         public string TypeBicycle { get; set; } = "Wszystkie";
-
         public int MinAge { get; set; } = 0;
         public int MaxAge { get; set; } = 100;
-
-
+        public string OrderBy { get; set; }
     }
 }
