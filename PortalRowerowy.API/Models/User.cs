@@ -41,5 +41,10 @@ namespace PortalRowerowy.API.Models
 
         public ICollection<Like> UserLikes { get; set; } // użytkownik lubi
         public ICollection<Like> UserIsLiked { get; set; } // użytkownik jest lubiany
+        public ICollection<Message> MessagesSent { get; set; } // wiadomości wysłane
+        public ICollection<Message> MessagesRecived { get; set; } // wiadomości odebrane
+
+    
+    
     }
 }
