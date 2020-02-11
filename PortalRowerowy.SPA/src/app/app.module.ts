@@ -17,7 +17,6 @@ import { RegisterComponent } from './register/register.component';
 import { AlertifyService } from './_services/alertify.service';
 import { UserService } from './_services/user.service';
 import { UserListComponent } from './users/user-list/user-list.component';
-import { FriendsComponent } from './friends/friends.component';
 import { MessagesComponent } from './messages/messages.component';
 import { NewsComponent } from './news/news.component';
 import { EventsComponent } from './events/events.component';
@@ -34,6 +33,8 @@ import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { UserPhotosComponent } from './users/userPhotos/userPhotos.component';
 import { MainPipe } from './_pipes/main-pipe.module';
+import { FriendsResolver } from './_resolvers/friends.resolver';
+import { FriendsComponent } from './friends/friends.component';
 
 
 
@@ -98,6 +99,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       AuthGuard,
       UserDetailResolver,
       UserListResolver,
+      FriendsResolver,
       {
          provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig
       },

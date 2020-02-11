@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { UserListComponent } from './users/user-list/user-list.component';
-import { FriendsComponent } from './friends/friends.component';
 import { NewsComponent } from './news/news.component';
 import { AdventuresComponent } from './adventures/adventures.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -14,6 +13,8 @@ import { UserListResolver } from './_resolvers/user-list.resolver';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { FriendsResolver } from './_resolvers/friends.resolver';
+import { FriendsComponent } from './friends/friends.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -23,7 +24,8 @@ export const appRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
             { path: 'uzytkownicy', component: UserListComponent, resolve: { users: UserListResolver } }, // canActivate: [AuthGuard] },
-            { path: 'przyjaciele', component: FriendsComponent },
+            { path: 'przyjaciele', component: FriendsComponent, resolve: { users: FriendsResolver } },
+
             // tslint:disable-next-line: max-line-length
             { path: 'uzytkownik/edycja', component: UserEditComponent, resolve: { user: UserEditResolver }, canDeactivate: [PreventUnsavedChanges] },
             // tslint:disable-next-line: max-line-length
@@ -33,7 +35,7 @@ export const appRoutes: Routes = [
             { path: 'wyprawy', component: AdventuresComponent }, // canActivate: [AuthGuard]  },
             { path: 'wiadomości', component: MessagesComponent }, // canActivate: [AuthGuard]  },
             { path: 'giełda', component: SellBicyclesComponent }, // canActivate: [AuthGuard]  },
-]
+        ]
     },
-{ path: '**', redirectTo: '', pathMatch: 'full' }
+    { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

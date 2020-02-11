@@ -45,13 +45,16 @@
       <div *ngFor="let user of users" style="text-align: center;">
         <app-user-card [user]='user'> </app-user-card>
       </div>
+    </div>
 
-      <div class="row">
+      <div class="row"></div>
 
-        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
-          [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
-          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
-        </pagination>
+        <div class="d-flex justify-content-center">
+          <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+            [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+          </pagination>
+        </div>
 
         <div class="col">
           <div class="btn-group float-right">
@@ -68,5 +71,3 @@
 
       </div>
     </div>
-  </div>
-</div>

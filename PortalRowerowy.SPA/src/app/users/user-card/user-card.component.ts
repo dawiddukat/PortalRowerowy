@@ -14,8 +14,8 @@ export class UserCardComponent implements OnInit {
   @Input() user: User;
 
   constructor(private authService: AuthService,
-    private userService: UserService,
-    private alertify: AlertifyService) { }
+              private userService: UserService,
+              private alertify: AlertifyService) { }
 
   ngOnInit() {
   }
