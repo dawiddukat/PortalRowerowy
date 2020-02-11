@@ -17,5 +17,7 @@ namespace PortalRowerowy.API.Helpers
         public int MinAge { get; set; } = 0;
         public int MaxAge { get; set; } = 100;
         public string OrderBy { get; set; }
+        public bool UserLikes { get; set; } = false;
+        public bool UserIsLiked { get; set; } = false;
     }
 }
