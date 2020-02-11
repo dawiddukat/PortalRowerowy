@@ -11,5 +11,7 @@ namespace PortalRowerowy.API.Data
         Task<User> GetUser(int id);
         Task<UserPhoto> GetUserPhoto(int id);
         Task<UserPhoto> GetMainPhotoForUser(int userId);
+
+        Task<Like> GetLike(int userId, int recipientId);
     }
 }
