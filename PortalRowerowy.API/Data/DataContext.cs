@@ -15,7 +15,6 @@ namespace PortalRowerowy.API.Data
         public DbSet<SellBicycle> SellBicycles { get; set; }
         public DbSet<SellBicyclePhoto> SellBicyclePhotos { get; set; }
         public DbSet<Like> Likes { get; set; }
-
         public DbSet<Message> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

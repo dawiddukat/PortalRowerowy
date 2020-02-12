@@ -36,6 +36,7 @@ namespace PortalRowerowy.API.Helpers
             CreateMap<UserPhoto, UserPhotoForReturnDto>();
             CreateMap<UserPhotoForCreationDto, UserPhoto>();
             CreateMap<UserForRegisterDto, User>();
+            CreateMap<MessageForCreationDto, Message>().ReverseMap();
         }
     }
 }

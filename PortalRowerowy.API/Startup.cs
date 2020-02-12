@@ -34,7 +34,8 @@ namespace PortalRowerowy.API
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(opt => {
+                .AddJsonOptions(opt =>
+                {
                     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 });
             services.AddCors();
@@ -43,11 +44,12 @@ namespace PortalRowerowy.API
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IGenericRepository, GenericRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();            
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISellBicycleRepository, SellBicycleRepository>();
             services.AddScoped<IAdventureRepository, AdventureRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                        .AddJwtBearer(options => {
+                        .AddJwtBearer(options =>
+                        {
                             options.TokenValidationParameters = new TokenValidationParameters
                             {
                                 ValidateIssuerSigningKey = true,
@@ -56,7 +58,16 @@ namespace PortalRowerowy.API
                                 ValidateAudience = false,
                             };
                         });
-                        services.AddScoped<LogUserActivity>();
+            services.AddScoped<LogUserActivity>();
+
+            services.AddMvc()
+        .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+        .ConfigureApiBehaviorOptions(options =>
+        {
+            options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
+        });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +79,7 @@ namespace PortalRowerowy.API
             }
             //testowy2222
             seeder.SeedUsers();
-            app.UseCors( x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
             app.UseMvc();
         }
