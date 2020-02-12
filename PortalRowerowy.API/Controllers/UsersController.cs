@@ -39,8 +39,6 @@ namespace PortalRowerowy.API.Controllers
                 userParams.Gender = userFromRepo.Gender == "mężczyzna" ? "kobieta" : "mężczyzna";
             }*/
 
-
-
             var users = await _repo.GetUsers(userParams);
 
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);

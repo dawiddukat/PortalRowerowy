@@ -127,7 +127,6 @@ namespace PortalRowerowy.API.Data
             var messages = _context.Messages.Include(u => u.Sender).ThenInclude(p => p.UserPhotos)
             .Include(u => u.Recipient).ThenInclude(p => p.UserPhotos).AsQueryable();
 
-
             switch(messageParams.MessageContainer){
                 case "Inbox":
                 messages = messages.Where(u => u.RecipientId == messageParams.UserId);
@@ -138,16 +137,11 @@ namespace PortalRowerowy.API.Data
                 default:
                 messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.IsRead == false);
                 break;
-
             }
 
             messages = messages.OrderByDescending(d => d.DateSent);
 
             return await PagesList<Message>.CreateListAsync(messages, messageParams.PageNumber, messageParams.PageSize);
-
-
-
-
 
         }
 

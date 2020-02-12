@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -9,16 +10,17 @@ using PortalRowerowy.API.Dtos;
 using PortalRowerowy.API.Helpers;
 using PortalRowerowy.API.Models;
 
-namespace PortalRandkowy.API.Controllers {
-    [ServiceFilter (typeof (LogUserActivity))]
+namespace PortalRowerowy.API.Controllers
+{
+    [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
-    [Route ("api/users/{userId}/[controller]")]
+    [Route("api/users/{userId}/[controller]")]
     [ApiController]
-    public class MessagesController : ControllerBase 
+    public class MessagesController : ControllerBase
     {
         private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
-        public MessagesController (IUserRepository repository, IMapper mapper) 
+        public MessagesController(IUserRepository repository, IMapper mapper)
         {
             _mapper = mapper;
             _repository = repository;
@@ -34,9 +36,32 @@ namespace PortalRandkowy.API.Controllers {
 
             if (messageFromRepo == null)
                 return NotFound();
-            
+
             return Ok(messageFromRepo);
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetMessagesForUser(int userId, [FromQuery]MessageParams messageParams)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            messageParams.UserId = userId;
+            var messagesFromRepo = await _repository.GetMessagesForUser(messageParams);
+            var messagesToReturn = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+
+            Response.AddPagination(messagesFromRepo.CurrentPage, messagesFromRepo.PageSize,
+                                    messagesFromRepo.TotalCount, messagesFromRepo.TotalPages);
+
+            foreach (var message in messagesToReturn)
+            {
+                message.MessageContainer = messageParams.MessageContainer;
+            }
+            return Ok(messagesToReturn);
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> CreateMessage(int userId, MessageForCreationDto messageForCreationDto)
@@ -54,15 +79,15 @@ namespace PortalRandkowy.API.Controllers {
 
             var message = _mapper.Map<Message>(messageForCreationDto);
 
-            _repository.Add(message); 
+            _repository.Add(message);
 
-            var messageToReturn = _mapper.Map<MessageForCreationDto>(message);          
+            var messageToReturn = _mapper.Map<MessageForCreationDto>(message);
 
             if (await _repository.SaveAll())
-                return CreatedAtRoute("GetMessage", new { id = message.Id}, messageToReturn);
-                          
+                return CreatedAtRoute("GetMessage", new { id = message.Id }, messageToReturn);
+
 
             throw new Exception("Utworzenie wiadomości nie powiodło się przy zapisie");
         }
     }
-} 
+}
