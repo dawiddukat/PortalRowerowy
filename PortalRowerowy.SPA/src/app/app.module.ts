@@ -36,6 +36,7 @@ import { MainPipe } from './_pipes/main-pipe.module';
 import { FriendsResolver } from './_resolvers/friends.resolver';
 import { FriendsComponent } from './friends/friends.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
+import { UserMessagesComponent } from './users/user-messages/user-messages.component';
 
 
 
@@ -67,6 +68,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       UserDetailComponent,
       UserEditComponent,
       UserPhotosComponent,
+      UserMessagesComponent
 
    ],
    imports: [

@@ -95,6 +95,9 @@
             <p>{{user.username}}</p>
             <ngx-gallery [options]="galleryOptions" [images]="galleryAdventures"></ngx-gallery>
           </tab>
+          <tab heading="Wiadomości">           
+            <app-user-messages [recipientId]="user.id"></app-user-messages>
+        </tab>
         </tabset>
       </div>
     </div>
