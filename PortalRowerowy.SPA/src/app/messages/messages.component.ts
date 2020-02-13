@@ -18,6 +18,7 @@ export class MessagesComponent implements OnInit {
   messages: Message[];
   pagination: Pagination;
   messageContainer = 'Nieprzeczytane';
+  flagaOutbox = false;
   userParams: any = {};
   users: User[];
 
@@ -40,16 +41,28 @@ export class MessagesComponent implements OnInit {
           this.messages = res.result;
           this.pagination = res.pagination;
 
-          // if (res.result[0].messageContainer === 'Outbox') {
-          //   this.flagaOutbox = true;
-          // } else {
-          //   this.flagaOutbox = false;
-          // }
+          if (res.result[0].messageContainer === 'Outbox') {
+            this.flagaOutbox = true;
+          } else {
+            this.flagaOutbox = false;
+          }
 
         }, error => {
           this.alertify.error(error);
         });
   }
+
+  deleteMessage(id: number) {
+    this.alertify.confirm('Czy na pewno chcesz usunąć tę wiadomość?', () => {
+      this.userService.deleteMessage(id, this.authService.decodedToken.nameid).subscribe(() => {
+        this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
+        this.alertify.success('Wiadomość została usunięta');
+      }, error => {
+        this.alertify.error('Nie udało się usunąć wiadomości');
+      });
+    });
+  }
+  
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
