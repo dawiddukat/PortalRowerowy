@@ -88,13 +88,14 @@ namespace PortalRowerowy.API.Controllers
 
             var message = _mapper.Map<Message>(messageForCreationDto);
 
-            _repository.Add(message);
-
-            var messageToReturn = _mapper.Map<MessageForCreationDto>(message);
+            _repository.Add(message);           
 
             if (await _repository.SaveAll())
-                return CreatedAtRoute("GetMessage", new { id = message.Id }, messageToReturn);
-
+            {
+                var messageToReturn = _mapper.Map<MessageToReturnDto>(message);
+                return CreatedAtRoute("GetMessage", new { id = message.Id}, messageToReturn);
+            }  
+            
             throw new Exception("Utworzenie wiadomości nie powiodło się przy zapisie");
         }
     }
