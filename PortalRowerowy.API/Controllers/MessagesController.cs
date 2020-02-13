@@ -40,7 +40,6 @@ namespace PortalRowerowy.API.Controllers
             return Ok(messageFromRepo);
         }
 
-
         [HttpGet]
         public async Task<IActionResult> GetMessagesForUser(int userId, [FromQuery]MessageParams messageParams)
         {
@@ -61,7 +60,17 @@ namespace PortalRowerowy.API.Controllers
             return Ok(messagesToReturn);
         }
 
+        [HttpGet("thread/{recipientId}")]
+        public async Task<IActionResult> GetMessageThread(int userId, int recipientId)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
 
+            var messagesFromRepo = await _repository.GetMessageThread(userId, recipientId);
+            var messageThread = _mapper.Map<IEnumerable<MessageToReturnDto>>(messagesFromRepo);
+
+            return Ok(messageThread);
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateMessage(int userId, MessageForCreationDto messageForCreationDto)
@@ -85,7 +94,6 @@ namespace PortalRowerowy.API.Controllers
 
             if (await _repository.SaveAll())
                 return CreatedAtRoute("GetMessage", new { id = message.Id }, messageToReturn);
-
 
             throw new Exception("Utworzenie wiadomości nie powiodło się przy zapisie");
         }

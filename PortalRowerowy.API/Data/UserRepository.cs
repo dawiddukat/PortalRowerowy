@@ -127,27 +127,34 @@ namespace PortalRowerowy.API.Data
             var messages = _context.Messages.Include(u => u.Sender).ThenInclude(p => p.UserPhotos)
             .Include(u => u.Recipient).ThenInclude(p => p.UserPhotos).AsQueryable();
 
-            switch(messageParams.MessageContainer){
+            switch (messageParams.MessageContainer)
+            {
                 case "Inbox":
-                messages = messages.Where(u => u.RecipientId == messageParams.UserId);
-                break;
+                    messages = messages.Where(u => u.RecipientId == messageParams.UserId);
+                    break;
                 case "Outbox":
-                messages = messages.Where(u => u.SenderId == messageParams.UserId);
-                break;
+                    messages = messages.Where(u => u.SenderId == messageParams.UserId);
+                    break;
                 default:
-                messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.IsRead == false);
-                break;
+                    messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.IsRead == false);
+                    break;
             }
 
             messages = messages.OrderByDescending(d => d.DateSent);
 
             return await PagesList<Message>.CreateListAsync(messages, messageParams.PageNumber, messageParams.PageSize);
-
         }
 
-        public Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)
+        public async Task<IEnumerable<Message>> GetMessageThread(int userId, int recipientId)
         {
-            throw new NotImplementedException();
+            var messages = await _context.Messages
+            .Include(u => u.Sender).ThenInclude(p => p.UserPhotos)
+            .Include(u => u.Recipient).ThenInclude(p => p.UserPhotos)
+            .Where(m => m.RecipientId == userId && m.SenderId == recipientId && m.RecipientDeleted == false
+            || m.RecipientId == recipientId && m.SenderId == userId && m.SenderDeleted == false)
+            .OrderByDescending(m => m.DateSent).ToListAsync();
+
+            return messages;
         }
     }
 }
