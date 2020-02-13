@@ -35,6 +35,7 @@ import { UserPhotosComponent } from './users/userPhotos/userPhotos.component';
 import { MainPipe } from './_pipes/main-pipe.module';
 import { FriendsResolver } from './_resolvers/friends.resolver';
 import { FriendsComponent } from './friends/friends.component';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 
 
 
@@ -100,6 +101,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       UserDetailResolver,
       UserListResolver,
       FriendsResolver,
+      MessagesResolver,
       {
          provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig
       },

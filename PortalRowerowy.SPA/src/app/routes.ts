@@ -15,6 +15,7 @@ import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { FriendsResolver } from './_resolvers/friends.resolver';
 import { FriendsComponent } from './friends/friends.component';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -33,7 +34,7 @@ export const appRoutes: Routes = [
             { path: 'wydarzenia', component: EventsComponent }, // canActivate: [AuthGuard]  },
             { path: 'news', component: NewsComponent }, // canActivate: [AuthGuard]  },
             { path: 'wyprawy', component: AdventuresComponent }, // canActivate: [AuthGuard]  },
-            { path: 'wiadomości', component: MessagesComponent }, // canActivate: [AuthGuard]  },
+            { path: 'wiadomości', component: MessagesComponent, resolve: {messages: MessagesResolver} }, // canActivate: [AuthGuard]  },
             { path: 'giełda', component: SellBicyclesComponent }, // canActivate: [AuthGuard]  },
         ]
     },
