@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/user.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { Adventure } from 'src/app/_models/Adventure';
 import { TimeAgoPipe } from '../../_pipes/time-ago-pipe';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-user-detail',
@@ -14,6 +15,7 @@ import { TimeAgoPipe } from '../../_pipes/time-ago-pipe';
 })
 export class UserDetailComponent implements OnInit {
 
+  @ViewChild('userTabs', { static: true }) userTabs: TabsetComponent;
   user: User;
   adventure: Adventure;
   galleryOptions: NgxGalleryOptions[];
@@ -32,6 +34,11 @@ export class UserDetailComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.user = data.user;
       this.adventure = data.adventure;
+    });
+
+    this.route.queryParams.subscribe(params => {
+      const selectTab = params.tab;
+      this.userTabs.tabs[selectTab > 0 ? selectTab : 0].active = true;
     });
 
     this.galleryOptions = [
@@ -100,6 +107,7 @@ export class UserDetailComponent implements OnInit {
     // }
 
   }
+  
 
 
 
@@ -126,4 +134,7 @@ getAdventures() {
 
   }
 
+  selectTab(tabId: number) {
+    this.userTabs.tabs[tabId].active = true;
+  }
 }
