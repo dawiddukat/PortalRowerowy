@@ -7,6 +7,7 @@ import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gal
 import { Adventure } from 'src/app/_models/Adventure';
 import { TimeAgoPipe } from '../../_pipes/time-ago-pipe';
 import { TabsetComponent } from 'ngx-bootstrap';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -26,7 +27,8 @@ export class UserDetailComponent implements OnInit {
     // tslint:disable-next-line: align
     private alertify: AlertifyService,
     // tslint:disable-next-line: align
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private authService: AuthService) { }
 
   ngOnInit() {
     // tslint:disable-next-line: comment-format
@@ -107,11 +109,11 @@ export class UserDetailComponent implements OnInit {
     // }
 
   }
-  
 
 
 
-getAdventures() {
+
+  getAdventures() {
     const adventuresUrls = [];
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.user.adventures.length; i++) {
@@ -136,5 +138,14 @@ getAdventures() {
 
   selectTab(tabId: number) {
     this.userTabs.tabs[tabId].active = true;
+  }
+
+  sendLike(id: number) {
+    this.userService.sendLike(this.authService.decodedToken.nameid, id)
+      .subscribe(data => {
+        this.alertify.success('Polubiłeś: ' + this.user.username);
+      }, error => {
+        this.alertify.error('Już lubisz tego użytkownika');
+      });
   }
 }

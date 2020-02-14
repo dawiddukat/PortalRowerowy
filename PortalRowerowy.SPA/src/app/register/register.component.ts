@@ -19,6 +19,13 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
 
+  typeBicycleList=[
+  { value: 'MTB', display: 'Górski' },
+  { value: 'ROAD', display: 'Szosowy' },
+  { value: 'CITY', display: 'Miejski' },
+  { value: 'EBIKE', display: 'Elektryczny' }];
+  userParams: any = {};
+
   constructor(private authService: AuthService, private alertify: AlertifyService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {

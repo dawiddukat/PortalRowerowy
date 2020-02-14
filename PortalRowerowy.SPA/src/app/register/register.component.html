@@ -7,10 +7,10 @@
   <div class="form-group">
     <label class="control-label" style="margin-right:10px">Jestem: </label>
     <label class="radio-inline">
-      <input class="mr-3" type="radio" value="male" formControlName="gender">Mężczyzną
+      <input class="mr-3" type="radio" value="mężczyzna" formControlName="gender">Mężczyzną
     </label>
     <label class="radio-inline ml-3">
-      <input class="mr-3" type="radio" value="female" formControlName="gender">Kobietą
+      <input class="mr-3" type="radio" value="kobieta" formControlName="gender">Kobietą
     </label>
   </div>
 
@@ -30,12 +30,13 @@
   </div>
 
   <div class="form-group">
-    <input class="form-control" placeholder="Rodzaj roweru" formControlName="typeBicycle"
-           [ngClass]="{'is-invalid': registerForm.get('typeBicycle').errors && registerForm.get('typeBicycle').touched}" >
-    <div class="invalid-feedback" 
-          *ngIf="registerForm.get('typeBicycle').touched && registerForm.get('typeBicycle').hasError('required')">  
-        Rodzaj roweru jest wymagany!
-      </div>
+    <select class="form-control" 
+            formControlName="typeBicycle" 
+            [(ngModel)]="userParams.typeBicycle">
+      <option *ngFor="let typeBicycle of typeBicycleList" [value]="typeBicycle.value">
+        {{typeBicycle.display}}
+      </option>
+    </select>  
   </div>
 
   <div class="form-group">
