@@ -37,6 +37,7 @@ import { FriendsResolver } from './_resolvers/friends.resolver';
 import { FriendsComponent } from './friends/friends.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { UserMessagesComponent } from './users/user-messages/user-messages.component';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 
 
 
@@ -104,6 +105,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       UserListResolver,
       FriendsResolver,
       MessagesResolver,
+      ErrorInterceptorProvider,
       {
          provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig
       },

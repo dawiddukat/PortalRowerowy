@@ -81,8 +81,9 @@ namespace PortalRowerowy.API.Controllers
 
             var like = await _repo.GetLike(id, recipientId);
 
-            if(like != null)
-                return BadRequest("Już lubisz tego użytkownika");
+            if(like != null){
+            _repo.Delete<Like>(like);
+            return BadRequest("Już nie lubisz tego użytkownika!");}
 
             if (await _repo.GetUser(recipientId) == null)
                 return NotFound();

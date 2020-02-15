@@ -23,9 +23,9 @@ export class UserCardComponent implements OnInit {
   sendLike(id: number) {
     this.userService.sendLike(this.authService.decodedToken.nameid, id)
       .subscribe(data => {
-        this.alertify.success('Polubiłeś: ' + this.user.username[0].toUpperCase() + this.user.username.slice(1));
+        this.alertify.success('Polubiłeś: ' + this.user.username[0].toUpperCase() + this.user.username.slice(1) + '!');
       }, error => {
-        this.alertify.error('Już lubisz tego użytkownika');
+        this.alertify.error(error);
       });
   }
 }

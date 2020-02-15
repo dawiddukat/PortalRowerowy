@@ -1,4 +1,5 @@
 <div class="text-center mt-3">
+  
   <h2>{{friendsParam === 'UserLikes' ? 'Członkowie, którzy mnie lubią' : 'Członkowie, których lubię'}}
     : {{pagination.totalItems}}</h2>
 </div>
@@ -20,12 +21,12 @@
       <app-user-card [user]="user"></app-user-card>
     </div>
   </div> -->
-
+  <form #editForm="ngForm" id="editForm" (ngSubmit)="loadUsers()">
   <div class="row">
     <div *ngFor="let user of users" style="text-align: center;">
       <app-user-card [user]='user'> </app-user-card>
     </div>
-  </div>
+  </div></form>
 
   <div class="d-flex justify-content-center">
     <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
