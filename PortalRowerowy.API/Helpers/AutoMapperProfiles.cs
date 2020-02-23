@@ -29,13 +29,25 @@ namespace PortalRowerowy.API.Helpers
                  });
             CreateMap<UserPhoto, UserForDetailedDto>();
             CreateMap<UserForUpdateDto, User>();
-            CreateMap<SellBicycle, SellBicycleForListDto>();
-            CreateMap<SellBicycle, SellBicycleForDetailedDto>();
-            CreateMap<Adventure, AdventureForListDto>();
-            CreateMap<Adventure, AdventureForDetailedDto>();
             CreateMap<UserPhoto, UserPhotoForReturnDto>();
             CreateMap<UserPhotoForCreationDto, UserPhoto>();
             CreateMap<UserForRegisterDto, User>();
+
+            CreateMap<SellBicycle, SellBicycleForListDto>();
+            CreateMap<SellBicycle, SellBicycleForDetailedDto>();
+
+            CreateMap<Adventure, AdventureForListDto>()
+                            .ForMember(dest => dest.PhotoUrl, opt =>
+                {
+                    opt.MapFrom(src => src.AdventurePhotos.FirstOrDefault(p => p.IsMain).Url);
+                });
+            CreateMap<Adventure, AdventureForDetailedDto>();
+            CreateMap<AdventurePhoto, AdventureForDetailedDto>();
+            // CreateMap<AdventureForUpdateDto, Adventure>();
+            CreateMap<AdventurePhoto, AdventurePhotoForReturnDto>();
+            CreateMap<AdventurePhotoForCreationDto, AdventurePhoto>();
+            // CreateMap<AdventureForRegisterDto, Adventure>();            
+
             CreateMap<MessageForCreationDto, Message>().ReverseMap();
             CreateMap<Message, MessageToReturnDto>()
                 .ForMember(m => m.SenderPhotoUrl, opt => opt

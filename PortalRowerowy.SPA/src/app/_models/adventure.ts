@@ -6,4 +6,5 @@ export interface Adventure {
     distance: number;
     description: string;
     dateAdded: Date;
+    photoUrl: string;
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace PortalRowerowy.API.Dtos
 {
-    public class AdventurePhotosForDetailedDto
+    public class AdventurePhotoForReturnDto
     {
         public int Id { get; set; }
 
@@ -13,5 +13,8 @@ namespace PortalRowerowy.API.Dtos
         public DateTime DateAdded { get; set; }
 
         public bool IsMain { get; set; }
+
+        public string Public_Id { get; set; }
+
     }
 }

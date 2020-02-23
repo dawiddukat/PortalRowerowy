@@ -16,6 +16,6 @@ namespace PortalRowerowy.API.Dtos
         public int Distance { get; set; }
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
-        public int UserId { get; set; }
+        public int AdventureId { get; set; }
     }
 }
