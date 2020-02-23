@@ -41,8 +41,5 @@ namespace PortalRowerowy.API.Controllers
 
             return Ok(sellBicycleToReturn);
         }
-
-
-
     }
 }

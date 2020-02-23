@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { NewsComponent } from './news/news.component';
-import { AdventuresComponent } from './adventures/adventures.component';
+
 import { MessagesComponent } from './messages/messages.component';
 import { SellBicyclesComponent } from './sellbicycles/sellbicycles.component';
 import { EventsComponent } from './events/events.component';
@@ -16,6 +16,7 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { FriendsResolver } from './_resolvers/friends.resolver';
 import { FriendsComponent } from './friends/friends.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
+import { AdventureListComponent } from './adventures/adventure-list/adventure-list.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -33,7 +34,7 @@ export const appRoutes: Routes = [
             { path: 'uzytkownicy/:id', component: UserDetailComponent, resolve: { user: UserDetailResolver } }, // canActivate: [AuthGuard]  },
             { path: 'wydarzenia', component: EventsComponent }, // canActivate: [AuthGuard]  },
             { path: 'news', component: NewsComponent }, // canActivate: [AuthGuard]  },
-            { path: 'wyprawy', component: AdventuresComponent }, // canActivate: [AuthGuard]  },
+            { path: 'wyprawy', component: AdventureListComponent }, // canActivate: [AuthGuard]  },
             { path: 'wiadomości', component: MessagesComponent, resolve: {messages: MessagesResolver} }, // canActivate: [AuthGuard]  },
             { path: 'giełda', component: SellBicyclesComponent }, // canActivate: [AuthGuard]  },
         ]
