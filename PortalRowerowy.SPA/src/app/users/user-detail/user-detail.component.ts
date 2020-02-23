@@ -18,7 +18,8 @@ export class UserDetailComponent implements OnInit {
 
   @ViewChild('userTabs', { static: true }) userTabs: TabsetComponent;
   user: User;
-  adventure: Adventure;
+  // adventure: Adventure;
+  adventures: Adventure[];
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   galleryAdventures: NgxGalleryImage[];
@@ -35,7 +36,7 @@ export class UserDetailComponent implements OnInit {
     //this.loadUser();
     this.route.data.subscribe(data => {
       this.user = data.user;
-      this.adventure = data.adventure;
+      // this.adventure = data.adventure;
     });
 
     this.route.queryParams.subscribe(params => {

@@ -92,8 +92,10 @@
           </tab>
           <tab heading="Wyprawy">
             <h5>Wyprawy</h5>
-            <p>{{user.username}}</p>
-            <ngx-gallery [options]="galleryOptions" [images]="galleryAdventures"></ngx-gallery>
+            <div *ngFor="let adventure of adventures" style="text-align: center;"></div>
+            <p>{{user.adventures}}</p>
+
+            <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryAdventures"></ngx-gallery> -->
           </tab>
           <tab heading="Wiadomości">           
             <app-user-messages [recipientId]="user.id"></app-user-messages>
