@@ -21,7 +21,6 @@ import { MessagesComponent } from './messages/messages.component';
 import { NewsComponent } from './news/news.component';
 import { EventsComponent } from './events/events.component';
 
-import { SellBicyclesComponent } from './sellbicycles/sellbicycles.component';
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserCardComponent } from './users/user-card/user-card.component';
@@ -38,8 +37,12 @@ import { FriendsComponent } from './friends/friends.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { UserMessagesComponent } from './users/user-messages/user-messages.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+
 import { AdventureListComponent } from './adventures/adventure-list/adventure-list.component';
 import { AdventureCardComponent } from './adventures/adventure-card/adventure-card.component';
+
+import { SellBicycleListComponent } from './sellbicycles/sellbicycle-list/sellbicycle-list.component';
+import { SellBicycleCardComponent } from './sellbicycles/sellbicycle-card/sellbicycle-card.component';
 
 
 
@@ -70,7 +73,9 @@ export class CustomHammerConfig extends HammerGestureConfig {
       AdventureCardComponent,
 
 
-      SellBicyclesComponent,
+      SellBicycleListComponent,
+      SellBicycleCardComponent,
+
       UserCardComponent,
       UserDetailComponent,
       UserEditComponent,

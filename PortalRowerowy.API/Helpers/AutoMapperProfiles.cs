@@ -33,7 +33,10 @@ namespace PortalRowerowy.API.Helpers
             CreateMap<UserPhotoForCreationDto, UserPhoto>();
             CreateMap<UserForRegisterDto, User>();
 
-            CreateMap<SellBicycle, SellBicycleForListDto>();
+            CreateMap<SellBicycle, SellBicycleForListDto>().ForMember(dest => dest.PhotoUrl, opt =>
+{
+    opt.MapFrom(src => src.SellBicyclePhotos.FirstOrDefault(p => p.IsMain).Url);
+});
             CreateMap<SellBicycle, SellBicycleForDetailedDto>();
 
             CreateMap<Adventure, AdventureForListDto>()

@@ -4,7 +4,7 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { NewsComponent } from './news/news.component';
 
 import { MessagesComponent } from './messages/messages.component';
-import { SellBicyclesComponent } from './sellbicycles/sellbicycles.component';
+
 import { EventsComponent } from './events/events.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
@@ -17,6 +17,7 @@ import { FriendsResolver } from './_resolvers/friends.resolver';
 import { FriendsComponent } from './friends/friends.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
 import { AdventureListComponent } from './adventures/adventure-list/adventure-list.component';
+import { SellBicycleListComponent } from './sellbicycles/sellbicycle-list/sellbicycle-list.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -36,7 +37,7 @@ export const appRoutes: Routes = [
             { path: 'news', component: NewsComponent }, // canActivate: [AuthGuard]  },
             { path: 'wyprawy', component: AdventureListComponent }, // canActivate: [AuthGuard]  },
             { path: 'wiadomości', component: MessagesComponent, resolve: {messages: MessagesResolver} }, // canActivate: [AuthGuard]  },
-            { path: 'giełda', component: SellBicyclesComponent }, // canActivate: [AuthGuard]  },
+            { path: 'giełda', component: SellBicycleListComponent }, // canActivate: [AuthGuard]  },
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full' }

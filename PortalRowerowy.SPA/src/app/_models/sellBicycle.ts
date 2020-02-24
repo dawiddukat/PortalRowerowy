@@ -7,5 +7,6 @@ export interface SellBicycle {
     typeBicycle: string;
     description: string;
     dateAdded: Date;
+    photoUrl: string;
 }
 
