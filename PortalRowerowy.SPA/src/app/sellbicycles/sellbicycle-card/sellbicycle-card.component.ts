@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SellBicycle } from 'src/app/_models/sellBicycle';
 import { AuthService } from 'src/app/_services/auth.service';
-
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { SellBicycleService } from 'src/app/_services/sellBicycle.service';
 

@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 import { Adventure } from '../_models/adventure';
 
 
-
 @Injectable({
   providedIn: 'root'
 })

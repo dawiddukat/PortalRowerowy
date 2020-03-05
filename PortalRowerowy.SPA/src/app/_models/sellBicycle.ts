@@ -8,5 +8,6 @@ export interface SellBicycle {
     description: string;
     dateAdded: Date;
     photoUrl: string;
+    userId: number;
 }
 

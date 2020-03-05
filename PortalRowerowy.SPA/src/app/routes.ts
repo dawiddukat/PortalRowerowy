@@ -16,8 +16,12 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { FriendsResolver } from './_resolvers/friends.resolver';
 import { FriendsComponent } from './friends/friends.component';
 import { MessagesResolver } from './_resolvers/messages.resolver';
+
 import { AdventureListComponent } from './adventures/adventure-list/adventure-list.component';
 import { SellBicycleListComponent } from './sellbicycles/sellbicycle-list/sellbicycle-list.component';
+
+import { AdventureDetailComponent } from './adventures/adventure-detail/adventure-detail.component';
+import { SellBicycleDetailComponent } from './sellbicycles/sellbicycle-detail/sellbicycle-detail.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -36,8 +40,10 @@ export const appRoutes: Routes = [
             { path: 'wydarzenia', component: EventsComponent }, // canActivate: [AuthGuard]  },
             { path: 'news', component: NewsComponent }, // canActivate: [AuthGuard]  },
             { path: 'wyprawy', component: AdventureListComponent }, // canActivate: [AuthGuard]  },
+            { path: 'wyprawy/:id', component: AdventureDetailComponent},
             { path: 'wiadomości', component: MessagesComponent, resolve: {messages: MessagesResolver} }, // canActivate: [AuthGuard]  },
             { path: 'giełda', component: SellBicycleListComponent }, // canActivate: [AuthGuard]  },
+            { path: 'giełda/:id', component: SellBicycleDetailComponent },
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full' }

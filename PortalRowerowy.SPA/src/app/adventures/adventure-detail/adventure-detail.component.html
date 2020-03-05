@@ -1,0 +1,69 @@
+<div class="container mt-3">
+  <div class="row">
+    <h1>Profil {{adventure.adventureName}}</h1>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{adventure.photoUrl || '.../../../../../assets/compass.png'}}" alt="{{adventure.adventureName}}">
+        <div class="card-body">
+          <div>
+            <strong>Nazwa użytkownika: </strong>
+            <p class="text-capitalize"> {{adventure.adventureName}} </p>
+          </div>
+          <div>
+            <strong>Dystans: </strong>
+            <p> {{adventure.distance}} </p>
+          </div>
+          <div>
+            <strong>Data: </strong>
+            <p> {{adventure.dateAdded}} </p>
+          </div>
+          <div>
+            <strong>Lokalizacja: </strong>
+            <p>  </p>
+          </div>
+          <div>
+            <strong>Id użytkownika: </strong>
+            <p> {{adventure.userId}} </p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <!-- <button class="btn btn-success w-100" (click)="sendLike(user.id)">Lubię</button>
+            <button class="btn btn-primary w-100" (click)="selectTab(4)">Wiadomości</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="tab-panel">
+        <tabset class="user-tabset" #userTabs>
+          <tab heading="Informacje {{adventure.adventureName}}">
+            <table class="user-table">
+              <tr>
+                <td class="user-table-tb">
+                  <h5>Opis:</h5>
+                  <p>{{adventure.description}}</p>
+
+                </td>
+                <td>
+                  <h5>Wymarzony rower:</h5>
+                  <p>{{adventure.description}}</p>
+
+                </td>
+              </tr>
+             
+            </table>
+          </tab>
+          <tab heading="Zdjęcia">
+            <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> -->
+          </tab>
+            <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryAdventures"></ngx-gallery> -->
+
+
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

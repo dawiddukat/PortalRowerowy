@@ -23,6 +23,7 @@ import { EventsComponent } from './events/events.component';
 
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
+
 import { UserCardComponent } from './users/user-card/user-card.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserDetailResolver } from './_resolvers/user-detail.resolver';
@@ -40,10 +41,11 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 
 import { AdventureListComponent } from './adventures/adventure-list/adventure-list.component';
 import { AdventureCardComponent } from './adventures/adventure-card/adventure-card.component';
+import { AdventureDetailComponent } from './adventures/adventure-detail/adventure-detail.component';
 
 import { SellBicycleListComponent } from './sellbicycles/sellbicycle-list/sellbicycle-list.component';
 import { SellBicycleCardComponent } from './sellbicycles/sellbicycle-card/sellbicycle-card.component';
-
+import { SellBicycleDetailComponent } from './sellbicycles/sellbicycle-detail/sellbicycle-detail.component';
 
 
 export function tokenGetter() {
@@ -71,10 +73,11 @@ export class CustomHammerConfig extends HammerGestureConfig {
 
       AdventureListComponent,
       AdventureCardComponent,
-
+      AdventureDetailComponent,
 
       SellBicycleListComponent,
       SellBicycleCardComponent,
+      SellBicycleDetailComponent,
 
       UserCardComponent,
       UserDetailComponent,
