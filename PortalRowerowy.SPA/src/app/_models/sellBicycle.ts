@@ -1,8 +1,10 @@
+import { SellBicyclePhoto } from './sellBicyclePhoto';
+
 export interface SellBicycle {
     id: number;
     sellBicycleName: string;
     url?: any;
-    sellBicyclePhotos: any[];
+    sellBicyclePhotos: SellBicyclePhoto[];
     price: number;
     typeBicycle: string;
     description: string;

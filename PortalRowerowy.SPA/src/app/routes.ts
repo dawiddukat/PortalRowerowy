@@ -24,6 +24,8 @@ import { AdventureDetailComponent } from './adventures/adventure-detail/adventur
 import { SellBicycleDetailComponent } from './sellbicycles/sellbicycle-detail/sellbicycle-detail.component';
 import { AdventureDetailResolver } from './_resolvers/adventure-detail.resolver';
 import { AdventureListResolver } from './_resolvers/adventure-list.resolver';
+import { SellBicycleListResolver } from './_resolvers/sellBicycle-list.resolver';
+import { SellBicycleDetailResolver } from './_resolvers/sellBicycle-detail.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -47,8 +49,8 @@ export const appRoutes: Routes = [
 
             { path: 'wiadomości', component: MessagesComponent, resolve: {messages: MessagesResolver} }, // canActivate: [AuthGuard]  },
            
-            { path: 'giełda', component: SellBicycleListComponent }, // canActivate: [AuthGuard]  },
-            { path: 'giełda/:id', component: SellBicycleDetailComponent },
+            { path: 'giełda', component: SellBicycleListComponent, resolve: { sellBicycles: SellBicycleListResolver }  }, // canActivate: [AuthGuard]  },
+            { path: 'giełda/:id', component: SellBicycleDetailComponent, resolve: { sellBicycle: SellBicycleDetailResolver } },
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full' }
