@@ -3,6 +3,7 @@ import { Adventure } from 'src/app/_models/adventure';
 import { AdventureService } from 'src/app/_services/adventure.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 
 @Component({
   selector: 'app-adventure-detail',
@@ -12,24 +13,55 @@ import { ActivatedRoute } from '@angular/router';
 export class AdventureDetailComponent implements OnInit {
 
   adventure: Adventure;
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
 
   constructor(private adventureService: AdventureService,
-              private alertify: AlertifyService,
-              private route: ActivatedRoute) {}
+    private alertify: AlertifyService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadAdventure();
+    this.route.data.subscribe(data => {
+      this.adventure = data.adventure;
+    });
+
+    this.galleryOptions = [
+      {
+        width: '500px',
+        height: '500px',
+        thumbnailsColumns: 4,
+        imagePercent: 100,
+        preview: false,
+        imageAnimation: NgxGalleryAnimation.Slide
+      }
+    ];
+
+    this.galleryImages = this.getImages();
   }
 
-  loadAdventure() {
-    this.adventureService.getAdventure(+this.route.snapshot.params.id)
-      .subscribe((adventure: Adventure) => {
-        this.adventure = adventure;
-      }, error => {
-        this.alertify.error(error);
+
+  // loadAdventure() {
+  //   this.adventureService.getAdventure(+this.route.snapshot.params.id)
+  //     .subscribe((adventure: Adventure) => {
+  //       this.adventure = adventure;
+  //     }, error => {
+  //       this.alertify.error(error);
+  //     });
+  // }
+
+  getImages() {
+    const imagesUrls = [];
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.adventure.adventurePhotos.length; i++) {
+      imagesUrls.push({
+        small: this.adventure.adventurePhotos[i].url,
+        medium: this.adventure.adventurePhotos[i].url,
+        big: this.adventure.adventurePhotos[i].url,
+        descriptio: this.adventure.adventurePhotos[i].description,
       });
+    }
+    return imagesUrls;
   }
-
 }
 
 // import { Component, OnInit, ViewChild } from '@angular/core';

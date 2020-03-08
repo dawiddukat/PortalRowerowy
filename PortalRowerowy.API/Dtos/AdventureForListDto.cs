@@ -7,12 +7,12 @@ namespace PortalRowerowy.API.Dtos
     public class AdventureForListDto
     {
         //public ICollection<AdventureForDetailedDto> AdventurePhotos { get; set; }
-                public int Id { get; set; }
+        public int Id { get; set; }
         public string adventureName { get; set; }
-       /* public int Distance { get; set; }
-        public string Description { get; set; }*/
+        /* public int Distance { get; set; }
+         public string Description { get; set; }*/
         public DateTime DateAdded { get; set; }
         public int UserId { get; set; }
-                public string PhotoUrl { get; set;}
+        public string PhotoUrl { get; set; }
     }
 }

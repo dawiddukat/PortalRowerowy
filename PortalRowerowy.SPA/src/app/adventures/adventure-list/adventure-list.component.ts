@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Adventure } from 'src/app/_models/adventure';
 import { AdventureService } from 'src/app/_services/adventure.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-adventure-list',
@@ -12,20 +13,23 @@ export class AdventureListComponent implements OnInit {
 
   adventures: Adventure[];
 
-  constructor(private adventureService: AdventureService, private alertify: AlertifyService) { }
+  constructor(private adventureService: AdventureService, private alertify: AlertifyService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.loadAdventures();
-  }
-
-
-  loadAdventures() {
-    this.adventureService.getAdventures().subscribe((adventures: Adventure[]) => {
-      this.adventures = adventures;
-    }, error => {
-      this.alertify.error(error);
+    this.route.data.subscribe(data => {
+      this.adventures = data.adventures;
     });
   }
+
+
+  // loadAdventures() {
+  //   this.adventureService.getAdventures().subscribe((adventures: Adventure[]) => {
+  //     this.adventures = adventures;
+  //   }, error => {
+  //     this.alertify.error(error);
+  //   });
+  // }
 }
 
 

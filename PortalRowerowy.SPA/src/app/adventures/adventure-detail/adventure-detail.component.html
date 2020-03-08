@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="row">
-    <h1>Profil {{adventure.adventureName}}</h1>
+    <h1>Wyprawa {{adventure.adventureName}}</h1>
   </div>
   <div class="row">
     <div class="col-sm-4">
@@ -39,7 +39,7 @@
     <div class="col-sm-8">
       <div class="tab-panel">
         <tabset class="user-tabset" #userTabs>
-          <tab heading="Informacje {{adventure.adventureName}}">
+          <tab heading="Informacje ">
             <table class="user-table">
               <tr>
                 <td class="user-table-tb">
@@ -57,7 +57,9 @@
             </table>
           </tab>
           <tab heading="Zdjęcia">
-            <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery> -->
+            <p>Tutaj beda zdjecia</p>
+
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
           </tab>
             <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryAdventures"></ngx-gallery> -->
 

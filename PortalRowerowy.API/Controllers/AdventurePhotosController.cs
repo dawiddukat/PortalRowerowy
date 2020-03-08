@@ -16,11 +16,11 @@
 // namespace PortalRowerowy.API.Controllers
 // {
 //     [Authorize]
-//     [Route("api/users/{userId}/photos")]
+//     [Route("api/adventures/{adventureId}/photos")]
 //     [ApiController]
 //     public class AdventurePhotosController : ControllerBase
 //     {
-//         private readonly IUserRepository _repository;
+//         private readonly IAdventureRepository _repository;
 //         private readonly IMapper _mapper;
 //         private readonly IOptions<CloudinarySettings> _cloudinaryConfig;
 //         private Cloudinary _cloudinary;
@@ -41,12 +41,12 @@
 //         }
 
 //         [HttpPost]
-//         public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]UserPhotoForCreationDto userPhotoForCreationDto)
+//         public async Task<IActionResult> AddPhotoForAdventure (int userId, [FromForm]adventurePhotoForCreationDto adventurePhotoForCreationDto)
 //         {
 //             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
 //                 return Unauthorized();
 
-//             var userFromRepo = await _repository.GetUser(userId);
+//             var adventureFromRepo = await _repository.GetAdventure(adventureId);
 
 //             var file = userPhotoForCreationDto.File;
 //             var uploadResult = new ImageUploadResult();
@@ -87,13 +87,13 @@
 
 //         [HttpGet("{id}", Name = "GetPhoto")]
 
-//         public async Task<IActionResult> GetUserPhoto(int id)
+//         public async Task<IActionResult> GetAdventurePhoto(int id)
 //         {
-//             var userPhotoFromRepo = await _repository.GetUserPhoto(id);
+//             var adventurePhotoFromRepo = await _repository.AdventurePhoto(id);
 
-//             var userPhotoForReturn = _mapper.Map<UserPhotoForReturnDto>(userPhotoFromRepo);
+//             var adventurePhotoForReturn = _mapper.Map<AdventurePhotoForReturnDto>(adventurePhotoFromRepo);
 
-//             return Ok(userPhotoForReturn);
+//             return Ok(adventurePhotoForReturn);
 //         }
 
 //         [HttpPost("{id}/setMain")]

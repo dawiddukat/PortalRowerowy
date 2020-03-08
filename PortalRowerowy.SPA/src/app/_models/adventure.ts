@@ -1,8 +1,10 @@
+import { AdventurePhoto } from './adventurePhoto';
+
 export interface Adventure {
     id: number;
-    adventureName: string;
+    adventureName?: string;
     url?: any;
-    adventurePhotos: any[];
+    adventurePhotos: AdventurePhoto[];
     distance: number;
     description: string;
     dateAdded: Date;

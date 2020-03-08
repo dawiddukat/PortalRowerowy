@@ -46,6 +46,8 @@ import { AdventureDetailComponent } from './adventures/adventure-detail/adventur
 import { SellBicycleListComponent } from './sellbicycles/sellbicycle-list/sellbicycle-list.component';
 import { SellBicycleCardComponent } from './sellbicycles/sellbicycle-card/sellbicycle-card.component';
 import { SellBicycleDetailComponent } from './sellbicycles/sellbicycle-detail/sellbicycle-detail.component';
+import { AdventureDetailResolver } from './_resolvers/adventure-detail.resolver';
+import { AdventureListResolver } from './_resolvers/adventure-list.resolver';
 
 
 export function tokenGetter() {
@@ -124,7 +126,9 @@ export class CustomHammerConfig extends HammerGestureConfig {
          provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig
       },
       UserEditResolver,
-      PreventUnsavedChanges
+      PreventUnsavedChanges,
+      AdventureDetailResolver,
+      AdventureListResolver
    ],
    bootstrap: [
       AppComponent

@@ -22,6 +22,8 @@ import { SellBicycleListComponent } from './sellbicycles/sellbicycle-list/sellbi
 
 import { AdventureDetailComponent } from './adventures/adventure-detail/adventure-detail.component';
 import { SellBicycleDetailComponent } from './sellbicycles/sellbicycle-detail/sellbicycle-detail.component';
+import { AdventureDetailResolver } from './_resolvers/adventure-detail.resolver';
+import { AdventureListResolver } from './_resolvers/adventure-list.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -39,9 +41,12 @@ export const appRoutes: Routes = [
             { path: 'uzytkownicy/:id', component: UserDetailComponent, resolve: { user: UserDetailResolver } }, // canActivate: [AuthGuard]  },
             { path: 'wydarzenia', component: EventsComponent }, // canActivate: [AuthGuard]  },
             { path: 'news', component: NewsComponent }, // canActivate: [AuthGuard]  },
-            { path: 'wyprawy', component: AdventureListComponent }, // canActivate: [AuthGuard]  },
-            { path: 'wyprawy/:id', component: AdventureDetailComponent},
+            
+            { path: 'wyprawy', component: AdventureListComponent, resolve: { adventures: AdventureListResolver } }, // canActivate: [AuthGuard]  },
+            { path: 'wyprawy/:id', component: AdventureDetailComponent, resolve: { adventure: AdventureDetailResolver }},
+
             { path: 'wiadomości', component: MessagesComponent, resolve: {messages: MessagesResolver} }, // canActivate: [AuthGuard]  },
+           
             { path: 'giełda', component: SellBicycleListComponent }, // canActivate: [AuthGuard]  },
             { path: 'giełda/:id', component: SellBicycleDetailComponent },
         ]
