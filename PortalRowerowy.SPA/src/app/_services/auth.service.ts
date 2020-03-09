@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
 import { BehaviorSubject } from 'rxjs';
+import { Adventure } from '../_models/Adventure';
 
 
 @Injectable({
@@ -20,11 +21,19 @@ export class AuthService {
   userPhotoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
   currentUserPhotoUrl = this.userPhotoUrl.asObservable();
 
+  currentAdventure: Adventure;
+  adventurePhotoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
+  currentAdventurePhotoUrl = this.adventurePhotoUrl.asObservable();
+
   constructor(private http: HttpClient) { }
 
 
   changeUserPhoto(photoUrl: string) {
     this.userPhotoUrl.next(photoUrl);
+  }
+
+  changeAdventurePhoto(photoUrl: string) {
+    this.adventurePhotoUrl.next(photoUrl);
   }
 
 
