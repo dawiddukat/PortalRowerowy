@@ -14,5 +14,6 @@ namespace PortalRowerowy.API.Models
         public bool IsMain { get; set; }
         public SellBicycle SellBicycle { get; set; }
         public int SellBicycleId { get; set; }
+        public string public_id { get; set;}
     }
 }

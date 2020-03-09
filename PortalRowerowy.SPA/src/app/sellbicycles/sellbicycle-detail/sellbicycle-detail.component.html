@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="row">
-    <h1>Profil {{sellBicycle.sellBicycleName}}</h1>
+    <h1>Rower {{sellBicycle.sellBicycleName}}</h1>
   </div>
   <div class="row">
     <div class="col-sm-4">
@@ -8,11 +8,11 @@
         <img class="card-img-top img-thumbnail" src="{{sellBicycle.photoUrl || '.../../../../../assets/user2.png'}}" alt="{{sellBicycle.sellBicycleName}}">
         <div class="card-body">
           <div>
-            <strong>Nazwa użytkownika: </strong>
+            <strong>Nazwa: </strong>
             <p class="text-capitalize"> {{sellBicycle.sellBicycleName}} </p>
           </div>
           <div>
-            <strong>Dystans: </strong>
+            <strong>Cena: </strong>
             <p> {{sellBicycle.price}} </p>
           </div>
           <div>
@@ -49,11 +49,11 @@
                   <p>{{sellBicycle.description}}</p>
 
                 </td>
-                <td>
+                <!-- <td>
                   <h5>Wymarzony rower:</h5>
                   <p>{{sellBicycle.description}}</p>
 
-                </td>
+                </td> -->
               </tr>
              
             </table>

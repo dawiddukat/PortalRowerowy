@@ -25,5 +25,12 @@ namespace PortalRowerowy.API.Data
             var adventures = await _context.Adventures.Include(aP => aP.AdventurePhotos).ToListAsync();
             return adventures;
         }
+
+        public async Task<AdventurePhoto> GetAdventurePhoto(int id)
+        {
+            var adventurePhoto = await _context.AdventurePhotos.FirstOrDefaultAsync(p => p.Id == id);
+            return adventurePhoto;
+        }
+
     }
 }

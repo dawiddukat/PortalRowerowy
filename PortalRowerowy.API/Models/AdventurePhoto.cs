@@ -16,5 +16,6 @@ namespace PortalRowerowy.API.Models
         public bool IsMain { get; set; }
         public Adventure Adventure { get; set; }
         public int AdventureId { get; set; }
+        public string public_id { get; set;}
     }
 }
