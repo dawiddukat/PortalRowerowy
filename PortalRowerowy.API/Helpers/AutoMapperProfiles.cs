@@ -38,6 +38,8 @@ namespace PortalRowerowy.API.Helpers
     opt.MapFrom(src => src.SellBicyclePhotos.FirstOrDefault(p => p.IsMain).Url);
 });
             CreateMap<SellBicycle, SellBicycleForDetailedDto>();
+            CreateMap<SellBicycleForUpdateDto, SellBicycle>();
+
 
             CreateMap<Adventure, AdventureForListDto>()
                             .ForMember(dest => dest.PhotoUrl, opt =>

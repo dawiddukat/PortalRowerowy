@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -40,6 +41,22 @@ namespace PortalRowerowy.API.Controllers
             var sellBicycleToReturn = _mapper.Map<SellBicycleForDetailedDto>(sellBicycle);
 
             return Ok(sellBicycleToReturn);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSellBicycle(int id, SellBicycleForUpdateDto sellBicycleForUpdateDto)
+        {
+            // if (id != int.Parse(Adventure.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
+
+            var sellBicycleFromRepo = await _repo.GetSellBicycle(id);
+
+            _mapper.Map(sellBicycleForUpdateDto, sellBicycleFromRepo);
+
+            if (await _repo.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Aktualizacja użytkownika o id: {id} nie powiodła sie przy zapisywaniu do bazy");
         }
     }
 }
