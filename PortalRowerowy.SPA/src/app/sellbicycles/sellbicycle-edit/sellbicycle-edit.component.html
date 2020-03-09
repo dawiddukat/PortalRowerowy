@@ -1,5 +1,5 @@
 <p>
-  {{adventure.adventureName}}
+  {{sellBicycle.sellBicycleName}}
 </p> 
 <div class="container mt-3">
   <div class="row">
@@ -15,19 +15,19 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
-          <img class="card-img-top img-thumbnail" src="{{photoUrl || '.../../../../../assets/compass2.png'}}" alt="{{adventure.adventureName}}">
+          <img class="card-img-top img-thumbnail" src="{{photoUrl || '.../../../../../assets/user2.png'}}" alt="{{sellBicycle.sellBicycleName}}">
           <div class="card-body">
             <div>
-              <strong>Nazwa wyprawy: </strong>
-              <p class="text-capitalize"> {{adventure.adventureName}} </p>
+              <strong>Nazwa roweru: </strong>
+              <p class="text-capitalize"> {{sellBicycle.sellBicycleName}} </p>
             </div>
             <div>
-              <strong>Dystans: </strong>
-              <p> {{adventure.distance}} </p>
+              <strong>Cena: </strong>
+              <p> {{sellBicycle.price}} </p>
             </div>
             <div>
               <strong>Data: </strong>
-              <p> {{adventure.dateAdded}} </p>
+              <p> {{sellBicycle.dateAdded}} </p>
             </div>
             <div>
               <strong>Lokalizacja: </strong>
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="col-sm-8">
-        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateAdventure()">
+        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateSellBicycle()">
           <div class="tab-panel">
             <tabset class="user-tabset" #userTabs>
               <tab heading="Informacje">
@@ -60,19 +60,23 @@
                   <tr>
                     <td class="user-table-tb">
                       <h5>Nazwa:</h5>
-                      <textarea class="form-control" name="adventureName" rows="1" [(ngModel)]="adventure.adventureName"></textarea>
+                      <textarea class="form-control" name="sellBicycleName" rows="1" [(ngModel)]="sellBicycle.sellBicycleName"></textarea>
                     </td>
                     <td>
-                      <h5>Dystans:</h5>
-                      <textarea class="form-control" name="distance" rows="1"
-                        [(ngModel)]="adventure.distance"></textarea>
+                      <h5>Cena:</h5>
+                      <textarea class="form-control" name="price" rows="1"
+                        [(ngModel)]="sellBicycle.price"></textarea>
                     </td>
                 </table>
                 <table class="user-table">
                   <tr>
                     <td class="user-table-tb">
+                      <h5>Typ roweru:</h5>
+                      <textarea class="form-control" name="typeBicycle" rows="1" [(ngModel)]="sellBicycle.typeBicycle"></textarea>
+                    </td>
+                    <td class="user-table-tb">
                       <h5>Opis:</h5>
-                      <textarea class="form-control" name="description" rows="1" [(ngModel)]="adventure.description"></textarea>
+                      <textarea class="form-control" name="description" rows="1" [(ngModel)]="sellBicycle.description"></textarea>
                     </td>
                     <!-- <td>
                       <h5>Rowery:</h5>

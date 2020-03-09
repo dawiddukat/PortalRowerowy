@@ -3,18 +3,17 @@ import { ActivatedRoute } from '@angular/router';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
-import { error } from 'protractor';
-import { Adventure } from 'src/app/_models/Adventure';
-import { AdventureService } from 'src/app/_services/adventure.service';
+import { SellBicycle } from 'src/app/_models/SellBicycle';
+import { SellBicycleService } from 'src/app/_services/sellBicycle.service';
 
 @Component({
-  selector: 'app-adventure-edit',
-  templateUrl: './adventure-edit.component.html',
-  styleUrls: ['./adventure-edit.component.css']
+  selector: 'app-sellbicycle-edit',
+  templateUrl: './sellbicycle-edit.component.html',
+  styleUrls: ['./sellbicycle-edit.component.css']
 })
-export class AdventureEditComponent implements OnInit {
+export class SellBicycleEditComponent implements OnInit {
 
-  adventure: Adventure;
+  sellBicycle: SellBicycle;
   // photoUrl: string;
   @ViewChild('editForm', null) editForm: NgForm;
   @HostListener('window:beforeunload', ['$event'])
@@ -24,21 +23,21 @@ export class AdventureEditComponent implements OnInit {
     }
   }
 
-  constructor(private route: ActivatedRoute, private alertify: AlertifyService, private adventureService: AdventureService,
+  constructor(private route: ActivatedRoute, private alertify: AlertifyService, private sellBicycleService: SellBicycleService,
               private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.adventure = data.adventure;
+      this.sellBicycle = data.sellBicycle;
     });
     // this.authService.currentUserPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
-  updateAdventure() {
-    this.adventureService.updateAdventure(this.adventure.id, this.adventure)
+  updateSellBicycle() {
+    this.sellBicycleService.updateSellBicycle(this.sellBicycle.id, this.sellBicycle)
       .subscribe(next => {
         this.alertify.success('Profil pomyślnie zaktualizowano');
-        this.editForm.reset(this.adventure); },
+        this.editForm.reset(this.sellBicycle); },
         // tslint:disable-next-line: no-shadowed-variable
         error => {
         this.alertify.error(error);

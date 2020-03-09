@@ -70,7 +70,7 @@ export class UserDetailComponent implements OnInit {
     ];
 
     this.galleryImages = this.getImages();
-    this.galleryAdventures = this.getAdventures();
+    // this.galleryAdventures = this.getAdventures();
     /* {
          small: 'assets/1-small.jpg',
          medium: 'assets/1-medium.jpg',
@@ -114,28 +114,28 @@ export class UserDetailComponent implements OnInit {
 
 
 
-  getAdventures() {
-    const adventuresUrls = [];
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < this.user.adventures.length; i++) {
-      adventuresUrls.push({
-        small: this.user.adventures[i].url,
-        medium: this.user.adventures[i].url,
-        big: this.user.adventures[i].url,
-        descriptio: this.user.adventures[i].description,
-      });
-    }
-    return adventuresUrls;
-    // loadUser() {
-    //   this.userService.getUser(+this.route.snapshot.params.id).
-    //   subscribe((user: User) => {
-    //     this.user = user;
-    //   }, error => {
-    //     this.alertify.error(error);
-    //   });
-    // }
+  // getAdventures() {
+  //   const adventuresUrls = [];
+  //   // tslint:disable-next-line: prefer-for-of
+  //   for (let i = 0; i < this.user.adventures.length; i++) {
+  //     adventuresUrls.push({
+  //       small: this.user.adventures[i].url,
+  //       medium: this.user.adventures[i].url,
+  //       big: this.user.adventures[i].url,
+  //       descriptio: this.user.adventures[i].description,
+  //     });
+  //   }
+  //   return adventuresUrls;
+  //   // loadUser() {
+  //   //   this.userService.getUser(+this.route.snapshot.params.id).
+  //   //   subscribe((user: User) => {
+  //   //     this.user = user;
+  //   //   }, error => {
+  //   //     this.alertify.error(error);
+  //   //   });
+  //   // }
 
-  }
+  // }
 
   selectTab(tabId: number) {
     this.userTabs.tabs[tabId].active = true;

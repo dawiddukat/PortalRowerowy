@@ -23,5 +23,9 @@ export class SellBicycleService {
   getSellBicycle(id: number): Observable<SellBicycle> {
     return this.http.get<SellBicycle>(this.baseUrl + 'sellbicycles/' + id);
   }
+
+  updateSellBicycle(id: number, sellBicycle: SellBicycle) {
+    return this.http.put(this.baseUrl + 'sellbicycles/' + id, sellBicycle);
+  }
 }
 

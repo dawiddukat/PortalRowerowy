@@ -3,7 +3,7 @@ import { AdventurePhoto } from './adventurePhoto';
 export interface Adventure {
     id: number;
     adventureName?: string;
-    url?: any;
+    // url?: any;
     adventurePhotos: AdventurePhoto[];
     distance: number;
     description: string;
