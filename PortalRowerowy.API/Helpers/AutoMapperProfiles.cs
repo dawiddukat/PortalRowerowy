@@ -39,6 +39,9 @@ namespace PortalRowerowy.API.Helpers
 });
             CreateMap<SellBicycle, SellBicycleForDetailedDto>();
             CreateMap<SellBicycleForUpdateDto, SellBicycle>();
+            CreateMap<SellBicyclePhoto, SellBicycleForDetailedDto>();
+            CreateMap<SellBicyclePhoto, SellBicyclePhotoForReturnDto>();
+            CreateMap<SellBicyclePhotoForCreationDto, SellBicyclePhoto>();
 
 
             CreateMap<Adventure, AdventureForListDto>()
@@ -47,8 +50,8 @@ namespace PortalRowerowy.API.Helpers
                     opt.MapFrom(src => src.AdventurePhotos.FirstOrDefault(p => p.IsMain).Url);
                 });
             CreateMap<Adventure, AdventureForDetailedDto>();
-            CreateMap<AdventurePhoto, AdventureForDetailedDto>();
             CreateMap<AdventureForUpdateDto, Adventure>();
+            CreateMap<AdventurePhoto, AdventureForDetailedDto>();
             CreateMap<AdventurePhoto, AdventurePhotoForReturnDto>();
             CreateMap<AdventurePhotoForCreationDto, AdventurePhoto>();
             // CreateMap<AdventureForRegisterDto, Adventure>();            

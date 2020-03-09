@@ -25,5 +25,11 @@ namespace PortalRowerowy.API.Data
             var sellBicycles = await _context.SellBicycles.Include(s => s.SellBicyclePhotos).ToListAsync();
             return sellBicycles;
         }
+
+        public async Task<SellBicyclePhoto> GetSellBicyclePhoto(int id)
+        {
+            var sellBicyclePhoto = await _context.SellBicyclePhotos.FirstOrDefaultAsync(p => p.Id == id);
+            return sellBicyclePhoto;
+        }
     }
 }

@@ -8,5 +8,7 @@ namespace PortalRowerowy.API.Data
     {
         Task<IEnumerable<SellBicycle>> GetSellBicycles();
         Task<SellBicycle> GetSellBicycle(int id);
+
+        Task<SellBicyclePhoto> GetSellBicyclePhoto(int id);
     }
 }
