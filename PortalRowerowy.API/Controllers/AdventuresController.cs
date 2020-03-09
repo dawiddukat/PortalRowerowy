@@ -1,14 +1,17 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortalRowerowy.API.Data;
 using PortalRowerowy.API.Dtos;
+using PortalRowerowy.API.Models;
 
 namespace PortalRowerowy.API.Controllers
 {
-    [Authorize]
+    // [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AdventuresController : ControllerBase
@@ -42,6 +45,21 @@ namespace PortalRowerowy.API.Controllers
             return Ok(adventureToReturn);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAdventure(int id, AdventureForUpdateDto adventureForUpdateDto)
+        {
+            // if (id != int.Parse(Adventure.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
+
+            var adventureFromRepo = await _repo.GetAdventure(id);
+
+            _mapper.Map(adventureForUpdateDto, adventureFromRepo);
+
+           if (await _repo.SaveAll())
+                return NoContent();
+
+            throw new Exception($"Aktualizacja użytkownika o id: {id} nie powiodła sie przy zapisywaniu do bazy");
+        }
 
 
     }

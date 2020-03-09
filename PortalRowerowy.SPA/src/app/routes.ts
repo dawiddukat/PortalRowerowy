@@ -26,6 +26,8 @@ import { AdventureDetailResolver } from './_resolvers/adventure-detail.resolver'
 import { AdventureListResolver } from './_resolvers/adventure-list.resolver';
 import { SellBicycleListResolver } from './_resolvers/sellBicycle-list.resolver';
 import { SellBicycleDetailResolver } from './_resolvers/sellBicycle-detail.resolver';
+import { AdventureEditComponent } from './adventures/adventure-edit/adventure-edit.component';
+import { AdventureEditResolver } from './_resolvers/adventure-edit.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -41,11 +43,13 @@ export const appRoutes: Routes = [
             { path: 'uzytkownik/edycja', component: UserEditComponent, resolve: { user: UserEditResolver }, canDeactivate: [PreventUnsavedChanges] },
             // tslint:disable-next-line: max-line-length
             { path: 'uzytkownicy/:id', component: UserDetailComponent, resolve: { user: UserDetailResolver } }, // canActivate: [AuthGuard]  },
+            
             { path: 'wydarzenia', component: EventsComponent }, // canActivate: [AuthGuard]  },
             { path: 'news', component: NewsComponent }, // canActivate: [AuthGuard]  },
             
             { path: 'wyprawy', component: AdventureListComponent, resolve: { adventures: AdventureListResolver } }, // canActivate: [AuthGuard]  },
             { path: 'wyprawy/:id', component: AdventureDetailComponent, resolve: { adventure: AdventureDetailResolver }},
+            { path: 'wyprawa/:id/edycja', component: AdventureEditComponent, resolve: { adventure: AdventureEditResolver }, canDeactivate: [PreventUnsavedChanges] },
 
             { path: 'wiadomości', component: MessagesComponent, resolve: {messages: MessagesResolver} }, // canActivate: [AuthGuard]  },
            

@@ -50,6 +50,8 @@ import { AdventureDetailResolver } from './_resolvers/adventure-detail.resolver'
 import { AdventureListResolver } from './_resolvers/adventure-list.resolver';
 import { SellBicycleDetailResolver } from './_resolvers/sellBicycle-detail.resolver';
 import { SellBicycleListResolver } from './_resolvers/sellBicycle-list.resolver';
+import { AdventureEditResolver } from './_resolvers/adventure-edit.resolver';
+import { AdventureEditComponent } from './adventures/adventure-edit/adventure-edit.component';
 
 
 export function tokenGetter() {
@@ -78,6 +80,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       AdventureListComponent,
       AdventureCardComponent,
       AdventureDetailComponent,
+      AdventureEditComponent,
 
       SellBicycleListComponent,
       SellBicycleCardComponent,
@@ -132,6 +135,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       
       AdventureDetailResolver,
       AdventureListResolver,
+      AdventureEditResolver,
 
       SellBicycleListResolver,  
       SellBicycleDetailResolver,

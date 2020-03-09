@@ -1,0 +1,94 @@
+<p>
+  {{adventure.adventureName}}
+</p> 
+<div class="container mt-3">
+  <div class="row">
+    <div class="col sm-4">
+      <h2>Twój profil - Edycja</h2>
+    </div>
+    <div class="col-sm-8">
+      <div *ngIf="editForm.dirty" class="alert alert-info">
+        <strong>Informacja: </strong> Dokonałeś zmian. Wszelkie niezapisane zmiany zostaną utracone!
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <img class="card-img-top img-thumbnail" src="{{photoUrl || '.../../../../../assets/user2.png'}}" alt="{{adventure.adventureName}}">
+          <div class="card-body">
+            <div>
+              <strong>Nazwa wyprawy: </strong>
+              <p class="text-capitalize"> {{adventure.adventureName}} </p>
+            </div>
+            <div>
+              <strong>Dystans: </strong>
+              <p> {{adventure.distance}} </p>
+            </div>
+            <div>
+              <strong>Data: </strong>
+              <p> {{adventure.dateAdded}} </p>
+            </div>
+            <div>
+              <strong>Lokalizacja: </strong>
+              <!-- <p> {{adventure.country}},{{adventure.voivodeship}},{{adventure.city}} </p> -->
+            </div>
+            <!-- <div>
+              <strong>Typ roweru: </strong>
+              <p> {{adventure.typeBicycle}} </p>
+            </div>
+            <div>
+              <strong>Data utworzenia konta: </strong>
+              <p> {{adventure.created | date: 'longDate' }} </p>
+            </div>
+            <div>
+              <strong>Ostatnia aktywność: </strong>
+              <p> {{adventure.lastActive | timeAgo }} </p>
+            </div> -->
+          </div>
+          <div class="card-footer">
+            <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Zapisz zmiany</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateAdventure()">
+          <div class="tab-panel">
+            <tabset class="user-tabset" #userTabs>
+              <tab heading="Informacje">
+                <table class="user-table">
+                  <tr>
+                    <td class="user-table-tb">
+                      <h5>Nazwa:</h5>
+                      <textarea class="form-control" name="adventureName" rows="1" [(ngModel)]="adventure.adventureName"></textarea>
+                    </td>
+                    <td>
+                      <h5>Dystans:</h5>
+                      <textarea class="form-control" name="distance" rows="1"
+                        [(ngModel)]="adventure.distance"></textarea>
+                    </td>
+                </table>
+                <table class="user-table">
+                  <tr>
+                    <td class="user-table-tb">
+                      <h5>Opis:</h5>
+                      <textarea class="form-control" name="description" rows="1" [(ngModel)]="adventure.description"></textarea>
+                    </td>
+                    <!-- <td>
+                      <h5>Rowery:</h5>
+                      <textarea class="form-control" name="voivodeship" rows="1"
+                        [(ngModel)]="adventure.description"></textarea>
+                    </td> -->
+                </table>
+              </tab>
+              
+              <tab heading="Zdjęcia">
+                <!-- <app-adventurePhotos [adventurePhotos]="adventure.adventurePhotos" (getUserPhotoChange)="updateMainUserPhoto($event)">
+                </app-adventurePhotos> -->
+              </tab>
+            </tabset>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

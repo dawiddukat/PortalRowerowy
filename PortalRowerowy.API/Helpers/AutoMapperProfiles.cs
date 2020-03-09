@@ -46,7 +46,7 @@ namespace PortalRowerowy.API.Helpers
                 });
             CreateMap<Adventure, AdventureForDetailedDto>();
             CreateMap<AdventurePhoto, AdventureForDetailedDto>();
-            // CreateMap<AdventureForUpdateDto, Adventure>();
+            CreateMap<AdventureForUpdateDto, Adventure>();
             CreateMap<AdventurePhoto, AdventurePhotoForReturnDto>();
             CreateMap<AdventurePhotoForCreationDto, AdventurePhoto>();
             // CreateMap<AdventureForRegisterDto, Adventure>();            

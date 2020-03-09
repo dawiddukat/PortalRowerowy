@@ -22,5 +22,9 @@ export class AdventureService {
   getAdventure(id: number): Observable<Adventure> {
     return this.http.get<Adventure>(this.baseUrl + 'adventures/' + id);
   }
+
+  updateAdventure(id: number, adventure: Adventure) {
+    return this.http.put(this.baseUrl + 'adventures/' + id, adventure);
+  }
 }
 
