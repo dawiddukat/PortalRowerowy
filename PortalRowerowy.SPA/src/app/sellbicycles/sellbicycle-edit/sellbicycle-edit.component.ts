@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/_services/auth.service';
 import { SellBicycle } from 'src/app/_models/SellBicycle';
 import { SellBicycleService } from 'src/app/_services/sellBicycle.service';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-sellbicycle-edit',
@@ -14,6 +15,7 @@ import { SellBicycleService } from 'src/app/_services/sellBicycle.service';
 export class SellBicycleEditComponent implements OnInit {
 
   sellBicycle: SellBicycle;
+  user: User;
   // photoUrl: string;
   @ViewChild('editForm', null) editForm: NgForm;
   @HostListener('window:beforeunload', ['$event'])
@@ -24,7 +26,7 @@ export class SellBicycleEditComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private alertify: AlertifyService, private sellBicycleService: SellBicycleService,
-              private authService: AuthService) { }
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -37,11 +39,12 @@ export class SellBicycleEditComponent implements OnInit {
     this.sellBicycleService.updateSellBicycle(this.sellBicycle.id, this.sellBicycle)
       .subscribe(next => {
         this.alertify.success('Profil pomyślnie zaktualizowano');
-        this.editForm.reset(this.sellBicycle); },
+        this.editForm.reset(this.sellBicycle);
+      },
         // tslint:disable-next-line: no-shadowed-variable
         error => {
-        this.alertify.error(error);
-      }
+          this.alertify.error(error);
+        }
       );
   }
 

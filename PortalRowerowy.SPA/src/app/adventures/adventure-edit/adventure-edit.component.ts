@@ -15,6 +15,8 @@ import { AdventureService } from 'src/app/_services/adventure.service';
 export class AdventureEditComponent implements OnInit {
 
   adventure: Adventure;
+
+
   // photoUrl: string;
   @ViewChild('editForm', null) editForm: NgForm;
   @HostListener('window:beforeunload', ['$event'])
@@ -32,6 +34,8 @@ export class AdventureEditComponent implements OnInit {
       this.adventure = data.adventure;
     });
     // this.authService.currentUserPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+    // this.photoUrl = this.adventure.photoUrl;/*subscribe(photoUrl => this.photoUrl = photoUrl);*/
+
   }
 
   updateAdventure() {

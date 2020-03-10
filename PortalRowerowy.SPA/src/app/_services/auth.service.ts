@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
 import { BehaviorSubject } from 'rxjs';
 import { Adventure } from '../_models/Adventure';
+import { SellBicycle } from '../_models/SellBicycle';
 
 
 @Injectable({
@@ -25,6 +26,10 @@ export class AuthService {
   adventurePhotoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
   currentAdventurePhotoUrl = this.adventurePhotoUrl.asObservable();
 
+  currentSellBicycle: SellBicycle;
+  sellBicyclePhotoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
+  currentSellBicyclePhotoUrl = this.sellBicyclePhotoUrl.asObservable();
+
   constructor(private http: HttpClient) { }
 
 
@@ -36,6 +41,9 @@ export class AuthService {
     this.adventurePhotoUrl.next(photoUrl);
   }
 
+  changeSellBicyclePhoto(photoUrl: string) {
+    this.sellBicyclePhotoUrl.next(photoUrl);
+  }
 
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model)

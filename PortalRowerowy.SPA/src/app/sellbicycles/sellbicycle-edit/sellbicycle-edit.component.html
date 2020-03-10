@@ -1,10 +1,10 @@
-<p>
+<!-- <p>
   {{sellBicycle.sellBicycleName}}
-</p> 
+</p>  -->
 <div class="container mt-3">
   <div class="row">
     <div class="col sm-4">
-      <h2>Twój wyprawa - Edycja</h2>
+      <h2>Twój rower - Edycja</h2>
     </div>
     <div class="col-sm-8">
       <div *ngIf="editForm.dirty" class="alert alert-info">
@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
-          <img class="card-img-top img-thumbnail" src="{{photoUrl || '.../../../../../assets/user2.png'}}" alt="{{sellBicycle.sellBicycleName}}">
+          <img class="card-img-top img-thumbnail" src="{{sellBicycle.photoUrl || '.../../../../../assets/user2.png'}}" alt="{{sellBicycle.sellBicycleName}}">
           <div class="card-body">
             <div>
               <strong>Nazwa roweru: </strong>
@@ -26,13 +26,17 @@
               <p> {{sellBicycle.price}} </p>
             </div>
             <div>
+              <strong>Typ: </strong>
+              <p> {{sellBicycle.typeBicycle}} </p>
+            </div>
+            <div>
               <strong>Data: </strong>
               <p> {{sellBicycle.dateAdded}} </p>
             </div>
-            <div>
+            <!-- <div>
               <strong>Lokalizacja: </strong>
-              <!-- <p> {{adventure.country}},{{adventure.voivodeship}},{{adventure.city}} </p> -->
-            </div>
+              <p> {{sellBicycle.userId}}</p>
+            </div> -->
             <!-- <div>
               <strong>Typ roweru: </strong>
               <p> {{adventure.typeBicycle}} </p>
@@ -87,8 +91,8 @@
               </tab>
               
               <tab heading="Zdjęcia">
-                <!-- <app-adventurePhotos [adventurePhotos]="adventure.adventurePhotos" (getUserPhotoChange)="updateMainUserPhoto($event)">
-                </app-adventurePhotos> -->
+                <app-sellbicyclePhotos [sellBicyclePhotos]="sellBicycle.sellBicyclePhotos">
+                </app-sellbicyclePhotos>
               </tab>
             </tabset>
           </div>

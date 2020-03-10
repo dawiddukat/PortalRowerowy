@@ -51,13 +51,13 @@ export const appRoutes: Routes = [
             
             { path: 'wyprawy', component: AdventureListComponent, resolve: { adventures: AdventureListResolver } }, // canActivate: [AuthGuard]  },
             { path: 'wyprawy/:id', component: AdventureDetailComponent, resolve: { adventure: AdventureDetailResolver }},
-            { path: 'wyprawa/:id/edycja', component: AdventureEditComponent, resolve: { adventure: AdventureEditResolver }, canDeactivate: [PreventUnsavedChanges] },
+            { path: 'wyprawy/:id/edycja', component: AdventureEditComponent, resolve: { adventure: AdventureEditResolver }, canDeactivate: [PreventUnsavedChanges] },
 
             { path: 'wiadomości', component: MessagesComponent, resolve: {messages: MessagesResolver} }, // canActivate: [AuthGuard]  },
            
             { path: 'giełda', component: SellBicycleListComponent, resolve: { sellBicycles: SellBicycleListResolver }  }, // canActivate: [AuthGuard]  },
             { path: 'giełda/:id', component: SellBicycleDetailComponent, resolve: { sellBicycle: SellBicycleDetailResolver } },
-            { path: 'giełda1/:id/edycja', component: SellBicycleEditComponent, resolve: { sellBicycle: SellBicycleEditResolver }, canDeactivate: [PreventUnsavedChanges] },
+            { path: 'giełda/:id/edycja', component: SellBicycleEditComponent, resolve: { sellBicycle: SellBicycleEditResolver }, canDeactivate: [PreventUnsavedChanges] },
 
         ]
     },
