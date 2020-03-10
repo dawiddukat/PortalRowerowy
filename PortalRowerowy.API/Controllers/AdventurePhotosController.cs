@@ -97,31 +97,31 @@ namespace PortalRowerowy.API.Controllers
             return Ok(adventurePhotoForReturn);
         }
 
-//         [HttpPost("{id}/setMain")]
-//         public async Task<IActionResult> SetMainUserPhoto(int userId, int id)
-//         {
-//             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-//                 return Unauthorized();
+        [HttpPost("{id}/setMain")]
+        public async Task<IActionResult> SetMainAdventurePhoto(int adventureId, int id)
+        {
+            // if (adventureId != int.Parse(Adventure.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
 
-//             var user = await _repository.GetUser(userId);
+            var adventure = await _repository.GetAdventure(adventureId);
 
-//             if (!user.UserPhotos.Any(p => p.Id == id))
-//                 return Unauthorized();
+            if (!adventure.AdventurePhotos.Any(p => p.Id == id))
+                return Unauthorized();
 
-//             var userPhotoFromRepo = await _repository.GetUserPhoto(id);
+            var adventurePhotoFromRepo = await _repository.GetAdventurePhoto(id);
 
-//             if (userPhotoFromRepo.IsMain)
-//                 return BadRequest("To już jest główne zdjęcie!");
+            if (adventurePhotoFromRepo.IsMain)
+                return BadRequest("To już jest główne zdjęcie!");
 
-//             var currentMainUserPhoto = await _repository.GetMainPhotoForUser(userId);
-//             currentMainUserPhoto.IsMain = false;
-//             userPhotoFromRepo.IsMain = true;
+            var currentMainAdventurePhoto = await _repository.GetMainPhotoForAdventure(adventureId);
+            currentMainAdventurePhoto.IsMain = false;
+            adventurePhotoFromRepo.IsMain = true;
 
-//             if (await _repository.SaveAll())
-//                 return NoContent();
+            if (await _repository.SaveAll())
+                return NoContent();
 
-//             return BadRequest("Nie można ustawić zdjęcia jako głównego!");
-//         }
+            return BadRequest("Nie można ustawić zdjęcia jako głównego!");
+        }
 
 //         [HttpDelete("{id}")]
 //         public async Task<IActionResult> DeleteUserPhoto(int userId, int id)

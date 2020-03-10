@@ -10,5 +10,7 @@ namespace PortalRowerowy.API.Data
         Task<SellBicycle> GetSellBicycle(int id);
 
         Task<SellBicyclePhoto> GetSellBicyclePhoto(int id);
+        Task<SellBicyclePhoto> GetMainPhotoForSellBicycle(int sellBicycleId);
+
     }
 }

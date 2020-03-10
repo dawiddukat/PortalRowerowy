@@ -9,5 +9,7 @@ namespace PortalRowerowy.API.Data
         Task<IEnumerable<Adventure>> GetAdventures();
         Task<Adventure> GetAdventure(int id);
         Task<AdventurePhoto> GetAdventurePhoto(int id);
+        Task<AdventurePhoto> GetMainPhotoForAdventure(int adventureId);
+
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PortalRowerowy.API.Models;
@@ -30,6 +31,11 @@ namespace PortalRowerowy.API.Data
         {
             var adventurePhoto = await _context.AdventurePhotos.FirstOrDefaultAsync(p => p.Id == id);
             return adventurePhoto;
+        }
+
+        public async Task<AdventurePhoto> GetMainPhotoForAdventure(int adventureId)
+        {
+            return await _context.AdventurePhotos.Where(a => a.AdventureId == adventureId).FirstOrDefaultAsync(p => p.IsMain);
         }
 
     }
