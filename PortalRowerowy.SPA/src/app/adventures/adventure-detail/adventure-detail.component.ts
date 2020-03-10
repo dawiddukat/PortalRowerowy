@@ -4,6 +4,7 @@ import { AdventureService } from 'src/app/_services/adventure.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-adventure-detail',

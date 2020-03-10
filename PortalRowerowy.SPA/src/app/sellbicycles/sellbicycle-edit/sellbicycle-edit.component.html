@@ -91,7 +91,7 @@
               </tab>
               
               <tab heading="Zdjęcia">
-                <app-sellbicyclePhotos [sellBicyclePhotos]="sellBicycle.sellBicyclePhotos">
+                <app-sellbicyclePhotos [sellBicyclePhotos]="sellBicycle.sellBicyclePhotos" (getSellBicyclePhotoChange)="updateMainSellBicyclePhoto($event)">
                 </app-sellbicyclePhotos>
               </tab>
             </tabset>

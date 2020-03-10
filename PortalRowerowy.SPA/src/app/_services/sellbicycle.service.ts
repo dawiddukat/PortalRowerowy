@@ -27,5 +27,13 @@ export class SellBicycleService {
   updateSellBicycle(id: number, sellBicycle: SellBicycle) {
     return this.http.put(this.baseUrl + 'sellbicycles/' + id, sellBicycle);
   }
+
+  setMainSellBicyclePhoto(sellBicycleId: number, id: number) {
+    return this.http.post(this.baseUrl + 'sellBicycles/' + sellBicycleId + '/photos/' + id + '/setMain', {});
+  }
+
+  deletePhoto(sellBicycleId: number, id: number) {
+    return this.http.delete(this.baseUrl + 'sellBicycles/' + sellBicycleId + '/photos/' + id);
+  }
 }
 

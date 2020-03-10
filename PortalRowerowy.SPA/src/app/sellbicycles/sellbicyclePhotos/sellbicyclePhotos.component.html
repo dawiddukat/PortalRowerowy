@@ -3,14 +3,14 @@
     <img src="{{sellBicyclePhoto.url}}" alt="{{sellBicyclePhoto.description}}" class="img-thumbnail p-1">
     <div class="text-center">
       <div class="btn-group d-flex text-center text-dark">
-        <!-- <button type="button" class="btn btn-sm mr-1" (click)="setMainAdventurePhoto(adventurePhoto)"
-          [disabled] = "adventurePhoto.isMain"
-          [ngClass]="adventurePhoto.isMain ? 'btn-success active': 'btn-info'" >
+        <button type="button" class="btn btn-sm mr-1" (click)="setMainSellBicyclePhoto(sellBicyclePhoto)"
+          [disabled] = "sellBicyclePhoto.isMain"
+          [ngClass]="sellBicyclePhoto.isMain ? 'btn-success active': 'btn-info'" >
           Główne</button>
         <button type="button" class="btn btn-sm btn-danger mr-1"
-          [disabled]="adventurePhoto.isMain"
-          (click)="deletePhoto(adventurePhoto.id)"><i class="fa fa-trash-o"></i></button>
-      </div> -->
+          [disabled]="sellBicyclePhoto.isMain"
+          (click)="deletePhoto(sellBicyclePhoto.id)"><i class="fa fa-trash-o"></i></button>
+      </div>
     </div>
   </div>
 </div>

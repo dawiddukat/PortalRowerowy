@@ -48,9 +48,9 @@ export class SellBicycleEditComponent implements OnInit {
       );
   }
 
-  // updateMainUserPhoto(userPhotoUrl) {
-  //   this.user.photoUrl = userPhotoUrl;
+  updateMainSellBicyclePhoto(sellBicyclePhotoUrl) {
+    this.sellBicycle.photoUrl = sellBicyclePhotoUrl;
 
-  // }
+  }
 
 }
