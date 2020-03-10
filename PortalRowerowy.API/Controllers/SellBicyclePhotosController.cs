@@ -123,37 +123,37 @@ namespace PortalRowerowy.API.Controllers
             return BadRequest("Nie można ustawić zdjęcia jako głównego!");
         }
 
-//         [HttpDelete("{id}")]
-//         public async Task<IActionResult> DeleteUserPhoto(int userId, int id)
-//         {
-//             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-//                 return Unauthorized();
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSellBicyclePhoto(int sellBicycleId, int id)
+        {
+            // if (adventureId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
 
-//             var user = await _repository.GetUser(userId);
+            var sellBicycle = await _repository.GetSellBicycle(sellBicycleId);
 
-//             if (!user.UserPhotos.Any(p => p.Id == id))
-//                 return Unauthorized();
+            if (!sellBicycle.SellBicyclePhotos.Any(p => p.Id == id))
+                return Unauthorized();
 
-//             var userPhotoFromRepo = await _repository.GetUserPhoto(id);
+            var sellBicyclePhotoFromRepo = await _repository.GetSellBicyclePhoto(id);
 
-//             if (userPhotoFromRepo.IsMain)
-//                 return BadRequest("Nie można usunąć zdjęcia głównego!");
+            if (sellBicyclePhotoFromRepo.IsMain)
+                return BadRequest("Nie można usunąć zdjęcia głównego!");
 
-//             if (userPhotoFromRepo.public_id != null)
-//             {
-//                 var deleteParams = new DeletionParams(userPhotoFromRepo.public_id);
-//                 var result = _cloudinary.Destroy(deleteParams);
+            if (sellBicyclePhotoFromRepo.public_id != null)
+            {
+                var deleteParams = new DeletionParams(sellBicyclePhotoFromRepo.public_id);
+                var result = _cloudinary.Destroy(deleteParams);
 
-//                 if (result.Result == "ok")
-//                     _repository.Delete(userPhotoFromRepo);
-//             }
+                if (result.Result == "ok")
+                    _repository.Delete(sellBicyclePhotoFromRepo);
+            }
 
-//             if (userPhotoFromRepo.public_id == null)
-//                 _repository.Delete(userPhotoFromRepo);
+            if (sellBicyclePhotoFromRepo.public_id == null)
+                _repository.Delete(sellBicyclePhotoFromRepo);
 
-//             if (await _repository.SaveAll())
-//                 return Ok();
-//             return BadRequest("Nie udało się usunąć zdjęcia");
-//         }
+            if (await _repository.SaveAll())
+                return Ok();
+            return BadRequest("Nie udało się usunąć zdjęcia");
+        }
     }
 }
