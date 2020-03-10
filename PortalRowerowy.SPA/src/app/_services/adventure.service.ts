@@ -27,5 +27,13 @@ export class AdventureService {
   updateAdventure(id: number, adventure: Adventure) {
     return this.http.put(this.baseUrl + 'adventures/' + id, adventure);
   }
+
+  setMainAdventurePhoto(adventureId: number, id: number) {
+    return this.http.post(this.baseUrl + 'adventures/' + adventureId + '/photos/' + id + '/setMain', {});
+  }
+
+  deletePhoto(adventureId: number, id: number) {
+    return this.http.delete(this.baseUrl + 'adventures/' + adventureId + '/photos/' + id);
+  }
 }
 

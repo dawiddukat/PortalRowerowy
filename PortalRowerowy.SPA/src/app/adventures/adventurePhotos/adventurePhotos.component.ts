@@ -80,30 +80,33 @@ export class AdventurePhotosComponent implements OnInit {
     };
   }
 
-  // setMainAdventurePhoto(adventurePhoto: UserPhoto) {
-  //   this.userService.setMainUserPhoto(this.authService.decodedToken.nameid, adventurePhoto.id).subscribe(() => {
-  //     console.log('Sukces, zdjęcie ustawione jako główne!');
-  //     this.currentMain = this.adventurePhotos.filter(p => p.isMain === true)[0];
-  //     this.currentMain.isMain = false;
-  //     adventurePhoto.isMain = true;
-  //     // this.getUserPhotoChange.emit(userPhoto.url);
-  //     this./*authService.*/changeAdventurePhoto(adventurePhoto.url);
-  //     this./*authService.*/currentAdventure.photoUrl = adventurePhoto.url;
-  //     localStorage.setItem('adventure', JSON.stringify(this.authService.currentUser));
-  //   },
-  //     error => {
-  //       this.alertify.error(error);
-  //     });
-  // }
+  setMainAdventurePhoto(adventurePhoto: AdventurePhoto) {
+    // tslint:disable-next-line: max-line-length
+    this.adventureService.setMainAdventurePhoto(/*this.authService.decodedToken.nameid,*/this.adventure.id, adventurePhoto.id).subscribe(() => {
+      console.log('Sukces, zdjęcie ustawione jako główne!');
+      this.currentMain = this.adventurePhotos.filter(p => p.isMain === true)[0];
+      this.currentMain.isMain = false;
+      adventurePhoto.isMain = true;
+      // this.getUserPhotoChange.emit(userPhoto.url);
+      // this./*authService.*/changeAdventurePhoto(adventurePhoto.url);
+      // this./*authService.*/currentAdventure.photoUrl = adventurePhoto.url;
+      // localStorage.setItem('adventure', JSON.stringify(this.authService.currentUser));
+      this.getAdventurePhotoChange.emit(adventurePhoto.url);
+      
+    },
+      error => {
+        this.alertify.error(error);
+      });
+  }
 
-  // deletePhoto(id: number) {
-  //   this.alertify.confirm('Czy jesteś pewien, czy chcesz usunąć zdjęcie?', () => {
-  //     this.userService.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
-  //       this.adventurePhotos.splice(this.adventurePhotos.findIndex(p => p.id === id), 1);
-  //       this.alertify.success('Zdjęcie zostało usunięte!');
-  //     }, error => {
-  //       this.alertify.error('Nie udało się usunąć zdjęcia!');
-  //     });
-  //   });
-  // }
+  deletePhoto(id: number) {
+    this.alertify.confirm('Czy jesteś pewien, czy chcesz usunąć zdjęcie?', () => {
+      this.adventureService.deletePhoto(/*this.authService.decodedToken.nameid*/this.adventure.id, id).subscribe(() => {
+        this.adventurePhotos.splice(this.adventurePhotos.findIndex(p => p.id === id), 1);
+        this.alertify.success('Zdjęcie zostało usunięte!');
+      }, error => {
+        this.alertify.error('Nie udało się usunąć zdjęcia!');
+      });
+    });
+  }
 }

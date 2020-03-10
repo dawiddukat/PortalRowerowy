@@ -85,7 +85,7 @@
               <tab heading="Zdjęcia">
                 <!-- <app-adventurePhotos [adventurePhotos]="adventure.adventurePhotos" (getUserPhotoChange)="updateMainUserPhoto($event)">
                 </app-adventurePhotos> -->
-                <app-adventurePhotos [adventurePhotos]="adventure.adventurePhotos"></app-adventurePhotos>
+                <app-adventurePhotos [adventurePhotos]="adventure.adventurePhotos" (getAdventurePhotoChange)="updateMainAdventurePhoto($event)"></app-adventurePhotos>
               </tab>
             </tabset>
           </div>

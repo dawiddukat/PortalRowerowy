@@ -50,9 +50,9 @@ export class AdventureEditComponent implements OnInit {
       );
   }
 
-  // updateMainUserPhoto(userPhotoUrl) {
-  //   this.user.photoUrl = userPhotoUrl;
+  updateMainAdventurePhoto(adventurePhotoUrl) {
+    this.adventure.photoUrl = adventurePhotoUrl;
 
-  // }
+  }
 
 }
