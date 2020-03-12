@@ -11,15 +11,15 @@ import { AdventureService } from '../_services/adventure.service';
 export class AdventureListResolver implements Resolve<Adventure[]> {
 
 
-    // pageNumber = 1;
-    // pageSize = 12;
+    pageNumber = 1;
+    pageSize = 12;
 
     constructor(private adventureService: AdventureService,
                 private router: Router,
                 private alertify: AlertifyService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Adventure[]> {
-        return this.adventureService.getAdventures(/*this.pageNumber, this.pageSize*/).pipe(
+        return this.adventureService.getAdventures(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
                 this.alertify.error('Problem z pobraniem danych');
                 this.router.navigate(['']);

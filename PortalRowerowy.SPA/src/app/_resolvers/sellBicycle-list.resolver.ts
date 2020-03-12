@@ -12,15 +12,15 @@ import { SellBicycle } from '../_models/SellBicycle';
 export class SellBicycleListResolver implements Resolve<SellBicycle[]> {
 
 
-    // pageNumber = 1;
-    // pageSize = 12;
+    pageNumber = 1;
+    pageSize = 12;
 
     constructor(private sellBicycleService: SellBicycleService,
                 private router: Router,
                 private alertify: AlertifyService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<SellBicycle[]> {
-        return this.sellBicycleService.getSellBicycles(/*this.pageNumber, this.pageSize*/).pipe(
+        return this.sellBicycleService.getSellBicycles(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
                 this.alertify.error('Problem z pobraniem danych');
                 this.router.navigate(['']);
@@ -28,4 +28,6 @@ export class SellBicycleListResolver implements Resolve<SellBicycle[]> {
             })
         );
     }
+
+
 }

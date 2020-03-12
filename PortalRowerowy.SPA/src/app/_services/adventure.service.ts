@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Adventure } from '../_models/adventure';
+import { PaginationResult } from '../_models/pagination';
+import { map } from 'rxjs/operators';
 
 
 
@@ -16,8 +18,27 @@ export class AdventureService {
 
   constructor(private http: HttpClient) { }
 
-  getAdventures(): Observable<Adventure[]> {
-    return this.http.get<Adventure[]>(this.baseUrl + 'adventures');
+  getAdventures(page?, itemsPerPage?): Observable<PaginationResult<Adventure[]>> {
+    const paginationResult: PaginationResult<Adventure[]> = new PaginationResult<Adventure[]>();
+    let params = new HttpParams();
+
+    if (page != null && itemsPerPage != null) {
+      params = params.append('pageNumber', page);
+      params = params.append('pageSize', itemsPerPage);
+    }
+
+    return this.http.get<Adventure[]>(this.baseUrl + 'adventures', { observe: 'response', params })
+      .pipe(
+        map(response => {
+          paginationResult.result = response.body;
+
+          if (response.headers.get('Pagination') != null) {
+            paginationResult.pagination = JSON.parse(response.headers.get('Pagination'));
+          }
+
+          return paginationResult;
+        })
+      );
   }
 
   getAdventure(id: number): Observable<Adventure> {

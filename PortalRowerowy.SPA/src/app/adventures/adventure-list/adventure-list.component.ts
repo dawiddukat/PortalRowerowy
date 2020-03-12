@@ -3,6 +3,8 @@ import { Adventure } from 'src/app/_models/adventure';
 import { AdventureService } from 'src/app/_services/adventure.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
+import { Pagination, PaginationResult } from 'src/app/_models/pagination';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-adventure-list',
@@ -12,15 +14,33 @@ import { ActivatedRoute } from '@angular/router';
 export class AdventureListComponent implements OnInit {
 
   adventures: Adventure[];
+  pagination: Pagination;
 
   constructor(private adventureService: AdventureService, private alertify: AlertifyService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      this.adventures = data.adventures;
+      this.adventures = data.adventures.result;
+      this.pagination = data.adventures.pagination;
     });
   }
+
+
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
+    this.loadAdventures();
+  }
+
+  loadAdventures() {
+     this.adventureService.getAdventures(this.pagination.currentPage, this.pagination.itemsPerPage)
+      .subscribe((res: PaginationResult<Adventure[]>) => {
+       this.adventures = res.result;
+       this.pagination = res.pagination;
+     }, error => {
+       this.alertify.error(error);
+     });
+   }
 
 
   // loadAdventures() {
