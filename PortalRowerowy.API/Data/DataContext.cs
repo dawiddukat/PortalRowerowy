@@ -16,6 +16,7 @@ namespace PortalRowerowy.API.Data
         public DbSet<SellBicyclePhoto> SellBicyclePhotos { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<AdventureLike> AdventureLikes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -42,6 +43,41 @@ namespace PortalRowerowy.API.Data
                                      .WithMany(m => m.MessagesRecived)
                                      .OnDelete(DeleteBehavior.Restrict);
 
+
+
+            builder.Entity<AdventureLike>()
+            .HasKey(k => new { k.UserLikesAdventureId, k.AdventureIsLikedId });
+
+            builder.Entity<AdventureLike>()
+            .HasOne(u => u.AdventureIsLiked)
+            .WithMany(u => u.UserLikesAdventure)
+            .HasForeignKey(u => u.AdventureIsLikedId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<AdventureLike>()
+            .HasOne(u => u.UserLikesAdventure)
+            .WithMany(u => u.AdventureIsLiked)
+            .HasForeignKey(u => u.UserLikesAdventureId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+
+            // builder.Entity<AdventureLike>()
+            // .HasKey(k => new { k.UserLikesAdventureId, k.AdventureIsLikedId });
+
+            // builder.Entity<AdventureLike>()
+            // .HasOne(u => u.AdventureIsLikedId)
+            // .WithMany(u => u.UserLikesAdventureId)
+            // .HasForeignKey(u => u.AdventureIsLikedId)
+            // .OnDelete(DeleteBehavior.Restrict);
+
+            // builder.Entity<AdventureLike>()
+            // .HasOne(u => u.UserLikes)
+            // .WithMany(u => u.UserIsLiked)
+            // .HasForeignKey(u => u.UserLikesId)
+            // .OnDelete(DeleteBehavior.Restrict);
+
+
         }
+
     }
 }

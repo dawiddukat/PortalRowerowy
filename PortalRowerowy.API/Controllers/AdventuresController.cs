@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortalRowerowy.API.Data;
 using PortalRowerowy.API.Dtos;
+using PortalRowerowy.API.Helpers;
 using PortalRowerowy.API.Models;
 
 namespace PortalRowerowy.API.Controllers
 {
-    // [Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AdventuresController : ControllerBase
@@ -26,11 +27,13 @@ namespace PortalRowerowy.API.Controllers
         }
 
         [HttpGet] //pobieranie wszystkich rowerów
-        public async Task<IActionResult> GetAdventures()
+        public async Task<IActionResult> GetAdventures([FromQuery]AdventureParams adventureParams)
         {
-            var adventures = await _repo.GetAdventures();
+            var adventures = await _repo.GetAdventures(adventureParams);
 
             var adventuresToReturn = _mapper.Map<IEnumerable<AdventureForListDto>>(adventures);
+
+            Response.AddPagination(adventures.CurrentPage, adventures.PageSize, adventures.TotalCount, adventures.TotalPages);
 
             return Ok(adventuresToReturn);
         }
@@ -55,12 +58,43 @@ namespace PortalRowerowy.API.Controllers
 
             _mapper.Map(adventureForUpdateDto, adventureFromRepo);
 
-           if (await _repo.SaveAll())
+            if (await _repo.SaveAll())
                 return NoContent();
 
             throw new Exception($"Aktualizacja użytkownika o id: {id} nie powiodła sie przy zapisywaniu do bazy");
         }
 
 
+
+        [HttpPost("{recipientAdventureId}/likeadventure/{id}")]
+        public async Task<IActionResult> LikeAdventure(int id, int recipientAdventureId)
+        {
+            // if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
+
+            var like = await _repo.GetAdventureLike(id, recipientAdventureId);
+
+            if (like != null)
+            {
+                _repo.Delete<AdventureLike>(like);
+                return BadRequest("Już nie lubisz tej wyprawy!");
+            }
+
+            if (await _repo.GetAdventure(recipientAdventureId) == null)
+                return NotFound();
+
+            like = new AdventureLike
+            {
+                UserLikesAdventureId = id,
+                AdventureIsLikedId = recipientAdventureId
+            };
+
+            _repo.Add<AdventureLike>(like);
+
+            if (await _repo.SaveAll())
+                return Ok();
+
+            return BadRequest("Nie można polubić użytkownika");
+        }
     }
 }

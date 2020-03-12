@@ -5,7 +5,8 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{user.photoUrl || '.../../../../../assets/user2.png'}}" alt="{{user.username}}">
+        <img class="card-img-top img-thumbnail" src="{{user.photoUrl || '.../../../../../assets/user2.png'}}"
+          alt="{{user.username}}">
         <div class="card-body">
           <div>
             <strong>Nazwa użytkownika: </strong>
@@ -90,16 +91,23 @@
               </td>
             </tr>
           </tab>
+          <tab heading="Wyprawy" *ngIf="adventures">
+            <h5>Wyprawy</h5>
+            <div *ngFor="let adventure of adventures" style="text-align: center;">
+              <p>{{adventure.adventureName}}</p>
+            </div>
+          </tab>
+
           <tab heading="Wyprawy">
             <h5>Wyprawy</h5>
             <div *ngFor="let adventure of adventures" style="text-align: center;"></div>
-            <p>{{user.adventures}}</p>
+            <!-- <p>{{adventures.adventureName}}</p> -->
 
-            <!-- <ngx-gallery [options]="galleryOptions" [images]="galleryAdventures"></ngx-gallery> -->
+            <ngx-gallery [options]="galleryOptions" [images]="galleryAdventures"></ngx-gallery>
           </tab>
-          <tab heading="Wiadomości">           
+          <tab heading="Wiadomości">
             <app-user-messages [recipientId]="user.id"></app-user-messages>
-        </tab>
+          </tab>
         </tabset>
       </div>
     </div>

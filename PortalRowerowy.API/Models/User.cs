@@ -44,7 +44,10 @@ namespace PortalRowerowy.API.Models
         public ICollection<Message> MessagesSent { get; set; } // wiadomości wysłane
         public ICollection<Message> MessagesRecived { get; set; } // wiadomości odebrane
 
-    
-    
+        // public ICollection<AdventureLike> UserLikesAdventureId { get; set; } // użytkownik lubi wyprawę
+
+        // public ICollection<AdventureLike> UserLikesAdventure { get; set; } // użytkownik lubi
+        public ICollection<AdventureLike> AdventureIsLiked { get; set; } // użytkownik jest lubiany
+
     }
 }

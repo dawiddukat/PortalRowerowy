@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using PortalRowerowy.API.Helpers;
 using PortalRowerowy.API.Models;
 
 namespace PortalRowerowy.API.Data
@@ -21,10 +22,10 @@ namespace PortalRowerowy.API.Data
             return adventure;
         }
 
-        public async Task<IEnumerable<Adventure>> GetAdventures()
+        public async Task<PagesList<Adventure>> GetAdventures(AdventureParams adventureParams)
         {
-            var adventures = await _context.Adventures.Include(aP => aP.AdventurePhotos).ToListAsync();
-            return adventures;
+            var adventures = _context.Adventures.Include(aP => aP.AdventurePhotos);
+            return await PagesList<Adventure>.CreateListAsync(adventures, adventureParams.PageNumber, adventureParams.PageSize);
         }
 
         public async Task<AdventurePhoto> GetAdventurePhoto(int id)
@@ -37,6 +38,40 @@ namespace PortalRowerowy.API.Data
         {
             return await _context.AdventurePhotos.Where(a => a.AdventureId == adventureId).FirstOrDefaultAsync(p => p.IsMain);
         }
+
+
+        public async Task<AdventureLike> GetAdventureLike(int userId, int recipientAdventureId)
+        {
+            return await _context.AdventureLikes.FirstOrDefaultAsync(u => u.UserLikesAdventureId == userId && u.AdventureIsLikedId == recipientAdventureId);
+        }
+
+        // private async Task<IEnumerable<int>> GetAdventureLikes(int id, bool userLikesAdventure)
+        // {
+        //     var adventure = await _context.Adventures
+        //     // .Include(x => x.AdventureIsLiked)
+        //     .Include(x => x.UserLikesAdventure)
+        //     .FirstOrDefaultAsync(a => a.Id == id);
+
+
+        //     var user = await _context.Users
+        //     .Include(x => x.AdventureIsLiked)
+        //     // .Include(x => x.UserLikesAdventure)
+        //     .FirstOrDefaultAsync(u => u.Id == id);
+
+
+        //     if (userLikesAdventure)
+        //     {
+        //         return adventure
+        //         .UserLikesAdventure.Where(u => u.UserLikesAdventureId == id)
+        //         .Select(i => i.AdventureIsLikedId);
+        //     }
+        //     else
+        //     {
+        //         return user.AdventureIsLiked.Where(u => u.UserLikesAdventureId == id)
+        //         .Select(i => i.AdventureIsLikedId);
+        //     }
+        // }
+
 
     }
 }

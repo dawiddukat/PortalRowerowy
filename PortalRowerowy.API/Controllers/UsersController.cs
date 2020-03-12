@@ -34,10 +34,10 @@ namespace PortalRowerowy.API.Controllers
             var userFromRepo = await _repo.GetUser(currentUserId);
             userParams.UserId = currentUserId;
 
-       /* if (string.IsNullOrEmpty(userParams.Gender))
-            {
-                userParams.Gender = userFromRepo.Gender == "mężczyzna" ? "kobieta" : "mężczyzna";
-            }*/
+            /* if (string.IsNullOrEmpty(userParams.Gender))
+                 {
+                     userParams.Gender = userFromRepo.Gender == "mężczyzna" ? "kobieta" : "mężczyzna";
+                 }*/
 
             var users = await _repo.GetUsers(userParams);
 
@@ -59,38 +59,42 @@ namespace PortalRowerowy.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto) 
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
         {
-            if(id != int.Parse (User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
-            
+
             var userFromRepo = await _repo.GetUser(id);
 
             _mapper.Map(userForUpdateDto, userFromRepo);
-            
-            if(await _repo.SaveAll())
+
+            if (await _repo.SaveAll())
                 return NoContent();
 
             throw new Exception($"Aktualizacja użytkowniak o id: {id} nie powiodła się przy zapisywaniu do bazy.");
         }
 
         [HttpPost("{id}/like/{recipientId}")]
-        public async Task<IActionResult> LikeUser(int id, int recipientId){
-            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+        public async Task<IActionResult> LikeUser(int id, int recipientId)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
 
             var like = await _repo.GetLike(id, recipientId);
 
-            if(like != null){
-            _repo.Delete<Like>(like);
-            return BadRequest("Już nie lubisz tego użytkownika!");}
+            if (like != null)
+            {
+                _repo.Delete<Like>(like);
+                return BadRequest("Już nie lubisz tego użytkownika!");
+            }
 
             if (await _repo.GetUser(recipientId) == null)
                 return NotFound();
-            
-            like = new Like {
+
+            like = new Like
+            {
                 UserLikesId = id,
-                UserIsLikedId= recipientId
+                UserIsLikedId = recipientId
             };
 
             _repo.Add<Like>(like);
@@ -100,5 +104,36 @@ namespace PortalRowerowy.API.Controllers
 
             return BadRequest("Nie można polubić użytkownika");
         }
+
+        // [HttpPost("{id}/likeadventure/{recipientAdventureId}")]
+        // public async Task<IActionResult> LikeAdventure(int id, int recipientAdventureId)
+        // {
+        //     if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+        //         return Unauthorized();
+
+        //     var like = await _repo.GetAdventureLike(id, recipientAdventureId);
+
+        //     if (like != null)
+        //     {
+        //         _repo.Delete<AdventureLike>(like);
+        //         return BadRequest("Już nie lubisz tej wyprawy!");
+        //     }
+
+        //     if (await _repo.GetAdventure(recipientAdventureId) == null)
+        //         return NotFound();
+
+        //     like = new AdventureLike
+        //     {
+        //         UserLikesAdventureId = id,
+        //         AdventureIsLikedId = recipientAdventureId
+        //     };
+
+        //     _repo.Add<AdventureLike>(like);
+
+        //     if (await _repo.SaveAll())
+        //         return Ok();
+
+        //     return BadRequest("Nie można polubić użytkownika");
+        // }
     }
 }
