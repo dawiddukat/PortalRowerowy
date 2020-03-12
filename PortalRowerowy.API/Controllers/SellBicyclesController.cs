@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortalRowerowy.API.Data;
 using PortalRowerowy.API.Dtos;
+using PortalRowerowy.API.Helpers;
 
 namespace PortalRowerowy.API.Controllers
 {
@@ -24,11 +25,13 @@ namespace PortalRowerowy.API.Controllers
         }
 
         [HttpGet] //pobieranie wszystkich rowerów
-        public async Task<IActionResult> GetBicycles()
+        public async Task<IActionResult> GetBicycles([FromQuery]SellBicycleParams sellBicycleParams)
         {
-            var sellBicycles = await _repo.GetSellBicycles();
+            var sellBicycles = await _repo.GetSellBicycles(sellBicycleParams);
 
             var sellBicyclesToReturn = _mapper.Map<IEnumerable<SellBicycleForListDto>>(sellBicycles);
+
+            Response.AddPagination(sellBicycles.CurrentPage, sellBicycles.PageSize, sellBicycles.TotalCount, sellBicycles.TotalPages);
 
             return Ok(sellBicyclesToReturn);
         }

@@ -21,7 +21,7 @@ export class SellBicycleListComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.sellBicycles = data.sellBicycles;
-      this.pagination = data.adventures.pagination;
+      this.pagination = data.sellBicycles.pagination;
     });
   }
 

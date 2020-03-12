@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using PortalRowerowy.API.Helpers;
 using PortalRowerowy.API.Models;
 
 namespace PortalRowerowy.API.Data
 {
     public interface ISellBicycleRepository : IGenericRepository
     {
-        Task<IEnumerable<SellBicycle>> GetSellBicycles();
+        Task<PagesList<SellBicycle>> GetSellBicycles(SellBicycleParams sellBicycleParams);
         Task<SellBicycle> GetSellBicycle(int id);
 
         Task<SellBicyclePhoto> GetSellBicyclePhoto(int id);
