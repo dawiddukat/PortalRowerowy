@@ -16,6 +16,8 @@ export class AdventureListComponent implements OnInit {
   adventures: Adventure[];
   pagination: Pagination;
 
+  adventureParams: any = {};
+
   constructor(private adventureService: AdventureService, private alertify: AlertifyService,
     private route: ActivatedRoute) { }
 
@@ -23,12 +25,21 @@ export class AdventureListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.adventures = data.adventures.result;
       this.pagination = data.adventures.pagination;
+
+
+
+      // this.adventureParams.orderBy = 'dateAdded';
+
     });
   }
 
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
+
+
+    // this.adventureParams.orderBy = 'dateAdded';
+
     this.loadAdventures();
   }
 

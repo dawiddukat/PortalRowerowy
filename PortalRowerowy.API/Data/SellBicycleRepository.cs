@@ -24,7 +24,22 @@ namespace PortalRowerowy.API.Data
 
         public async Task<PagesList<SellBicycle>> GetSellBicycles(SellBicycleParams sellBicycleParams)
         {
-            var sellBicycles = _context.SellBicycles.Include(s => s.SellBicyclePhotos);
+            var sellBicycles = _context.SellBicycles.Include(s => s.SellBicyclePhotos).OrderByDescending(s => s.DateAdded).AsQueryable();
+            
+            if (!string.IsNullOrEmpty(sellBicycleParams.OrderBy))
+            {
+                switch (sellBicycleParams.OrderBy)
+                {
+                    case "created":
+                        sellBicycles = sellBicycles.OrderByDescending(a => a.DateAdded);
+                        break;
+                    default:
+                        sellBicycles = sellBicycles.OrderByDescending(a => a.Price);
+                        break;
+                }
+            }
+
+
             return await PagesList<SellBicycle>.CreateListAsync(sellBicycles, sellBicycleParams.PageNumber, sellBicycleParams.PageSize);
         }
 

@@ -18,13 +18,16 @@ export class AdventureService {
 
   constructor(private http: HttpClient) { }
 
-  getAdventures(page?, itemsPerPage?): Observable<PaginationResult<Adventure[]>> {
+  getAdventures(page?, itemsPerPage?, adventureParams?): Observable<PaginationResult<Adventure[]>> {
     const paginationResult: PaginationResult<Adventure[]> = new PaginationResult<Adventure[]>();
     let params = new HttpParams();
 
     if (page != null && itemsPerPage != null) {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemsPerPage);
+
+      // params = params.append('orderBy', adventureParams.orderBy);
+
     }
 
     return this.http.get<Adventure[]>(this.baseUrl + 'adventures', { observe: 'response', params })
