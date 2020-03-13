@@ -20,7 +20,7 @@ export class SellBicycleService {
 
   constructor(private http: HttpClient) { }
 
-  getSellBicycles(page?, itemsPerPage?): Observable<PaginationResult<SellBicycle[]>> {
+  getSellBicycles(page?, itemsPerPage?, sellBicycleParams?): Observable<PaginationResult<SellBicycle[]>> {
     const paginationResult: PaginationResult<SellBicycle[]> = new PaginationResult<SellBicycle[]>();
     let params = new HttpParams();
 
@@ -28,6 +28,13 @@ export class SellBicycleService {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemsPerPage);
     }
+
+    if (sellBicycleParams != null) {
+      params = params.append('minPrice', sellBicycleParams.minPrice);
+      params = params.append('maxPrice', sellBicycleParams.maxPrice);
+      params = params.append('typeBicycle', sellBicycleParams.typeBicycle);
+    }
+
 
     return this.http.get<SellBicycle[]>(this.baseUrl + 'sellbicycles', { observe: 'response', params })
       .pipe(

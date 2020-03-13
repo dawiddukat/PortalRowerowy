@@ -14,9 +14,18 @@ import { ThrowStmt } from '@angular/compiler';
 export class AdventureListComponent implements OnInit {
 
   adventures: Adventure[];
-  pagination: Pagination;
+
+  adventure: Adventure = JSON.parse(localStorage.getItem('adventure'));
+  typeBicycleList = [{ value: 'Wszystkie', display: 'Wszystkie' },
+  { value: 'MTB', display: 'Górski' },
+  { value: 'ROAD', display: 'Szosowy' },
+  { value: 'CITY', display: 'Miejski' },
+  { value: 'EBIKE', display: 'Elektryczny' }];
+
 
   adventureParams: any = {};
+
+  pagination: Pagination;
 
   constructor(private adventureService: AdventureService, private alertify: AlertifyService,
     private route: ActivatedRoute) { }
@@ -25,26 +34,31 @@ export class AdventureListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.adventures = data.adventures.result;
       this.pagination = data.adventures.pagination;
-
-
-
       // this.adventureParams.orderBy = 'dateAdded';
 
     });
+    this.adventureParams.typeBicycle = 'Wszystkie';
+    this.adventureParams.minDistance = 0;
+    this.adventureParams.maxDistance = 10000;
+
   }
 
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
-
-
     // this.adventureParams.orderBy = 'dateAdded';
-
     this.loadAdventures();
   }
 
+  resetFilters() {
+  this.adventureParams.typeBicycle = 'Wszystkie';
+  this.adventureParams.minDistance = 0;
+  this.adventureParams.maxDistance = 10000;
+  this.loadAdventures();
+}
+
   loadAdventures() {
-     this.adventureService.getAdventures(this.pagination.currentPage, this.pagination.itemsPerPage)
+     this.adventureService.getAdventures(this.pagination.currentPage, this.pagination.itemsPerPage, this.adventureParams)
       .subscribe((res: PaginationResult<Adventure[]>) => {
        this.adventures = res.result;
        this.pagination = res.pagination;

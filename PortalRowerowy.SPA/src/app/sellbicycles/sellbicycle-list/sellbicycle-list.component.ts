@@ -4,6 +4,7 @@ import { SellBicycleService } from 'src/app/_services/sellBicycle.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { Pagination, PaginationResult } from 'src/app/_models/pagination';
+import { SellBicyclePhotosComponent } from '../sellbicyclePhotos/sellbicyclePhotos.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -14,6 +15,16 @@ import { Pagination, PaginationResult } from 'src/app/_models/pagination';
 export class SellBicycleListComponent implements OnInit {
 
   sellBicycles: SellBicycle[];
+
+  sellBicycle: SellBicycle = JSON.parse(localStorage.getItem('sellBicycle'));
+  typeBicycleList = [{ value: 'Wszystkie', display: 'Wszystkie' },
+  { value: 'MTB', display: 'Górski' },
+  { value: 'ROAD', display: 'Szosowy' },
+  { value: 'CITY', display: 'Miejski' },
+  { value: 'EBIKE', display: 'Elektryczny' }];
+
+  sellBicycleParams: any = {};
+
   pagination: Pagination;
 
   constructor(private sellBicycleService: SellBicycleService, private alertify: AlertifyService, private route: ActivatedRoute) { }
@@ -23,6 +34,9 @@ export class SellBicycleListComponent implements OnInit {
       this.sellBicycles = data.sellBicycles.result;
       this.pagination = data.sellBicycles.pagination;
     });
+    this.sellBicycleParams.typeBicycle = 'Wszystkie';
+    this.sellBicycleParams.minPrice = 0;
+    this.sellBicycleParams.maxPrice = 10000;
   }
 
 
@@ -31,8 +45,16 @@ export class SellBicycleListComponent implements OnInit {
     this.loadSellBicycles();
   }
 
+  resetFilters() {
+    this.sellBicycleParams.typeBicycle = 'Wszystkie';
+    this.sellBicycleParams.minDistance = 0;
+    this.sellBicycleParams.maxDistance = 10000;
+    this.loadSellBicycles();
+  }
+
+
   loadSellBicycles() {
-     this.sellBicycleService.getSellBicycles(this.pagination.currentPage, this.pagination.itemsPerPage)
+     this.sellBicycleService.getSellBicycles(this.pagination.currentPage, this.pagination.itemsPerPage, this.sellBicycleParams)
       .subscribe((res: PaginationResult<SellBicycle[]>) => {
        this.sellBicycles = res.result;
        this.pagination = res.pagination;

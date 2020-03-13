@@ -14,6 +14,7 @@ export class UserListComponent implements OnInit {
 
   users: User[];
 
+  
   user: User = JSON.parse(localStorage.getItem('user'));
 
   genderList = [{ value: 'Wszystkie', display: 'Wszystkie' },

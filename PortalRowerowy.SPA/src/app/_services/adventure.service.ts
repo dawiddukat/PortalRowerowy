@@ -30,6 +30,12 @@ export class AdventureService {
 
     }
 
+    if (adventureParams != null) {
+      params = params.append('minDistance', adventureParams.minDistance);
+      params = params.append('maxDistance', adventureParams.maxDistance);
+      params = params.append('typeBicycle', adventureParams.typeBicycle);
+    }
+
     return this.http.get<Adventure[]>(this.baseUrl + 'adventures', { observe: 'response', params })
       .pipe(
         map(response => {
