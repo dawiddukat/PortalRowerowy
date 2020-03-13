@@ -24,34 +24,39 @@ namespace PortalRowerowy.API.Data
 
         public async Task<PagesList<Adventure>> GetAdventures(AdventureParams adventureParams)
         {
-            var adventures = _context.Adventures.Include(aP => aP.AdventurePhotos).OrderByDescending(a => a.DateAdded).AsQueryable();
+            var adventures = _context.Adventures
+            .Include(aP => aP.AdventurePhotos)
+            .OrderByDescending(a => a.DateAdded)
+            .AsQueryable();
 
 
             // adventures = adventures.Where(a => a.TypeBicycle== adventureParams.TypeBicycle);
 
-            // if (adventureParams.MinDistance != 0 || adventureParams.MaxDistance != 10000)
+            if (adventureParams.MinDistance != 0 || adventureParams.MaxDistance != 10000)
+            {
+                var minDistance = (adventureParams.MinDistance);
+                var maxDistance = (adventureParams.MaxDistance);
+                adventures = adventures.Where(a => a.Distance >= minDistance && a.Distance <= maxDistance);
+            }
+
+            if (adventureParams.TypeBicycle != "Wszystkie")
+                adventures = adventures.Where(a => a.TypeBicycle == adventureParams.TypeBicycle);
+
+
+            // if (!string.IsNullOrEmpty(adventureParams.OrderBy))
             // {
-            //     var minDistane = (adventureParams.MaxDistance);
-            //     var maxDistance = (adventureParams.MinDistance);
-            //     adventures = adventures.Where(a => a.Distance >= minDistane && a.Distance <= maxDistance);
+            //     switch (adventureParams.OrderBy)
+            //     {
+            //         case "created":
+            //             adventures = adventures.OrderByDescending(a => a.DateAdded);
+            //             break;
+            //         default:
+            //             adventures = adventures.OrderByDescending(a => a.Distance);
+            //             break;
+            //     }
             // }
 
-            // if (adventureParams.TypeBicycle != null)
-            //     adventures = adventures.Where(a => a.TypeBicycle == adventureParams.TypeBicycle);
-
-
-            if (!string.IsNullOrEmpty(adventureParams.OrderBy))
-            {
-                switch (adventureParams.OrderBy)
-                {
-                    case "created":
-                        adventures = adventures.OrderByDescending(a => a.DateAdded);
-                        break;
-                    default:
-                        adventures = adventures.OrderByDescending(a => a.Distance);
-                        break;
-                }
-            }
+            
 
 
             return await PagesList<Adventure>.CreateListAsync(adventures, adventureParams.PageNumber, adventureParams.PageSize);

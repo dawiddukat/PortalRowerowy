@@ -21,6 +21,8 @@ namespace PortalRowerowy.API.Helpers
         public bool UserIsLiked { get; set; } = false;
 
 
+
+
         public bool UserLikesAdventure { get; set; } = false;
         public bool AdventureIsLiked { get; set; } = false;
 

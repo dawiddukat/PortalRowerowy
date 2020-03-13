@@ -11,15 +11,15 @@ namespace PortalRowerowy.API.Helpers
             set { pageSize = (value > MaxPageSize) ? MaxPageSize : value; }
         }
 
-        public int AdventureId { get; set; }
         public string TypeBicycle { get; set; } = "Wszystkie";
         public int MinDistance { get; set; } = 0;
         public int MaxDistance { get; set; } = 10000;
-        public string OrderBy { get; set; }
-        // public bool UserLikes { get; set; } = false;
-        // public bool UserIsLiked { get; set; } = false;
-        public bool UserLikesAdventure { get; set; } = false;
-        public bool AdventureIsLiked { get; set; } = false;
+        // public string OrderBy { get; set; }
+        
+        // // public bool UserLikes { get; set; } = false;
+        // // public bool UserIsLiked { get; set; } = false;
+        // public bool UserLikesAdventure { get; set; } = false;
+        // public bool AdventureIsLiked { get; set; } = false;
 
 
     }
