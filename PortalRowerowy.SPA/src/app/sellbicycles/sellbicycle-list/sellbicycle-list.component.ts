@@ -37,6 +37,8 @@ export class SellBicycleListComponent implements OnInit {
     this.sellBicycleParams.typeBicycle = 'Wszystkie';
     this.sellBicycleParams.minPrice = 0;
     this.sellBicycleParams.maxPrice = 10000;
+    this.sellBicycleParams.orderBy = 'Price';
+
   }
 
 

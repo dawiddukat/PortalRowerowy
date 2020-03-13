@@ -26,7 +26,7 @@ export class AdventureService {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemsPerPage);
 
-      // params = params.append('orderBy', adventureParams.orderBy);
+
 
     }
 
@@ -34,6 +34,8 @@ export class AdventureService {
       params = params.append('minDistance', adventureParams.minDistance);
       params = params.append('maxDistance', adventureParams.maxDistance);
       params = params.append('typeBicycle', adventureParams.typeBicycle);
+
+      params = params.append('orderBy', adventureParams.orderBy);
     }
 
     return this.http.get<Adventure[]>(this.baseUrl + 'adventures', { observe: 'response', params })

@@ -14,7 +14,7 @@ namespace PortalRowerowy.API.Helpers
         public string TypeBicycle { get; set; } = "Wszystkie";
         public int MinPrice { get; set; } = 0;
         public int MaxPrice { get; set; } = 10000;
-        // public string OrderBy { get; set; }
+        public string OrderBy { get; set; }
         // public bool UserLikes { get; set; } = false;
         // public bool UserIsLiked { get; set; } = false;
         // public bool UserLikesAdventure { get; set; } = false;

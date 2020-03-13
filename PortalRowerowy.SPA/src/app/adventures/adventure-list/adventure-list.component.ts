@@ -34,7 +34,7 @@ export class AdventureListComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.adventures = data.adventures.result;
       this.pagination = data.adventures.pagination;
-      // this.adventureParams.orderBy = 'dateAdded';
+      this.adventureParams.orderBy = 'Distance';
 
     });
     this.adventureParams.typeBicycle = 'Wszystkie';
@@ -46,7 +46,7 @@ export class AdventureListComponent implements OnInit {
 
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
-    // this.adventureParams.orderBy = 'dateAdded';
+    this.adventureParams.orderBy = 'Distance';
     this.loadAdventures();
   }
 

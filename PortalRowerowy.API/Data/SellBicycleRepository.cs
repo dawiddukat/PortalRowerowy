@@ -37,18 +37,18 @@ namespace PortalRowerowy.API.Data
                 sellBicycles = sellBicycles.Where(a => a.TypeBicycle == sellBicycleParams.TypeBicycle);
 
 
-            // if (!string.IsNullOrEmpty(sellBicycleParams.OrderBy))
-            // {
-            //     switch (sellBicycleParams.OrderBy)
-            //     {
-            //         case "created":
-            //             sellBicycles = sellBicycles.OrderByDescending(a => a.DateAdded);
-            //             break;
-            //         default:
-            //             sellBicycles = sellBicycles.OrderByDescending(a => a.Price);
-            //             break;
-            //     }
-            // }
+            if (!string.IsNullOrEmpty(sellBicycleParams.OrderBy))
+            {
+                switch (sellBicycleParams.OrderBy)
+                {
+                    case "dateAdded":
+                        sellBicycles = sellBicycles.OrderByDescending(a => a.DateAdded);
+                        break;
+                    default:
+                        sellBicycles = sellBicycles.OrderBy(a => a.Price);
+                        break;
+                }
+            }
 
 
             return await PagesList<SellBicycle>.CreateListAsync(sellBicycles, sellBicycleParams.PageNumber, sellBicycleParams.PageSize);

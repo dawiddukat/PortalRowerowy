@@ -43,18 +43,18 @@ namespace PortalRowerowy.API.Data
                 adventures = adventures.Where(a => a.TypeBicycle == adventureParams.TypeBicycle);
 
 
-            // if (!string.IsNullOrEmpty(adventureParams.OrderBy))
-            // {
-            //     switch (adventureParams.OrderBy)
-            //     {
-            //         case "created":
-            //             adventures = adventures.OrderByDescending(a => a.DateAdded);
-            //             break;
-            //         default:
-            //             adventures = adventures.OrderByDescending(a => a.Distance);
-            //             break;
-            //     }
-            // }
+            if (!string.IsNullOrEmpty(adventureParams.OrderBy))
+            {
+                switch (adventureParams.OrderBy)
+                {
+                    case "dateAdded":
+                        adventures = adventures.OrderByDescending(a => a.DateAdded);
+                        break;
+                    default:
+                        adventures = adventures.OrderByDescending(a => a.Distance);
+                        break;
+                }
+            }
 
             
 

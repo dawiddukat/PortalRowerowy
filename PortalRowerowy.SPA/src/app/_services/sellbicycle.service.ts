@@ -33,6 +33,8 @@ export class SellBicycleService {
       params = params.append('minPrice', sellBicycleParams.minPrice);
       params = params.append('maxPrice', sellBicycleParams.maxPrice);
       params = params.append('typeBicycle', sellBicycleParams.typeBicycle);
+      params = params.append('orderBy', sellBicycleParams.orderBy);
+
     }
 
 
