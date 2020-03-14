@@ -19,10 +19,11 @@ export class UserDetailComponent implements OnInit {
   @ViewChild('userTabs', { static: true }) userTabs: TabsetComponent;
   user: User;
   // adventure: Adventure;
-  adventures: Adventure[];
+  // adventures: User[];
+  // adventure: Adventure[];
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  galleryAdventures: NgxGalleryImage[];
+  // galleryAdventures: NgxGalleryImage[];
 
   constructor(private userService: UserService,
     // tslint:disable-next-line: align
@@ -36,7 +37,7 @@ export class UserDetailComponent implements OnInit {
     //this.loadUser();
     this.route.data.subscribe(data => {
       this.user = data.user;
-      // this.adventure = data.adventure;
+      // this.adventures = data.adventure;
     });
 
     this.route.queryParams.subscribe(params => {
@@ -70,7 +71,7 @@ export class UserDetailComponent implements OnInit {
     ];
 
     this.galleryImages = this.getImages();
-    this.galleryAdventures = this.getAdventures();
+    // this.galleryAdventures = this.getAdventures();
     /* {
          small: 'assets/1-small.jpg',
          medium: 'assets/1-medium.jpg',
@@ -114,18 +115,18 @@ export class UserDetailComponent implements OnInit {
 
 
 
-  getAdventures() {
-    const adventuresUrls = [];
-    // tslint:disable-next-line: prefer-for-of
-    for (let i = 0; i < this.user.adventures.length; i++) {
-      adventuresUrls.push({
-        small: this.user.adventures[i].url,
-        medium: this.user.adventures[i].url,
-        big: this.user.adventures[i].url,
-        description: this.user.adventures[i].description,
-      });
-    }
-    return adventuresUrls;
+  // getAdventures() {
+  //   const adventuresIds = [];
+  //   // tslint:disable-next-line: prefer-for-of
+  //   for (let i = 0; i < this.user.adventures.length; i++) {
+  //     adventuresIds.push({
+  //       small: this.user.adventures[i].id,
+  //       medium: this.user.adventures[i].id,
+  //       big: this.user.adventures[i].id,
+  //       description: this.user.adventures[i].description,
+  //     });
+  //   }
+  //   return adventuresIds;
     // loadUser() {
     //   this.userService.getUser(+this.route.snapshot.params.id).
     //   subscribe((user: User) => {
@@ -135,7 +136,7 @@ export class UserDetailComponent implements OnInit {
     //   });
     // }
 
-  }
+  
 
   selectTab(tabId: number) {
     this.userTabs.tabs[tabId].active = true;

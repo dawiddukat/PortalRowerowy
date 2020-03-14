@@ -87,24 +87,29 @@
             <tr>
               <td>
                 <h5>Rowery:</h5>
-                <p>{{user.sellBicycles}}</p>
+                <div *ngFor="let sellBicycle of user.sellBicycles" style="text-align: center;">
+                  <app-sellbicycle-card [sellBicycle]="sellBicycle"> </app-sellbicycle-card>
+                </div>
               </td>
             </tr>
           </tab>
-          <tab heading="Wyprawy" *ngIf="adventures">
-            <h5>Wyprawy</h5>
-            <div *ngFor="let adventure of adventures" style="text-align: center;">
-              <p>{{adventure.adventureName}}</p>
-            </div>
-          </tab>
+          <!-- <div *ngFor="let adventure of adventures" style="text-align: center;">
+            <app-adventure-card [adventure]="adventure"> </app-adventure-card>
+          </div>
+        </div> -->
 
           <tab heading="Wyprawy">
             <h5>Wyprawy</h5>
-            <div *ngFor="let adventure of adventures" style="text-align: center;"></div>
-            <!-- <p>{{adventures.adventureName}}</p> -->
 
-            <ngx-gallery [options]="galleryOptions" [images]="galleryAdventures"></ngx-gallery>
+            <div class="mce-container-body ml-5 mr-4 ">
+            <div *ngFor="let adventure of user.adventures" style="text-align: center;">
+              <app-adventure-card [adventure]="adventure"> </app-adventure-card>
+            </div>
+          </div>
+            <p>Wartości z formularza: {{user.adventures | json }}</p>
+
           </tab>
+
           <tab heading="Wiadomości">
             <app-user-messages [recipientId]="user.id"></app-user-messages>
           </tab>
@@ -113,3 +118,5 @@
     </div>
   </div>
 </div>
+
+<p>Wartości z formularza: {{user.adventures | json }}</p>
