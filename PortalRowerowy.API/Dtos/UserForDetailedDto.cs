@@ -31,7 +31,7 @@ namespace PortalRowerowy.API.Dtos
         //Zakładka Ogłoszenia
         public ICollection<SellBicycleForDetailedDto> SellBicycles { get; set; }
         //ZAKŁADKA WYPRAWY
-        public ICollection<AdventureForDetailedDto> Adventures { get; set; }
+        public ICollection<AdventureForListDto> Adventures { get; set; }
 
         public string PhotoUrl { get; set;}
     }

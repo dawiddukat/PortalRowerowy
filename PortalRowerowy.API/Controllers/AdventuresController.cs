@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using PortalRowerowy.API.Data;
 using PortalRowerowy.API.Dtos;
 using PortalRowerowy.API.Helpers;
@@ -12,18 +13,52 @@ using PortalRowerowy.API.Models;
 
 namespace PortalRowerowy.API.Controllers
 {
+        [ServiceFilter(typeof(LogUserActivity))]
+
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AdventuresController : ControllerBase
     {
         private readonly IAdventureRepository _repo;
+        private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
 
-        public AdventuresController(IAdventureRepository repo, IMapper mapper)
+        public AdventuresController(IUserRepository repository, IAdventureRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
+            _repository = repository;
+        }
+
+
+        [HttpPost("add")]
+        public async Task<IActionResult> Add(int userId, AdventureForAddDto adventureForAddDto)
+        {
+            //if (!ModelState.IsValid)
+            //return BadRequest(ModelState);
+
+
+            adventureForAddDto.adventureName = adventureForAddDto.adventureName.ToLower(); //z małych liter użytkownik
+
+            // if (await _repo.UserExist(userForRegisterDto.Username))
+            //     return BadRequest("Użytkownik o takiej nazwie już istnieje!");
+
+
+            var adventureToCreate = _mapper.Map<Adventure>(adventureForAddDto);
+
+            //  new User // zastąpienie powyższą metodą
+            // {
+            //     Username = userForRegisterDto.Username
+            // };
+
+            var createdAdventure = await _repo.Add(adventureToCreate);
+
+            //return StatusCode(201);
+            var adventureToReturn = _mapper.Map<AdventureForDetailedDto>(createdAdventure);
+
+
+            return CreatedAtRoute("GetAdventure", new { controller = "Adventures", Id = createdAdventure.Id }, adventureToReturn);
         }
 
         [HttpGet] //pobieranie wszystkich rowerów
@@ -38,7 +73,7 @@ namespace PortalRowerowy.API.Controllers
             return Ok(adventuresToReturn);
         }
 
-        [HttpGet("{id}")] //pobieranie roweru
+        [HttpGet("{id}", Name = "GetAdventure")] //pobieranie roweru
         public async Task<IActionResult> GetAdventure(int id)
         {
             var adventure = await _repo.GetAdventure(id);

@@ -62,6 +62,22 @@ namespace PortalRowerowy.API.Data
             return await PagesList<Adventure>.CreateListAsync(adventures, adventureParams.PageNumber, adventureParams.PageSize);
         }
 
+
+        
+        public async Task<Adventure> Add(Adventure adventure) //rejestracja użytkownika
+        {
+            // byte[] passwordHash, passwordSalt;
+            // CreatePasswordHashSalt(password, out passwordHash, out passwordSalt);
+
+            // user.PasswordHash = passwordHash;
+            // user.PasswordSalt = passwordSalt;
+
+            await _context.Adventures.AddAsync(adventure);
+            await _context.SaveChangesAsync();
+
+            return adventure;
+        }
+
         public async Task<AdventurePhoto> GetAdventurePhoto(int id)
         {
             var adventurePhoto = await _context.AdventurePhotos.FirstOrDefaultAsync(p => p.Id == id);
@@ -106,6 +122,14 @@ namespace PortalRowerowy.API.Data
         //     }
         // }
 
+        public async Task<User> GetUser(int id)
+        {
+            var user = await _context.Users.Include(p => p.UserPhotos)
+            .Include(a => a.Adventures)
+            .Include(s => s.SellBicycles)
+            .FirstOrDefaultAsync(u => u.Id == id); //jak przypisać Adventures, UserPhotos, SellBicycles??
+            return user;
+        }
 
     }
 }

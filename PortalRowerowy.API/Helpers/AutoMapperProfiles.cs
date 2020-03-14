@@ -62,7 +62,7 @@ namespace PortalRowerowy.API.Helpers
             CreateMap<AdventurePhoto, AdventureForDetailedDto>();
             CreateMap<AdventurePhoto, AdventurePhotoForReturnDto>();
             CreateMap<AdventurePhotoForCreationDto, AdventurePhoto>();
-            // CreateMap<AdventureForRegisterDto, Adventure>();            
+            CreateMap<AdventureForAddDto, Adventure>();            
 
             CreateMap<MessageForCreationDto, Message>().ReverseMap();
             CreateMap<Message, MessageToReturnDto>()
