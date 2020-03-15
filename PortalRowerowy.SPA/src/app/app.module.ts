@@ -56,6 +56,7 @@ import { SellBicycleEditComponent } from './sellbicycles/sellbicycle-edit/sellbi
 import { SellBicycleEditResolver } from './_resolvers/sellBicycle-edit.resolver';
 import { AdventurePhotosComponent } from './adventures/adventurePhotos/adventurePhotos.component';
 import { SellBicyclePhotosComponent } from './sellbicycles/sellbicyclePhotos/sellbicyclePhotos.component';
+import { AdventureCardEditComponent } from './adventures/adventure-card-edit/adventure-card-edit.component';
 
 
 export function tokenGetter() {
@@ -86,6 +87,9 @@ export class CustomHammerConfig extends HammerGestureConfig {
       AdventureDetailComponent,
       AdventureEditComponent,
       AdventurePhotosComponent,
+
+      AdventureCardEditComponent,
+
 
       SellBicycleListComponent,
       SellBicycleCardComponent,

@@ -64,7 +64,7 @@ namespace PortalRowerowy.API.Data
 
 
         
-        public async Task<Adventure> Add(Adventure adventure) //rejestracja użytkownika
+        public async Task<Adventure> Add(Adventure adventure) //dodanie wyprawy
         {
             // byte[] passwordHash, passwordSalt;
             // CreatePasswordHashSalt(password, out passwordHash, out passwordSalt);
@@ -92,7 +92,8 @@ namespace PortalRowerowy.API.Data
 
         public async Task<AdventureLike> GetAdventureLike(int userId, int recipientAdventureId)
         {
-            return await _context.AdventureLikes.FirstOrDefaultAsync(u => u.UserLikesAdventureId == userId && u.AdventureIsLikedId == recipientAdventureId);
+            return await _context.AdventureLikes
+            .FirstOrDefaultAsync(u => u.UserLikesAdventureId == userId && u.AdventureIsLikedId == recipientAdventureId);
         }
 
         // private async Task<IEnumerable<int>> GetAdventureLikes(int id, bool userLikesAdventure)
@@ -122,14 +123,14 @@ namespace PortalRowerowy.API.Data
         //     }
         // }
 
-        public async Task<User> GetUser(int id)
-        {
-            var user = await _context.Users.Include(p => p.UserPhotos)
-            .Include(a => a.Adventures)
-            .Include(s => s.SellBicycles)
-            .FirstOrDefaultAsync(u => u.Id == id); //jak przypisać Adventures, UserPhotos, SellBicycles??
-            return user;
-        }
+        // public async Task<User> GetUser(int id)
+        // {
+        //     var user = await _context.Users.Include(p => p.UserPhotos)
+        //     .Include(a => a.Adventures)
+        //     .Include(s => s.SellBicycles)
+        //     .FirstOrDefaultAsync(u => u.Id == id); //jak przypisać Adventures, UserPhotos, SellBicycles??
+        //     return user;
+        // }
 
     }
 }

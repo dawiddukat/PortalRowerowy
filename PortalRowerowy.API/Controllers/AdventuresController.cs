@@ -32,31 +32,19 @@ namespace PortalRowerowy.API.Controllers
         }
 
 
-        [HttpPost("add")]
+        [HttpPost("add/")]
         public async Task<IActionResult> Add(int userId, AdventureForAddDto adventureForAddDto)
         {
             //if (!ModelState.IsValid)
             //return BadRequest(ModelState);
 
-
             adventureForAddDto.adventureName = adventureForAddDto.adventureName.ToLower(); //z małych liter użytkownik
-
-            // if (await _repo.UserExist(userForRegisterDto.Username))
-            //     return BadRequest("Użytkownik o takiej nazwie już istnieje!");
-
 
             var adventureToCreate = _mapper.Map<Adventure>(adventureForAddDto);
 
-            //  new User // zastąpienie powyższą metodą
-            // {
-            //     Username = userForRegisterDto.Username
-            // };
-
             var createdAdventure = await _repo.Add(adventureToCreate);
 
-            //return StatusCode(201);
             var adventureToReturn = _mapper.Map<AdventureForDetailedDto>(createdAdventure);
-
 
             return CreatedAtRoute("GetAdventure", new { controller = "Adventures", Id = createdAdventure.Id }, adventureToReturn);
         }

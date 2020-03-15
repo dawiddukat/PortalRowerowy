@@ -116,14 +116,18 @@
                 </tr>
 
               </tab>
-              <tab heading="Wyprawy">
-                <tr>
-                  <td>
-                    <h5>Wyprawy:</h5>
-                    <p>{{user.adventures | json}}</p>
-                  </td>
-                </tr>
-              </tab>
+
+          <tab heading="Wyprawy">
+            <h5>Wyprawy</h5>
+
+            <div class="mce-container-body ml-5 mr-4 ">
+            <div *ngFor="let adventure of user.adventures" style="text-align: center;">
+              <app-adventure-card-edit [adventure]="adventure"> </app-adventure-card-edit>
+            </div>
+          </div>
+            <p>Wartości z formularza: {{user.adventures | json }}</p>
+
+          </tab>
             </tabset>
           </div>
         </form>

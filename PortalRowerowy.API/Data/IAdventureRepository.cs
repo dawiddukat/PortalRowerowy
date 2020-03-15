@@ -12,12 +12,9 @@ namespace PortalRowerowy.API.Data
         Task<AdventurePhoto> GetAdventurePhoto(int id);
         Task<AdventurePhoto> GetMainPhotoForAdventure(int adventureId);
         Task<AdventureLike> GetAdventureLike(int userId, int recipientAdventureId);
+        Task<Adventure> Add(Adventure adventure);
 
-
-                Task<Adventure> Add(Adventure adventure);
-Task<User> GetUser(int id);
-
-        
+        // Task<User> GetUser(int id);
         // Task<AdventureLike> GetAdventureLikes(int adventureId, int userId);
     }
 }
