@@ -38,9 +38,6 @@
         <app-adventure-card [adventure]="adventure"> </app-adventure-card>
       </div>
     </div>
-    <p>Wartości z formularza: {{adventures | json }}</p>
-
-
     <div class="d-flex justify-content-center">
       <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
         [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"

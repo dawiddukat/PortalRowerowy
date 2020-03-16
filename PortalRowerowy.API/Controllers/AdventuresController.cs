@@ -13,7 +13,7 @@ using PortalRowerowy.API.Models;
 
 namespace PortalRowerowy.API.Controllers
 {
-        [ServiceFilter(typeof(LogUserActivity))]
+    [ServiceFilter(typeof(LogUserActivity))]
 
     [Authorize]
     [Route("api/[controller]")]
@@ -84,7 +84,7 @@ namespace PortalRowerowy.API.Controllers
             if (await _repo.SaveAll())
                 return NoContent();
 
-            throw new Exception($"Aktualizacja użytkownika o id: {id} nie powiodła sie przy zapisywaniu do bazy");
+            throw new Exception($"Aktualizacja wyprawy o id: {id} nie powiodła sie przy zapisywaniu do bazy");
         }
 
 
@@ -119,5 +119,33 @@ namespace PortalRowerowy.API.Controllers
 
             return BadRequest("Nie można polubić użytkownika");
         }
+
+        
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> DeleteAdventure(/*int userId,*/ int id)
+        // {
+        //     // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+        //     //     return Unauthorized();
+
+        //     // var adventure = await _repo.GetAdventure(id);
+
+        //     // if (!user.UserPhotos.Any(p => p.Id == id))
+        //     //     return Unauthorized();
+
+        //     var adventureFromRepo = await _repo.GetAdventure(id);
+
+
+        //     if (adventureFromRepo.public_id != null)
+        //     {
+        //            _repo.Delete(adventureFromRepo);
+        //     }
+
+        //     if (adventureFromRepo.public_id == null)
+        //         _repo.Delete(adventureFromRepo);
+
+        //     if (await _repo.SaveAll())
+        //         return Ok();
+        //     return BadRequest("Nie udało się usunąć zdjęcia");
+        // }
     }
 }
