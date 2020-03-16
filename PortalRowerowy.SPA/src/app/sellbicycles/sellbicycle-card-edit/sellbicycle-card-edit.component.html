@@ -1,0 +1,34 @@
+<div class="card text-dark mt-2 m-1">
+
+  <div class="card-body p-2 btn" routerLinkActive="active" [routerLink]="['/giełda/', sellBicycle.id, 'edycja']">
+    <h6 class="card-title text-capitalize text-dark text-center mb-1 btn" ><i class="fa fa-bicycle"></i>
+      {{sellBicycle.sellBicycleName}}
+    </h6>
+  
+  <div class="card-img-wrapper">
+    <img src="{{sellBicycle.photoUrl || '../../../../../assets/basket.png'}}" class="card-img-top" alt="{{sellBicycle.sellBicycleName}}">
+    <ul class="list-inline text-center user-icons animate">
+      <li class="list-inline-item" (click)="(sellBicycle.id)">
+        <button class="btn btn-outline-dark btn-sm" >
+          <i class="fa fa-bicycle"></i>
+        </button>
+      </li>
+      <!-- <li class="list-inline-item" (click)="sendLike(user.id)" (click)="$event.stopPropagation()">
+        <button class="btn btn-outline-danger btn-sm">
+          <i class="fa fa-plus-square"></i>
+        </button>
+      </li>
+      <li class="list-inline-item">
+        <button class="btn btn-outline-info btn-sm"  [routerLink]="['/uzytkownicy/', user.id]" [queryParams]="{tab: 4}" (click)="$event.stopPropagation()">
+          <i class="fa fa-envelope"></i>
+        </button>
+      </li> -->
+    
+    <!-- <div class="list-group p-2 m-0">
+      <li class="list-group-item">{{user.username}}</li>
+      <li class="list-group-item">{{user.city}}</li>
+    </div> -->
+  </ul>
+  </div>
+</div>
+
