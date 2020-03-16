@@ -37,8 +37,11 @@ namespace PortalRowerowy.API.Controllers
         {
             //if (!ModelState.IsValid)
             //return BadRequest(ModelState);
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             adventureForAddDto.adventureName = adventureForAddDto.adventureName.ToLower(); //z małych liter użytkownik
+
+            adventureForAddDto.UserId = UserId;
 
             var adventureToCreate = _mapper.Map<Adventure>(adventureForAddDto);
 
@@ -74,8 +77,10 @@ namespace PortalRowerowy.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAdventure(int id, AdventureForUpdateDto adventureForUpdateDto)
         {
-            // if (id != int.Parse(Adventure.FindFirst(ClaimTypes.NameIdentifier).Value))
-            //     return Unauthorized();
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (UserId != adventureForUpdateDto.UserId)
+                return Unauthorized();
 
             var adventureFromRepo = await _repo.GetAdventure(id);
 
@@ -120,32 +125,26 @@ namespace PortalRowerowy.API.Controllers
             return BadRequest("Nie można polubić użytkownika");
         }
 
-        
-        // [HttpDelete("{id}")]
-        // public async Task<IActionResult> DeleteAdventure(/*int userId,*/ int id)
-        // {
-        //     // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-        //     //     return Unauthorized();
 
-        //     // var adventure = await _repo.GetAdventure(id);
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAdventure(/*int userId,*/ int id)
+        {
+            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
 
-        //     // if (!user.UserPhotos.Any(p => p.Id == id))
-        //     //     return Unauthorized();
+            // var adventure = await _repo.GetAdventure(id);
 
-        //     var adventureFromRepo = await _repo.GetAdventure(id);
+            // if (!user.UserPhotos.Any(p => p.Id == id))
+            //     return Unauthorized();
 
+            var adventureFromRepo = await _repo.GetAdventure(id);
 
-        //     if (adventureFromRepo.public_id != null)
-        //     {
-        //            _repo.Delete(adventureFromRepo);
-        //     }
+            if(adventureFromRepo != null)
+            _repo.Delete(adventureFromRepo);
 
-        //     if (adventureFromRepo.public_id == null)
-        //         _repo.Delete(adventureFromRepo);
-
-        //     if (await _repo.SaveAll())
-        //         return Ok();
-        //     return BadRequest("Nie udało się usunąć zdjęcia");
-        // }
+            if (await _repo.SaveAll())
+                return Ok();
+            return BadRequest("Nie udało się usunąć zdjęcia");
+        }
     }
 }

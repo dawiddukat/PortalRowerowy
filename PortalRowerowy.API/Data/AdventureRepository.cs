@@ -18,7 +18,8 @@ namespace PortalRowerowy.API.Data
 
         public async Task<Adventure> GetAdventure(int id)
         {
-            var adventure = await _context.Adventures.Include(aP => aP.AdventurePhotos).FirstOrDefaultAsync(a => a.Id == id); //jak przypisać Adventures, SellBicyclePhotos, SellBicycles??
+            var adventure = await _context.Adventures
+            .Include(aP => aP.AdventurePhotos).FirstOrDefaultAsync(a => a.Id == id); //jak przypisać Adventures, SellBicyclePhotos, SellBicycles??
             return adventure;
         }
 
@@ -56,14 +57,14 @@ namespace PortalRowerowy.API.Data
                 }
             }
 
-            
+
 
 
             return await PagesList<Adventure>.CreateListAsync(adventures, adventureParams.PageNumber, adventureParams.PageSize);
         }
 
 
-        
+
         public async Task<Adventure> Add(Adventure adventure) //dodanie wyprawy
         {
             // byte[] passwordHash, passwordSalt;
@@ -96,30 +97,23 @@ namespace PortalRowerowy.API.Data
             .FirstOrDefaultAsync(u => u.UserLikesAdventureId == userId && u.AdventureIsLikedId == recipientAdventureId);
         }
 
-        // private async Task<IEnumerable<int>> GetAdventureLikes(int id, bool userLikesAdventure)
+        // public async Task<AdventureLike> GetAdventureLikes(int adventureId, int userLikesAdventure)
         // {
         //     var adventure = await _context.Adventures
         //     // .Include(x => x.AdventureIsLiked)
         //     .Include(x => x.UserLikesAdventure)
-        //     .FirstOrDefaultAsync(a => a.Id == id);
+        //     .FirstOrDefaultAsync(a => a.UserId == adventureId);
 
+        //     // var user = await _context.Users
+        //     // .Include(x => x.AdventureIsLiked)
+        //     // // .Include(x => x.UserLikesAdventure)
+        //     // .FirstOrDefaultAsync(u => u.Id == id);
 
-        //     var user = await _context.Users
-        //     .Include(x => x.AdventureIsLiked)
-        //     // .Include(x => x.UserLikesAdventure)
-        //     .FirstOrDefaultAsync(u => u.Id == id);
-
-
-        //     if (userLikesAdventure)
+        //     // if (userLikesAdventure == 1)
         //     {
-        //         return adventure
-        //         .UserLikesAdventure.Where(u => u.UserLikesAdventureId == id)
-        //         .Select(i => i.AdventureIsLikedId);
-        //     }
-        //     else
-        //     {
-        //         return user.AdventureIsLiked.Where(u => u.UserLikesAdventureId == id)
-        //         .Select(i => i.AdventureIsLikedId);
+        //         return adventure;
+        //         // .UserLikesAdventure.Where(u => u.UserLikesAdventureId == adventureId)
+        //         // .Select(i => i.AdventureIsLikedId);
         //     }
         // }
 

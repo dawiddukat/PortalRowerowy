@@ -15,6 +15,6 @@ namespace PortalRowerowy.API.Data
         Task<Adventure> Add(Adventure adventure);
 
         // Task<User> GetUser(int id);
-        // Task<AdventureLike> GetAdventureLikes(int adventureId, int userId);
+        // Task<AdventureLike> GetAdventureLikes(int adventureId, int userLikesAdventure);
     }
 }
