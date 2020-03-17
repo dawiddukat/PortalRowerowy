@@ -12,6 +12,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class AdventureCardEditComponent implements OnInit {
 
   @Input() adventure: Adventure;
+  adventures: Adventure[];
 
   constructor(private authService: AuthService,
     private adventureService: AdventureService,
@@ -29,4 +30,15 @@ export class AdventureCardEditComponent implements OnInit {
   //       this.alertify.error(error);
   //     });
   // }
+
+    deleteAdventure(id: number) {
+    this.alertify.confirm('Czy jesteś pewien, czy chcesz usunąć zdjęcie?', () => {
+      this.adventureService.deleteAdventure(/*this.authService.decodedToken.nameid*/this.adventure.id).subscribe(() => {
+        this.adventures.splice(this.adventures.findIndex(p => p.id === id), 1);
+        this.alertify.success('Zdjęcie zostało usunięte!');
+      }, error => {
+        this.alertify.error('Nie udało się usunąć zdjęcia!');
+      });
+    });
+  }
 }

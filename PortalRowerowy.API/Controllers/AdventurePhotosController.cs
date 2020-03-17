@@ -48,6 +48,11 @@ namespace PortalRowerowy.API.Controllers
 
             var adventureFromRepo = await _repository.GetAdventure(adventureId);
 
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (UserId != adventureFromRepo.UserId)
+                return Unauthorized();
+
             var file = adventurePhotoForCreationDto.File;
             var uploadResult = new ImageUploadResult();
 
@@ -105,6 +110,12 @@ namespace PortalRowerowy.API.Controllers
 
             var adventure = await _repository.GetAdventure(adventureId);
 
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (UserId != adventure.UserId)
+                return Unauthorized();
+
+
             if (!adventure.AdventurePhotos.Any(p => p.Id == id))
                 return Unauthorized();
 
@@ -130,6 +141,11 @@ namespace PortalRowerowy.API.Controllers
             //     return Unauthorized();
 
             var adventure = await _repository.GetAdventure(adventureId);
+
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (UserId != adventure.UserId)
+                return Unauthorized();
 
             if (!adventure.AdventurePhotos.Any(p => p.Id == id))
                 return Unauthorized();

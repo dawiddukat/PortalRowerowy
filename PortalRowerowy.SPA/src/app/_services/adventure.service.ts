@@ -67,5 +67,9 @@ export class AdventureService {
   deletePhoto(adventureId: number, id: number) {
     return this.http.delete(this.baseUrl + 'adventures/' + adventureId + '/photos/' + id);
   }
+
+  deleteAdventure(adventureId: number) {
+    return this.http.delete(this.baseUrl + 'adventures/' + adventureId);
+  }
 }
 

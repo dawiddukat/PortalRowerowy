@@ -45,6 +45,10 @@ namespace PortalRowerowy.API.Controllers
         {
             // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             //     return Unauthorized();
+            // var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            // if (UserId != sellBicycleForUpdateDto.UserId)
+            //     return Unauthorized();
 
             var sellBicycleFromRepo = await _repository.GetSellBicycle(sellBicycleId);
 
@@ -135,6 +139,12 @@ namespace PortalRowerowy.API.Controllers
                 return Unauthorized();
 
             var sellBicyclePhotoFromRepo = await _repository.GetSellBicyclePhoto(id);
+
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (UserId != sellBicycle.UserId)
+                return Unauthorized();
+
 
             if (sellBicyclePhotoFromRepo.IsMain)
                 return BadRequest("Nie można usunąć zdjęcia głównego!");

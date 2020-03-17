@@ -53,6 +53,10 @@ namespace PortalRowerowy.API.Controllers
         {
             // if (id != int.Parse(Adventure.FindFirst(ClaimTypes.NameIdentifier).Value))
             //     return Unauthorized();
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (UserId != sellBicycleForUpdateDto.UserId)
+                return Unauthorized();
 
             var sellBicycleFromRepo = await _repo.GetSellBicycle(id);
 
@@ -84,7 +88,7 @@ namespace PortalRowerowy.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAdventure(/*int userId,*/ int id)
+        public async Task<IActionResult> DeleteSellBicycle(/*int userId,*/ int id)
         {
             // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             //     return Unauthorized();
@@ -94,7 +98,14 @@ namespace PortalRowerowy.API.Controllers
             // if (!user.UserPhotos.Any(p => p.Id == id))
             //     return Unauthorized();
 
+
             var sellBicycleFromRepo = await _repo.GetSellBicycle(id);
+
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (UserId != sellBicycleFromRepo.UserId)
+                return Unauthorized();
+
 
             if (sellBicycleFromRepo != null)
                 _repo.Delete(sellBicycleFromRepo);

@@ -12,6 +12,6 @@ namespace PortalRowerowy.API.Dtos
         public string TypeBicycle { get; set; }
         //public string Voivodeship { get; set; }
         public string Description { get; set; }
-        // public int UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

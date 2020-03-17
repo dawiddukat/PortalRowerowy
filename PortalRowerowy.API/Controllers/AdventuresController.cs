@@ -77,12 +77,12 @@ namespace PortalRowerowy.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAdventure(int id, AdventureForUpdateDto adventureForUpdateDto)
         {
+            var adventureFromRepo = await _repo.GetAdventure(id);
+
             var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            if (UserId != adventureForUpdateDto.UserId)
+            if (UserId != adventureFromRepo.UserId)
                 return Unauthorized();
-
-            var adventureFromRepo = await _repo.GetAdventure(id);
 
             _mapper.Map(adventureForUpdateDto, adventureFromRepo);
 
@@ -129,18 +129,15 @@ namespace PortalRowerowy.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAdventure(/*int userId,*/ int id)
         {
-            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            //     return Unauthorized();
-
-            // var adventure = await _repo.GetAdventure(id);
-
-            // if (!user.UserPhotos.Any(p => p.Id == id))
-            //     return Unauthorized();
-
             var adventureFromRepo = await _repo.GetAdventure(id);
 
-            if(adventureFromRepo != null)
-            _repo.Delete(adventureFromRepo);
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            if (UserId != adventureFromRepo.UserId)
+                return Unauthorized();
+
+            if (adventureFromRepo != null)
+                _repo.Delete(adventureFromRepo);
 
             if (await _repo.SaveAll())
                 return Ok();
