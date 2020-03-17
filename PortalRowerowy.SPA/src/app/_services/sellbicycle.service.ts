@@ -67,5 +67,9 @@ export class SellBicycleService {
   deletePhoto(sellBicycleId: number, id: number) {
     return this.http.delete(this.baseUrl + 'sellBicycles/' + sellBicycleId + '/photos/' + id);
   }
+
+  deleteSellBicycle(sellBicycleId: number) {
+    return this.http.delete(this.baseUrl + 'sellbicycles/' + sellBicycleId);
+  }
 }
 

@@ -12,6 +12,7 @@ import { SellBicycleService } from 'src/app/_services/sellBicycle.service';
 export class SellBicycleCardEditComponent implements OnInit {
 
   @Input() sellBicycle: SellBicycle;
+  sellBicycles: SellBicycle [];
 
   constructor(private authService: AuthService,
     private sellBicycleService: SellBicycleService,
@@ -29,4 +30,14 @@ export class SellBicycleCardEditComponent implements OnInit {
   //       this.alertify.error(error);
   //     });
   // }
-}
+
+  deleteSellBicycle(id: number) {
+    this.alertify.confirm('Czy jesteś pewien, czy chcesz usunąć zdjęcie?', () => {
+      this.sellBicycleService.deleteSellBicycle(/*this.authService.decodedToken.nameid*/this.sellBicycle.id).subscribe(() => {
+        this.sellBicycles.splice(this.sellBicycles.findIndex(p => p.id === id), 1);
+        this.alertify.success('Zdjęcie zostało usunięte!');
+      }, error => {
+        this.alertify.error('Nie udało się usunąć zdjęcia!');
+      });
+    });
+}}
