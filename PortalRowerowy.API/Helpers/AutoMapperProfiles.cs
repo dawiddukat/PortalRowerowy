@@ -45,6 +45,7 @@ namespace PortalRowerowy.API.Helpers
             CreateMap<SellBicyclePhoto, SellBicycleForDetailedDto>();
             CreateMap<SellBicyclePhoto, SellBicyclePhotoForReturnDto>();
             CreateMap<SellBicyclePhotoForCreationDto, SellBicyclePhoto>();
+            CreateMap<SellBicycleForAddDto, SellBicycle>();            
 
 
             CreateMap<Adventure, AdventureForListDto>()

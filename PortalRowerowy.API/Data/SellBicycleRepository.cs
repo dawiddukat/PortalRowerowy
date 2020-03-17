@@ -25,7 +25,7 @@ namespace PortalRowerowy.API.Data
         public async Task<PagesList<SellBicycle>> GetSellBicycles(SellBicycleParams sellBicycleParams)
         {
             var sellBicycles = _context.SellBicycles.Include(s => s.SellBicyclePhotos).OrderByDescending(s => s.DateAdded).AsQueryable();
-            
+
             if (sellBicycleParams.MinPrice != 0 || sellBicycleParams.MaxPrice != 10000)
             {
                 var minPrice = (sellBicycleParams.MinPrice);
@@ -63,6 +63,20 @@ namespace PortalRowerowy.API.Data
         public async Task<SellBicyclePhoto> GetMainPhotoForSellBicycle(int sellBicycleId)
         {
             return await _context.SellBicyclePhotos.Where(s => s.SellBicycleId == sellBicycleId).FirstOrDefaultAsync(p => p.IsMain);
+        }
+
+        public async Task<SellBicycle> Add(SellBicycle sellBicycle) //dodanie wyprawy
+        {
+            // byte[] passwordHash, passwordSalt;
+            // CreatePasswordHashSalt(password, out passwordHash, out passwordSalt);
+
+            // user.PasswordHash = passwordHash;
+            // user.PasswordSalt = passwordSalt;
+
+            await _context.SellBicycles.AddAsync(sellBicycle);
+            await _context.SaveChangesAsync();
+
+            return sellBicycle;
         }
     }
 }
