@@ -15,6 +15,7 @@ import { SellBicyclePhotosComponent } from '../sellbicyclePhotos/sellbicyclePhot
 export class SellBicycleListComponent implements OnInit {
 
   sellBicycles: SellBicycle[];
+  addSellBicycleMode = false;
 
   sellBicycle: SellBicycle = JSON.parse(localStorage.getItem('sellBicycle'));
   typeBicycleList = [{ value: 'Wszystkie', display: 'Wszystkie' },
@@ -39,6 +40,14 @@ export class SellBicycleListComponent implements OnInit {
     this.sellBicycleParams.maxPrice = 10000;
     this.sellBicycleParams.orderBy = 'Price';
 
+  }
+
+  addSellBicycleToggle() {
+    this.addSellBicycleMode = true;
+  }
+
+  cancelAddSellBicycleMode(addSellBicycleMode: boolean) {
+    this.addSellBicycleMode = addSellBicycleMode;
   }
 
 

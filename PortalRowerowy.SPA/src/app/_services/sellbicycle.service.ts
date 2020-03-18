@@ -71,5 +71,9 @@ export class SellBicycleService {
   deleteSellBicycle(sellBicycleId: number) {
     return this.http.delete(this.baseUrl + 'sellbicycles/' + sellBicycleId);
   }
+
+  addSellBicycle(sellBicycle: any) {
+    return this.http.post(this.baseUrl + 'sellbicycles/add', sellBicycle);
+  }
 }
 

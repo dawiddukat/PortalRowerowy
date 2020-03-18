@@ -1,7 +1,5 @@
 <div class="mce-container-body ml-5 mr-4 ">
-
   <div class="row">
-
     <div class="text-center mt-3">
       <h2>Znalezionych pozycji : {{ pagination.totalItems }}</h2>
     </div>
@@ -33,14 +31,16 @@
         Zresetuj filtr
       </button>
     </form>
-    <div class= "text-center">
+    <br />
+    
+    <div class="text-center">
       <button class="btn btn-primary btn-lg mr-3" (click)="addAdventureToggle()">Dodaj wyprawę!</button>
     </div>
-    
+
     <div *ngIf="addAdventureMode" class="container">
       <div class="row justify-content-center">
         <div class="col-4">
-  
+
           <!--<app-register [valuesFromHome]="values" (cancelRegister)="cancelRegisterMode($event)"> </app-register> BYŁO PRZY FORMULARZU ROZWIJALNYM-->
           <app-adventure-add (cancelAddAdventure)="cancelAddAdventureMode($event)"> </app-adventure-add>
         </div>
@@ -62,17 +62,17 @@
         nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
       </pagination>
     </div>
-      <div class="col">
-        <div class="btn-group float-right">
-          <button btnRadio="dateAdded" [(ngModel)]="adventureParams.orderBy" (click)="loadAdventures()" type="button"
-            name="orderBy" class="btn btn-primary">
-            Najnowsze
-          </button>
-          <button btnRadio="distance" [(ngModel)]="adventureParams.orderBy" (click)="loadAdventures()" type="button"
-            name="orderBy" class="btn btn-primary">
-            Najdłuższy dystans
-          </button>
-        </div>
+    <div class="col">
+      <div class="btn-group float-right">
+        <button btnRadio="dateAdded" [(ngModel)]="adventureParams.orderBy" (click)="loadAdventures()" type="button"
+          name="orderBy" class="btn btn-primary">
+          Najnowsze
+        </button>
+        <button btnRadio="distance" [(ngModel)]="adventureParams.orderBy" (click)="loadAdventures()" type="button"
+          name="orderBy" class="btn btn-primary">
+          Najdłuższy dystans
+        </button>
       </div>
     </div>
   </div>
+</div>

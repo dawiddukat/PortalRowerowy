@@ -33,6 +33,21 @@
     </form>
     <br />
 
+    <div class="text-center">
+      <button class="btn btn-primary btn-lg mr-3" (click)="addSellBicycleToggle()">Dodaj rower!</button>
+    </div>
+
+    <div *ngIf="addSellBicycleMode" class="container">
+      <div class="row justify-content-center">
+        <div class="col-4">
+
+          <!--<app-register [valuesFromHome]="values" (cancelRegister)="cancelRegisterMode($event)"> </app-register> BYŁO PRZY FORMULARZU ROZWIJALNYM-->
+          <app-sellbicycle-add (cancelAddSellBicycle)="cancelAddSellBicycleMode($event)"> </app-sellbicycle-add>
+        </div>
+      </div>
+    </div>
+    <br />
+
     <div class="row">
       <div *ngFor="let sellBicycle of sellBicycles" style="text-align: center;">
         <app-sellbicycle-card [sellBicycle]='sellBicycle'> </app-sellbicycle-card>
