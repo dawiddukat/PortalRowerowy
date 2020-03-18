@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Adventure } from '../_models/adventure';
 import { PaginationResult } from '../_models/pagination';
 import { map } from 'rxjs/operators';
+import { add } from 'ngx-bootstrap/chronos/public_api';
 
 
 
@@ -70,6 +71,10 @@ export class AdventureService {
 
   deleteAdventure(adventureId: number) {
     return this.http.delete(this.baseUrl + 'adventures/' + adventureId);
+  }
+
+  addAdventure(adventure: any) {
+    return this.http.post(this.baseUrl + 'adventures/add', adventure);
   }
 }
 

@@ -1,0 +1,31 @@
+<form [formGroup]="adventureAddForm" (ngSubmit)="addAdventure()">
+  <h2 class="text-center text-primary">
+    Dodaj wyprawę!
+  </h2>
+  <hr>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Nazwa" formControlName="adventureName"
+      [ngClass]="{ 'is-invalid': adventureAddForm.get('adventureName').errors && adventureAddForm.get('adventureName').touched}">
+    <div class="invalid-feedback">Podaj nazwę!</div>
+  </div>
+  <div class="form-group">
+    <select class="form-control" 
+            placeholder="Typ roweru"
+            formControlName="typeBicycle" 
+            [(ngModel)]="adventureParams.typeBicycle">
+      <option *ngFor="let typeBicycle of typeBicycleList" [value]="typeBicycle.value">
+        {{typeBicycle.display}}
+      </option>
+    </select>  
+  </div>
+
+  <div class="form-group text-center">
+    <hr>
+    <button class="btn btn-success" type="submit" [disabled]="!adventureAddForm.valid">Dodaj</button>
+    <br>
+    <button class="btn btn-default" type="button" (click)="cancel()">Anuluj</button>
+  </div>
+</form>
+
+<p>Wartości z formularza: {{adventureAddForm.value | json }}</p>
+<p>Wartości z formularza: {{adventureAddForm.status | json }}</p>

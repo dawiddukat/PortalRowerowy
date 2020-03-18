@@ -8,6 +8,7 @@ import { Adventure } from 'src/app/_models/Adventure';
 import { AdventureService } from 'src/app/_services/adventure.service';
 
 @Component({
+  
   selector: 'app-adventure-edit',
   templateUrl: './adventure-edit.component.html',
   styleUrls: ['./adventure-edit.component.css']
@@ -15,6 +16,7 @@ import { AdventureService } from 'src/app/_services/adventure.service';
 export class AdventureEditComponent implements OnInit {
 
   adventure: Adventure;
+  photoUrl: string;
 
 
   // photoUrl: string;
@@ -33,8 +35,7 @@ export class AdventureEditComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.adventure = data.adventure;
     });
-    // this.authService.currentUserPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
-    // this.photoUrl = this.adventure.photoUrl;/*subscribe(photoUrl => this.photoUrl = photoUrl);*/
+    this.authService.currentAdventurePhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
 
   }
 
