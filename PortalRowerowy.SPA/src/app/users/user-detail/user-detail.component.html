@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="row">
-    <h1>Profil {{user.username}}</h1>
+    <!-- <h1>Profil {{user.username}}</h1> -->
   </div>
   <div class="row">
     <div class="col-sm-4">
@@ -47,7 +47,7 @@
     </div>
     <div class="col-sm-8">
       <div class="tab-panel">
-        <tabset class="user-tabset" #userTabs>
+        <tabset class="user-tabset text-capitalize" #userTabs>
           <tab heading="Informacje {{user.username}}">
             <table class="user-table">
               <tr>
@@ -102,11 +102,11 @@
             <h5>Wyprawy</h5>
 
             <div class="mce-container-body ml-5 mr-4 ">
-            <div *ngFor="let adventure of user.adventures" style="text-align: center;">
-              <app-adventure-card [adventure]="adventure"> </app-adventure-card>
+              <div *ngFor="let adventure of user.adventures" style="text-align: center;">
+                <app-adventure-card [adventure]="adventure"> </app-adventure-card>
+              </div>
             </div>
-          </div>
-            <p>Wartości z formularza: {{user.adventures | json }}</p>
+            <!-- <p>Wartości z formularza: {{user.adventures | json }}</p> -->
 
           </tab>
 
@@ -119,4 +119,4 @@
   </div>
 </div>
 
-<p>Wartości z formularza: {{user.adventures | json }}</p>
+<!-- <p>Wartości z formularza: {{user.adventures | json }}</p> -->

@@ -32,7 +32,7 @@
       </button>
     </form>
     <br />
-    
+
     <div class="text-center">
       <button class="btn btn-primary btn-lg mr-3" (click)="addAdventureToggle()">Dodaj wyprawę!</button>
     </div>
@@ -53,7 +53,7 @@
         <app-adventure-card [adventure]="adventure"> </app-adventure-card>
       </div>
     </div>
-    <p>Wartości z formularza: {{adventures | json }}</p>
+    <!-- <p>Wartości z formularza: {{adventures | json }}</p> -->
 
 
     <div class="d-flex justify-content-center">
@@ -70,7 +70,7 @@
         </button>
         <button btnRadio="distance" [(ngModel)]="adventureParams.orderBy" (click)="loadAdventures()" type="button"
           name="orderBy" class="btn btn-primary">
-          Najdłuższy dystans
+          Najdłuższe
         </button>
       </div>
     </div>
