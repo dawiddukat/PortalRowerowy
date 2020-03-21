@@ -50,7 +50,7 @@
       </div>
     </div>
     <div class="col-sm-8">
-      <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+      <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()" class="tab-wrapper">
         <div class="tab-panel">
           <tabset class="user-tabset" #userTabs>
             <tab heading="Informacje">
@@ -110,8 +110,8 @@
             <tab heading="Sprzedawane rowery">
               <h5>Wyprawy</h5>
 
-              <div class="mce-container-body ml-5 mr-4 ">
-                <div *ngFor="let sellBicycle of user.sellBicycles" style="text-align: center;">
+              <div class="mce-container-body ml-5 mr-4 cart-wrapper">
+                <div *ngFor="let sellBicycle of user.sellBicycles" style="text-align: center;" class="cart-element">
                   <app-sellbicycle-card-edit [sellBicycle]="sellBicycle"> </app-sellbicycle-card-edit>
                 </div>
               </div>
@@ -121,9 +121,9 @@
             <tab heading="Wyprawy">
               <h5>Wyprawy</h5>
 
-              <div class="mce-container-body ml-5 mr-4 ">
-                <div *ngFor="let adventure of user.adventures" style="text-align: center;">
-                  <app-adventure-card-edit [adventure]="adventure"> </app-adventure-card-edit>
+              <div class="mce-container-body ml-5 mr-4 cart-wrapper">
+                <div *ngFor="let adventure of user.adventures" style="text-align: center;" class="cart-element">
+                    <app-adventure-card-edit [adventure]="adventure"> </app-adventure-card-edit>
                 </div>
               </div>
               <!-- <p>Wartości z formularza: {{user.adventures | json }}</p> -->

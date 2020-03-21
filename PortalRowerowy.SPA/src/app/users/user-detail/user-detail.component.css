@@ -22,3 +22,27 @@
 .user-table-td {
     width: 50%;
 }
+
+.tab-wrapper {
+    background: #fff;
+  }
+  .tab-wrapper .tab-panel {
+    padding: 10px 20px;
+  }
+  
+  .tab-wrapper .thumbnail {
+      height: auto;
+  }
+  
+  .cart-wrapper {
+    margin: 0!important;
+  }
+  
+  .cart-wrapper::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .cart-element {
+    float: left;
+  }

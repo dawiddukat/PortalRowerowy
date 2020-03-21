@@ -87,9 +87,13 @@
             <tr>
               <td>
                 <h5>Rowery:</h5>
-                <div *ngFor="let sellBicycle of user.sellBicycles" style="text-align: center;">
+                <div class="mce-container-body ml-5 mr-4 cart-wrapper">
+
+                <div *ngFor="let sellBicycle of user.sellBicycles" style="text-align: center;" class="cart-element">
                   <app-sellbicycle-card [sellBicycle]="sellBicycle"> </app-sellbicycle-card>
                 </div>
+              </div>
+
               </td>
             </tr>
           </tab>
@@ -101,8 +105,8 @@
           <tab heading="Wyprawy">
             <h5>Wyprawy</h5>
 
-            <div class="mce-container-body ml-5 mr-4 ">
-              <div *ngFor="let adventure of user.adventures" style="text-align: center;">
+            <div class="mce-container-body ml-5 mr-4 cart-wrapper">
+              <div *ngFor="let adventure of user.adventures" style="text-align: center;" class="cart-element">
                 <app-adventure-card [adventure]="adventure"> </app-adventure-card>
               </div>
             </div>
