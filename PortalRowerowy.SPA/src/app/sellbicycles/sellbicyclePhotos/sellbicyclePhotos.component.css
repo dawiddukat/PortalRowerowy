@@ -11,3 +11,10 @@ img.img-thumbnail {
 input[type=file] {
     color: transparent;
 }
+
+.user-photo-el {
+    margin-bottom: 65px;
+}
+.user-photo-el-inner {
+    min-height: 105px;
+}

@@ -1,6 +1,8 @@
-<div class="row">
-  <div class="col-sm-2" *ngFor="let adventurePhoto of adventurePhotos">
+<div class="row ">
+  <div class="col-sm-2 user-photo-el" *ngFor="let adventurePhoto of adventurePhotos">
+    <div class="user-photo-el-inner">
     <img src="{{adventurePhoto.url}}" alt="{{adventurePhoto.description}}" class="img-thumbnail p-1">
+    </div>
     <div class="text-center">
       <div class="btn-group d-flex text-center text-dark">
         <button type="button" class="btn btn-sm mr-1" (click)="setMainAdventurePhoto(adventurePhoto)"
