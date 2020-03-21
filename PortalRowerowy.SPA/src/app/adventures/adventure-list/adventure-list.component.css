@@ -1,0 +1,30 @@
+
+.main-button-wrapper {
+    position: absolute;
+    right: 300px;
+    top: 13px;
+}
+
+.main-button-wrapper button {
+    background: #fff;
+    color: #78C2AD;
+    text-transform: uppercase;
+    font-size: 14px;
+
+}
+
+@media (max-width: 998px) {
+   
+    .main-button-wrapper {
+        position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 500px;
+    } 
+
+    .main-button-wrapper button {
+        width: 100%;
+    
+    }
+
+}
