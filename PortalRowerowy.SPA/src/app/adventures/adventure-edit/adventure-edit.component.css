@@ -22,3 +22,14 @@
 .user-table-td {
   width: 50%;
 }
+
+.tab-wrapper {
+  background: #fff;
+}
+.tab-wrapper .tab-panel {
+  padding: 10px 20px;
+}
+
+.tab-wrapper .thumbnail {
+    height: auto;
+}
