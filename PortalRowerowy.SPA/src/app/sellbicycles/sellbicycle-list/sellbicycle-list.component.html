@@ -54,23 +54,25 @@
       </div>
     </div>
 
+    <div class=footer-nav-wrapper>
 
-    <div class="d-flex justify-content-center">
-      <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
-        [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
-        nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
-      </pagination>
-    </div>
-    <div class="col">
-      <div class="btn-group float-right">
-        <button btnRadio="dateAdded" [(ngModel)]="sellBicycleParams.orderBy" (click)="loadSellBicycles()" type="button"
-          name="orderBy" class="btn btn-primary">
-          Najnowsze
-        </button>
-        <button btnRadio="distance" [(ngModel)]="sellBicycleParams.orderBy" (click)="loadSellBicycles()" type="button"
-          name="orderBy" class="btn btn-primary">
-          Od najtańszych
-        </button>
+      <div class="d-flex justify-content-center">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+          [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+        </pagination>
       </div>
+      <div class="col">
+        <div class="btn-group float-right">
+          <button btnRadio="dateAdded" [(ngModel)]="sellBicycleParams.orderBy" (click)="loadSellBicycles()"
+            type="button" name="orderBy" class="btn btn-primary">
+            Najnowsze
+          </button>
+          <button btnRadio="distance" [(ngModel)]="sellBicycleParams.orderBy" (click)="loadSellBicycles()" type="button"
+            name="orderBy" class="btn btn-primary">
+            Od najtańszych
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
