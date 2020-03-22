@@ -19,10 +19,10 @@ export class SellBicycleListComponent implements OnInit {
 
   sellBicycle: SellBicycle = JSON.parse(localStorage.getItem('sellBicycle'));
   typeBicycleList = [{ value: 'Wszystkie', display: 'Wszystkie' },
-  { value: 'MTB', display: 'Górski' },
-  { value: 'ROAD', display: 'Szosowy' },
-  { value: 'CITY', display: 'Miejski' },
-  { value: 'EBIKE', display: 'Elektryczny' }];
+  { value: 'MTB', display: 'MTB' },
+  { value: 'Szosowy', display: 'Szosowy' },
+  { value: 'Miejski', display: 'Miejski' },
+  { value: 'EBIKE', display: 'EBike' }];
 
   sellBicycleParams: any = {};
 
@@ -37,7 +37,7 @@ export class SellBicycleListComponent implements OnInit {
     });
     this.sellBicycleParams.typeBicycle = 'Wszystkie';
     this.sellBicycleParams.minPrice = 0;
-    this.sellBicycleParams.maxPrice = 10000;
+    this.sellBicycleParams.maxPrice = 5000;
     this.sellBicycleParams.orderBy = 'Price';
 
   }

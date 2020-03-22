@@ -41,7 +41,7 @@ export class AdventureListComponent implements OnInit {
     });
     this.adventureParams.typeBicycle = 'Wszystkie';
     this.adventureParams.minDistance = 0;
-    this.adventureParams.maxDistance = 10000;
+    this.adventureParams.maxDistance = 5000;
 
   }
 

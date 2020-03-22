@@ -63,6 +63,7 @@ export class AdventureDetailComponent implements OnInit {
     }
     return imagesUrls;
   }
+
 }
 
 // import { Component, OnInit, ViewChild } from '@angular/core';

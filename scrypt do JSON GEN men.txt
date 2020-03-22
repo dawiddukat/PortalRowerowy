@@ -1,5 +1,5 @@
 [
-  '{{repeat(25)}}',
+  '{{repeat(10)}}',
   {
        Username: '{{firstName("male")}}',
     Password: 'password',

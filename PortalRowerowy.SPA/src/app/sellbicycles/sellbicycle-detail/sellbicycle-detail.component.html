@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <div class="row">
+  <div class="row text-capitalize">
     <h1>Rower {{sellBicycle.sellBicycleName}}</h1>
   </div>
   <div class="row">
@@ -13,22 +13,26 @@
           </div>
           <div>
             <strong>Cena: </strong>
-            <p> {{sellBicycle.price}} </p>
+            <p> {{sellBicycle.price}} zł </p>
           </div>
           <div>
-            <strong>Data: </strong>
+            <strong>Typ: </strong>
+            <p>{{sellBicycle.typeBicycle}}</p>
+          </div>
+          <div>
+            <strong>Data dodania: </strong>
             <p> {{sellBicycle.dateAdded |  date: 'longDate'}} </p>
           </div>
           <div>
             <strong>Lokalizacja: </strong>
             <p>{{sellBicycle.user.country}}, {{sellBicycle.user.city}} </p>
           </div>
-          <div >
+          <!-- <div >
 
             <strong>Id użytkownika: </strong>
             
             <p> {{sellBicycle.userId}} </p>
-          </div>
+          </div> -->
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">

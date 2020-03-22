@@ -24,10 +24,10 @@ export class AddSellBicycleComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
 
   typeBicycleList = [
-    { value: 'MTB', display: 'Górski' },
-    { value: 'ROAD', display: 'Szosowy' },
-    { value: 'CITY', display: 'Miejski' },
-    { value: 'EBIKE', display: 'Elektryczny' }];
+    { value: 'MTB', display: 'MTB' },
+    { value: 'Szosowy', display: 'Szosowy' },
+    { value: 'Miejski', display: 'Miejski' },
+    { value: 'EBIKE', display: 'EBike' }];
   sellBicycleParams: any = {};
 
   constructor(private sellBicycleService: SellBicycleService,

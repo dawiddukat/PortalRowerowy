@@ -1,41 +1,80 @@
 <div class="mce-container-body ml-5 mr-4 ">
-  <div class="row">
-    <div class="text-center mt-3">
-      <h2>Znalezionych pozycji : {{ pagination.totalItems }}</h2>
+
+  <div *ngIf="!addAdventureMode" style="text-align: center">
+    <div class="row">
+      <div class="text-center mt-3">
+        <h2>Znalezionych pozycji : {{ pagination.totalItems }}</h2>
+      </div>
+
+      <form class="form-inline" #form="ngForm" (ngSubmit)="loadAdventures()" novalidate>
+        <div class="form-group">
+          <label for="minDistance">Dystans od</label>
+          <input type="number" class="form-control ml-1" style="width: 70px" id="minDistance"
+            [(ngModel)]="adventureParams.minDistance" name="minDistance" />
+        </div>
+        <div class="form-group px-2">
+          <label for="maxDistance">Dystans do</label>
+          <input type="number" class="form-control ml-1" style="width: 75px" id="maxDistance"
+            [(ngModel)]="adventureParams.maxDistance" name="maxDistance" />
+        </div>
+        <div class="form-group px-2">
+          <label for="typeBicycle">Rodzaj roweru: </label>
+          <select class="form-control ml-1" style="width: 130px" id="typeBicycle"
+            [(ngModel)]="adventureParams.typeBicycle" name="typeBicycle">
+            <option *ngFor="let typeBicycle of typeBicycleList" [value]="typeBicycle.value">
+              {{ typeBicycle.display }}
+            </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-left:10px">
+          Zastosuj filtr
+        </button>
+        <button type="button" class="btn btn-info" style="margin-left:10px" (click)="resetFilters()">
+          Zresetuj filtr
+        </button>
+      </form>
+      <br />
+
+
+      <br />
+
+      <div class="row">
+        <div *ngFor="let adventure of adventures" style="text-align: center;">
+          <app-adventure-card [adventure]="adventure"> </app-adventure-card>
+        </div>
+      </div>
+      <!-- <p>Wartości z formularza: {{adventures | json }}</p> -->
+
+      <div class=footer-nav-wrapper>
+
+        <div class="d-flex justify-content-center">
+          <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems"
+            [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage"
+            (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+            lastText="&raquo;">
+          </pagination>
+        </div>
+        <div class="col">
+          <div class="btn-group float-right">
+            <button btnRadio="dateAdded" [(ngModel)]="adventureParams.orderBy" (click)="loadAdventures()" type="button"
+              name="orderBy" class="btn btn-primary">
+              Najnowsze
+            </button>
+            <button btnRadio="distance" [(ngModel)]="adventureParams.orderBy" (click)="loadAdventures()" type="button"
+              name="orderBy" class="btn btn-primary">
+              Najdłuższe
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <form class="form-inline" #form="ngForm" (ngSubmit)="loadAdventures()" novalidate>
-      <div class="form-group">
-        <label for="minDistance">Dystans od</label>
-        <input type="number" class="form-control ml-1" style="width: 70px" id="minDistance"
-          [(ngModel)]="adventureParams.minDistance" name="minDistance" />
-      </div>
-      <div class="form-group px-2">
-        <label for="maxDistance">Dystans do</label>
-        <input type="number" class="form-control ml-1" style="width: 75px" id="maxDistance"
-          [(ngModel)]="adventureParams.maxDistance" name="maxDistance" />
-      </div>
-      <div class="form-group px-2">
-        <label for="typeBicycle">Rodzaj roweru: </label>
-        <select class="form-control ml-1" style="width: 130px" id="typeBicycle"
-          [(ngModel)]="adventureParams.typeBicycle" name="typeBicycle">
-          <option *ngFor="let typeBicycle of typeBicycleList" [value]="typeBicycle.value">
-            {{ typeBicycle.display }}
-          </option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary" style="margin-left:10px">
-        Zastosuj filtr
-      </button>
-      <button type="button" class="btn btn-info" style="margin-left:10px" (click)="resetFilters()">
-        Zresetuj filtr
-      </button>
-    </form>
-    <br />
 
-    <div class="text-center main-button-wrapper">
-      <button class="btn btn-primary btn-lg mr-3" (click)="addAdventureToggle()">Dodaj wyprawę!</button>
+      <div class="text-center main-button-wrapper">
+        <button class="btn btn-primary btn-lg mr-3" (click)="addAdventureToggle()">Dodaj wyprawę!</button>
+      </div>
     </div>
+  </div>
 
     <div *ngIf="addAdventureMode" class="container">
       <div class="row justify-content-center">
@@ -46,35 +85,3 @@
         </div>
       </div>
     </div>
-    <br />
-
-    <div class="row">
-      <div *ngFor="let adventure of adventures" style="text-align: center;">
-        <app-adventure-card [adventure]="adventure"> </app-adventure-card>
-      </div>
-    </div>
-    <!-- <p>Wartości z formularza: {{adventures | json }}</p> -->
-
-    <div class=footer-nav-wrapper>
-
-      <div class="d-flex justify-content-center">
-        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
-          [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
-          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
-        </pagination>
-      </div>
-      <div class="col">
-        <div class="btn-group float-right">
-          <button btnRadio="dateAdded" [(ngModel)]="adventureParams.orderBy" (click)="loadAdventures()" type="button"
-            name="orderBy" class="btn btn-primary">
-            Najnowsze
-          </button>
-          <button btnRadio="distance" [(ngModel)]="adventureParams.orderBy" (click)="loadAdventures()" type="button"
-            name="orderBy" class="btn btn-primary">
-            Najdłuższe
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

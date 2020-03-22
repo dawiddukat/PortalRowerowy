@@ -1,5 +1,5 @@
 <div class="container mt-3">
-  <div class="row">
+  <div class="row text-capitalize">
     <h1>Wyprawa {{adventure.adventureName}}</h1>
   </div>
   <div class="row">
@@ -13,7 +13,7 @@
           </div>
           <div>
             <strong>Dystans: </strong>
-            <p> {{adventure.distance}} </p>
+            <p> {{adventure.distance}} km </p>
           </div>
           <div>
             <strong>Data: </strong>
@@ -22,15 +22,15 @@
           <div>
             <strong>Lokalizacja: </strong>
           </div>
-          <div>
+          <!-- <div>
             <strong>Id użytkownika: </strong>
             <p> {{adventure.userId}} </p>
-          </div>
+          </div> -->
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <!-- <button class="btn btn-success w-100" (click)="sendLike(user.id)">Lubię</button>
-            <button class="btn btn-primary w-100" (click)="selectTab(4)">Wiadomości</button> -->
+            <!-- <button class="btn btn-success w-100" (click)="sendLike(user.id)">Lubię</button> -->
+            <button class="btn btn-primary w-100" [routerLink]="['/uzytkownicy/', adventure.userId]" [queryParams]="{tab: 4}" (click)="$event.stopPropagation()">Wiadomość do użytkownika</button>
           </div>
         </div>
       </div>
