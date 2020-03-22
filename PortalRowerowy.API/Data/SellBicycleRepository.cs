@@ -18,13 +18,13 @@ namespace PortalRowerowy.API.Data
 
         public async Task<SellBicycle> GetSellBicycle(int id)
         {
-            var sellBicycle = await _context.SellBicycles.Include(s => s.SellBicyclePhotos).FirstOrDefaultAsync(b => b.Id == id); //jak przypisać Adventures, SellBicyclePhotos, SellBicycles??
+            var sellBicycle = await _context.SellBicycles.Include(s => s.SellBicyclePhotos).Include(u => u.User).FirstOrDefaultAsync(b => b.Id == id); //jak przypisać Adventures, SellBicyclePhotos, SellBicycles??
             return sellBicycle;
         }
 
         public async Task<PagesList<SellBicycle>> GetSellBicycles(SellBicycleParams sellBicycleParams)
         {
-            var sellBicycles = _context.SellBicycles.Include(s => s.SellBicyclePhotos).OrderByDescending(s => s.DateAdded).AsQueryable();
+            var sellBicycles = _context.SellBicycles.Include(s => s.SellBicyclePhotos).Include(u => u.User).OrderByDescending(s => s.DateAdded).AsQueryable();
 
             if (sellBicycleParams.MinPrice != 0 || sellBicycleParams.MaxPrice != 10000)
             {

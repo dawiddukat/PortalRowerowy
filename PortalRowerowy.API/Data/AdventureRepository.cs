@@ -19,7 +19,7 @@ namespace PortalRowerowy.API.Data
         public async Task<Adventure> GetAdventure(int id)
         {
             var adventure = await _context.Adventures
-            .Include(aP => aP.AdventurePhotos).FirstOrDefaultAsync(a => a.Id == id); //jak przypisać Adventures, SellBicyclePhotos, SellBicycles??
+            .Include(aP => aP.AdventurePhotos).Include(u => u.User).FirstOrDefaultAsync(a => a.Id == id); //jak przypisać Adventures, SellBicyclePhotos, SellBicycles??
             return adventure;
         }
 

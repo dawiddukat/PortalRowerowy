@@ -9,8 +9,8 @@ using PortalRowerowy.API.Data;
 namespace PortalRowerowy.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200312162238_AddedAdventureLikeEntity2")]
-    partial class AddedAdventureLikeEntity2
+    [Migration("20200322140351_AddedAdventureLikeEntit3")]
+    partial class AddedAdventureLikeEntit3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

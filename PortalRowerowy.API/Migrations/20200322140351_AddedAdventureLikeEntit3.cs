@@ -2,7 +2,7 @@
 
 namespace PortalRowerowy.API.Migrations
 {
-    public partial class AddedAdventureLikeEntity2 : Migration
+    public partial class AddedAdventureLikeEntit3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,9 +14,8 @@ namespace PortalRowerowy.API.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "TypeBicycle",
-                table: "Adventures");
+            migrationBuilder.DropTable(
+                name: "Adventures");
         }
     }
 }

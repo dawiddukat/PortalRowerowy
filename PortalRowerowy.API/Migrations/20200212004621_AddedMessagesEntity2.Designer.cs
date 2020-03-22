@@ -34,6 +34,8 @@ namespace PortalRowerowy.API.Migrations
                     b.Property<string>("Url");
 
                     b.Property<int>("UserId");
+                                        b.Property<string>("TypeBicycle");
+
 
                     b.HasKey("Id");
 

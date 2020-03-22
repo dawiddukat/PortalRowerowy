@@ -6,15 +6,15 @@ namespace PortalRowerowy.API.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            // migrationBuilder.AddColumn<string>(
-            //     name: "public_id",
-            //     table: "SellBicyclePhotos",
-            //     nullable: true);
+            migrationBuilder.AddColumn<string>(
+                name: "public_id",
+                table: "SellBicyclePhotos",
+                nullable: true);
 
-            // migrationBuilder.AddColumn<string>(
-            //     name: "public_id",
-            //     table: "AdventurePhotos",
-            //     nullable: true);
+            migrationBuilder.AddColumn<string>(
+                name: "public_id",
+                table: "AdventurePhotos",
+                nullable: true);
 
             migrationBuilder.CreateTable(
                 name: "AdventureLikes",
@@ -48,12 +48,12 @@ namespace PortalRowerowy.API.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            // migrationBuilder.DropTable(
-            //     name: "AdventureLikes");
+            migrationBuilder.DropTable(
+                name: "AdventureLikes");
 
-            // migrationBuilder.DropColumn(
-            //     name: "public_id",
-            //     table: "SellBicyclePhotos");
+            migrationBuilder.DropColumn(
+                name: "public_id",
+                table: "SellBicyclePhotos");
 
             migrationBuilder.DropColumn(
                 name: "public_id",

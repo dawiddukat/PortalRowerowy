@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
+
 namespace PortalRowerowy.API.Migrations
 {
     public partial class AddedMessagesEntity2 : Migration

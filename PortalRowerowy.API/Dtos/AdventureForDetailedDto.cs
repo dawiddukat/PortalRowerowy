@@ -13,8 +13,6 @@ namespace PortalRowerowy.API.Dtos
         public string Url { get; set; }
 
         public string TypeBicycle { get; set; }
-
-
         public ICollection<AdventurePhotosForDetailedDto> AdventurePhotos { get; set; }
         public int Distance { get; set; }
         public string Description { get; set; }
@@ -22,5 +20,7 @@ namespace PortalRowerowy.API.Dtos
         public int AdventureId { get; set; }
         public int UserId { get; set; }
         public string PhotoUrl { get; set; }
+        // public User User { get; set; }
+
     }
 }

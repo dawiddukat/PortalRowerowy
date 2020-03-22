@@ -34,10 +34,13 @@ namespace PortalRowerowy.API.Migrations
                     b.Property<string>("Url");
 
                     b.Property<int>("UserId");
+                    
+                    b.Property<string>("TypeBicycle");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
+
 
                     b.ToTable("Adventures");
                 });
@@ -56,6 +59,7 @@ namespace PortalRowerowy.API.Migrations
                     b.Property<bool>("IsMain");
 
                     b.Property<string>("Url");
+
 
                     b.HasKey("Id");
 
