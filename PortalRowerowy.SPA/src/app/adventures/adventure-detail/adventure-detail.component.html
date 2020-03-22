@@ -17,11 +17,10 @@
           </div>
           <div>
             <strong>Data: </strong>
-            <p> {{adventure.dateAdded}} </p>
+            <p> {{adventure.dateAdded |  date: 'longDate'}} </p>
           </div>
           <div>
             <strong>Lokalizacja: </strong>
-            <p>  </p>
           </div>
           <div>
             <strong>Id użytkownika: </strong>
@@ -47,12 +46,12 @@
                   <p>{{adventure.description}}</p>
 
                 </td>
-                <td>
+                <!-- <td>
                   <h5>Wymarzony rower:</h5>
                   <p>{{adventure.description}}</p>
 
                 </td>
-              </tr>
+              </tr> -->
              
             </table>
           </tab>

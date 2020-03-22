@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { Adventure } from '../_models/adventure';
 import { PaginationResult } from '../_models/pagination';
 import { map } from 'rxjs/operators';
@@ -15,9 +15,18 @@ import { add } from 'ngx-bootstrap/chronos/public_api';
 export class AdventureService {
 
   // baseUrl = 'http://localhost:5000/api/';
-    baseUrl = environment.apiUrl;
+  baseUrl = environment.apiUrl;
+
+  // currentAdventure: Adventure;
+  // photoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
+  // currentAdventurePhotoUrl = this.photoUrl.asObservable();
 
   constructor(private http: HttpClient) { }
+
+  // changeAdventurePhoto(photoUrl: string) {
+  //   this.photoUrl.next(photoUrl);
+  // }
+
 
   getAdventures(page?, itemsPerPage?, adventureParams?): Observable<PaginationResult<Adventure[]>> {
     const paginationResult: PaginationResult<Adventure[]> = new PaginationResult<Adventure[]>();
@@ -43,7 +52,7 @@ export class AdventureService {
       .pipe(
         map(response => {
           paginationResult.result = response.body;
-
+          
           if (response.headers.get('Pagination') != null) {
             paginationResult.pagination = JSON.parse(response.headers.get('Pagination'));
           }

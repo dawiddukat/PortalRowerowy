@@ -29,13 +29,13 @@ export class AdventureEditComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute, private alertify: AlertifyService, private adventureService: AdventureService,
-              private authService: AuthService) { }
+              ) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.adventure = data.adventure;
     });
-    this.authService.currentAdventurePhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
+    // this.adventureService.photoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
 
   }
 
@@ -51,9 +51,8 @@ export class AdventureEditComponent implements OnInit {
       );
   }
 
-  updateMainAdventurePhoto(adventurePhotoUrl) {
-    this.adventure.photoUrl = adventurePhotoUrl;
-
+  updateMainAdventurePhoto(photoUrl) {
+    this.adventure.photoUrl = photoUrl;
   }
 
 }

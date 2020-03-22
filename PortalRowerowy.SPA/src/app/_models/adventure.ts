@@ -1,4 +1,5 @@
 import { AdventurePhoto } from './adventurePhoto';
+import { User } from './user';
 
 export interface Adventure {
     id: number;
@@ -11,4 +12,5 @@ export interface Adventure {
     photoUrl: string;
     userId: number;
     typeBicycle: string;
+    user: User;
 }

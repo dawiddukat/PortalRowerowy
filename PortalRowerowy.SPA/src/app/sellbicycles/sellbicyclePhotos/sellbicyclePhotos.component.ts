@@ -70,12 +70,6 @@ export class SellBicyclePhotosComponent implements OnInit {
         };
 
         this.sellBicyclePhotos.push(sellBicyclePhoto);
-        if (sellBicyclePhoto.isMain) {
-          this.authService.changeSellBicyclePhoto(sellBicyclePhoto.url);
-          this.authService.currentSellBicycle.photoUrl = sellBicyclePhoto.url;
-          localStorage.setItem('sellBicycle', JSON.stringify(this.authService.currentSellBicycle));
-
-        }
       }
     };
   }

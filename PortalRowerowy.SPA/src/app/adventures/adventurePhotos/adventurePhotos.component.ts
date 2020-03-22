@@ -70,12 +70,6 @@ export class AdventurePhotosComponent implements OnInit {
         };
 
         this.adventurePhotos.push(adventurePhoto);
-        if (adventurePhoto.isMain) {
-          this.authService.changeAdventurePhoto(adventurePhoto.url);
-          this.authService.currentAdventure.photoUrl = adventurePhoto.url;
-          localStorage.setItem('adventure', JSON.stringify(this.authService.currentAdventure));
-
-        }
       }
     };
   }
@@ -87,10 +81,11 @@ export class AdventurePhotosComponent implements OnInit {
       this.currentMain = this.adventurePhotos.filter(p => p.isMain === true)[0];
       this.currentMain.isMain = false;
       adventurePhoto.isMain = true;
-      // this.getUserPhotoChange.emit(userPhoto.url);
-      // this./*authService.*/changeAdventurePhoto(adventurePhoto.url);
-      // this./*authService.*/currentAdventure.photoUrl = adventurePhoto.url;
-      // localStorage.setItem('adventure', JSON.stringify(this.authService.currentUser));
+     // tslint:disable-next-line: align
+      // this.getAdventurePhotoChange.emit(adventurePhoto.url);
+      // this.adventureService.changeAdventurePhoto(adventurePhoto.url);
+      // this.adventureService.currentAdventure.photoUrl = adventurePhoto.url;
+      // localStorage.setItem('adventure', JSON.stringify(this.adventureService.currentAdventure));
       this.getAdventurePhotoChange.emit(adventurePhoto.url);
       
     },

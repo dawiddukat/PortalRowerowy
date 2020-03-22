@@ -1,4 +1,5 @@
 import { SellBicyclePhoto } from './sellBicyclePhoto';
+import { User } from './user';
 
 export interface SellBicycle {
     id: number;
@@ -11,5 +12,6 @@ export interface SellBicycle {
     dateAdded: Date;
     photoUrl: string;
     userId: number;
+    user: User;
 }
 
