@@ -79,6 +79,14 @@ export class UserService {
     return this.http.post(this.baseUrl + 'users/' + id + '/like/' + recipientId, {});
   }
 
+  sendAdventureLike(id: number, recipientId: number) {
+    return this.http.post(this.baseUrl + 'adventures/' + recipientId + '/likeadventure/' + id, {});
+  }
+
+  sendSellBicycleLike(id: number, recipientId: number) {
+    return this.http.post(this.baseUrl + 'sellbicycles/' + recipientId + '/likesellbicycle/' + id, {});
+  }
+
   getMessages(id: number, page?, itemsPerPage?, messageContainer?) {
 
     const paginationResult: PaginationResult<Message[]> = new PaginationResult<Message[]>();

@@ -5,6 +5,8 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { User } from 'src/app/_models/user';
+import { AuthService } from 'src/app/_services/auth.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-adventure-detail',
@@ -16,10 +18,12 @@ export class AdventureDetailComponent implements OnInit {
   adventure: Adventure;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+  
+ 
 
   constructor(private adventureService: AdventureService,
-    private alertify: AlertifyService,
-    private route: ActivatedRoute) { }
+    private alertify: AlertifyService, private authService: AuthService,
+    private route: ActivatedRoute,  private userService: UserService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -62,6 +66,15 @@ export class AdventureDetailComponent implements OnInit {
       });
     }
     return imagesUrls;
+  }
+
+  sendLike(id: number) {
+    this.userService.sendAdventureLike(this.authService.decodedToken.nameid, id)
+      .subscribe(data => {
+        this.alertify.success('Polubiłeś: ' + this.adventure.adventureName + '!');
+      }, error => {
+        this.alertify.error('Już nie lubisz tej wyprawy!');
+      });
   }
 
 }

@@ -29,7 +29,7 @@
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <!-- <button class="btn btn-success w-100" (click)="sendLike(user.id)">Lubię</button> -->
+            <button class="btn btn-success w-100" (click)="sendLike(adventure.id)">Lubię</button>
             <button class="btn btn-primary w-100" [routerLink]="['/uzytkownicy/', adventure.userId]" [queryParams]="{tab: 4}" (click)="$event.stopPropagation()">Wiadomość do użytkownika</button>
           </div>
         </div>

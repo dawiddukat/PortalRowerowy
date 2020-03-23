@@ -15,7 +15,10 @@ namespace PortalRowerowy.API.Models
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
         public User User { get; set; }
+        public ICollection<SellBicycleLike> UserLikesSellBicycle { get; set; } // wyprawa jest lubiana
         public int UserId { get; set; }
+
+        // public string City { get { return User.City; } }
 
     }
 }

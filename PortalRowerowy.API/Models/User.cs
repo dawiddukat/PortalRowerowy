@@ -48,6 +48,8 @@ namespace PortalRowerowy.API.Models
 
         // public ICollection<AdventureLike> UserLikesAdventure { get; set; } // użytkownik lubi
         public ICollection<AdventureLike> AdventureIsLiked { get; set; } // użytkownik jest lubiany
+        public ICollection<SellBicycleLike> SellBicycleIsLiked { get; set; } // użytkownik jest lubiany
+
 
     }
 }

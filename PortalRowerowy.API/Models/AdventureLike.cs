@@ -5,7 +5,6 @@ namespace PortalRowerowy.API.Models
         public int UserLikesAdventureId { get; set; } // użytkownik lubi wyprawę
         public int AdventureIsLikedId { get; set; } // wyprawa jest lubiana przez kogoś
         public User UserLikesAdventure { get; set; }
-
         public Adventure AdventureIsLiked { get; set; }
 
 

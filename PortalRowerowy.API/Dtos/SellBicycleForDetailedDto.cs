@@ -18,7 +18,7 @@ namespace PortalRowerowy.API.Dtos
         public int UserId { get; set; }
         public string PhotoUrl { get; set; }
 
-
+        // public string City { get {return User.City; }}
         public User User { get; set; }
     }
 }

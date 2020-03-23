@@ -18,12 +18,15 @@ namespace PortalRowerowy.API.Controllers
     public class SellBicyclesController : ControllerBase
     {
         private readonly ISellBicycleRepository _repo;
+        private readonly IUserRepository _repository;
         private readonly IMapper _mapper;
 
-        public SellBicyclesController(ISellBicycleRepository repo, IMapper mapper)
+        public SellBicyclesController(IUserRepository repository, ISellBicycleRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
+            _repository = repository;
+
         }
 
         [HttpGet] //pobieranie wszystkich rowerów
@@ -87,6 +90,40 @@ namespace PortalRowerowy.API.Controllers
             return CreatedAtRoute("GetSellBicycle", new { controller = "SellBicycles", Id = createdSellBicycle.Id }, sellBicycleToReturn);
         }
 
+        [HttpPost("{recipientSellBicycleId}/likesellbicycle/{id}")]
+        public async Task<IActionResult> LikeSellBicycle(int id, int recipientSellBicycleId)
+        {
+            // if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //     return Unauthorized();
+
+            var like = await _repo.GetSellBicycleLike(id, recipientSellBicycleId);
+
+            if (like != null)
+            {
+                _repo.Delete<SellBicycleLike>(like);
+                await _repo.SaveAll();
+                return BadRequest("Już lubisz ten rower!");
+            }
+            else
+            {
+                if (await _repo.GetSellBicycle(recipientSellBicycleId) == null)
+                    return NotFound();
+
+                like = new SellBicycleLike
+                {
+                    UserLikesSellBicycleId = id,
+                    SellBicycleIsLikedId = recipientSellBicycleId
+                };
+
+                _repo.Add<SellBicycleLike>(like);
+
+                if (await _repo.SaveAll())
+                    return Ok();
+            }
+            return BadRequest("Nie można polubić użytkownika");
+        }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSellBicycle(/*int userId,*/ int id)
         {
@@ -115,4 +152,5 @@ namespace PortalRowerowy.API.Controllers
             return BadRequest("Nie udało się usunąć zdjęcia");
         }
     }
+
 }

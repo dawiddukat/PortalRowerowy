@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using PortalRowerowy.API.Data;
 using PortalRowerowy.API.Dtos;
 using PortalRowerowy.API.Helpers;
@@ -31,26 +30,6 @@ namespace PortalRowerowy.API.Controllers
             _repository = repository;
         }
 
-
-        [HttpPost("add/")]
-        public async Task<IActionResult> Add(int userId, AdventureForAddDto adventureForAddDto)
-        {
-            //if (!ModelState.IsValid)
-            //return BadRequest(ModelState);
-            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
-            adventureForAddDto.adventureName = adventureForAddDto.adventureName.ToLower(); //z małych liter użytkownik
-
-            adventureForAddDto.UserId = UserId;
-
-            var adventureToCreate = _mapper.Map<Adventure>(adventureForAddDto);
-
-            var createdAdventure = await _repo.Add(adventureToCreate);
-
-            var adventureToReturn = _mapper.Map<AdventureForDetailedDto>(createdAdventure);
-
-            return CreatedAtRoute("GetAdventure", new { controller = "Adventures", Id = createdAdventure.Id }, adventureToReturn);
-        }
 
         [HttpGet] //pobieranie wszystkich rowerów
         public async Task<IActionResult> GetAdventures([FromQuery]AdventureParams adventureParams)
@@ -92,6 +71,25 @@ namespace PortalRowerowy.API.Controllers
             throw new Exception($"Aktualizacja wyprawy o id: {id} nie powiodła sie przy zapisywaniu do bazy");
         }
 
+        [HttpPost("add/")]
+        public async Task<IActionResult> Add(int userId, AdventureForAddDto adventureForAddDto)
+        {
+            //if (!ModelState.IsValid)
+            //return BadRequest(ModelState);
+            var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            adventureForAddDto.adventureName = adventureForAddDto.adventureName.ToLower(); //z małych liter użytkownik
+
+            adventureForAddDto.UserId = UserId;
+
+            var adventureToCreate = _mapper.Map<Adventure>(adventureForAddDto);
+
+            var createdAdventure = await _repo.Add(adventureToCreate);
+
+            var adventureToReturn = _mapper.Map<AdventureForDetailedDto>(createdAdventure);
+
+            return CreatedAtRoute("GetAdventure", new { controller = "Adventures", Id = createdAdventure.Id }, adventureToReturn);
+        }
 
 
         [HttpPost("{recipientAdventureId}/likeadventure/{id}")]

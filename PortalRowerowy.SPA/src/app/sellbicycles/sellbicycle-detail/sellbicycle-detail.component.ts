@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { SellBicycle } from 'src/app/_models/SellBicycle';
 import { error } from 'protractor';
 import { NgxGalleryAnimation, NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
+import { UserService } from 'src/app/_services/user.service';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-sellbicycle-detail',
@@ -20,7 +22,7 @@ export class SellBicycleDetailComponent implements OnInit {
 
   constructor(private sellBicycleService: SellBicycleService,
     private alertify: AlertifyService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
     this.route.data.subscribe(data => {
@@ -61,5 +63,14 @@ export class SellBicycleDetailComponent implements OnInit {
       });
     }
     return imagesUrls;
+  }
+
+  sendLike(id: number) {
+    this.userService.sendSellBicycleLike(this.authService.decodedToken.nameid, this.sellBicycle.id)
+      .subscribe(data => {
+        this.alertify.success('Polubiłeś: ' + this.sellBicycle.sellBicycleName + '!');
+      }, error => {
+        this.alertify.error('Już nie lubisz tej wyprawy!');
+      });
   }
 }
