@@ -12,5 +12,5 @@ export interface Adventure {
     photoUrl: string;
     userId: number;
     typeBicycle: string;
-    // user: User;
+    user: User;
 }

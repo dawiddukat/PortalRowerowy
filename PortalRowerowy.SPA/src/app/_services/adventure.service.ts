@@ -7,8 +7,6 @@ import { PaginationResult } from '../_models/pagination';
 import { map } from 'rxjs/operators';
 import { add } from 'ngx-bootstrap/chronos/public_api';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,47 +14,35 @@ export class AdventureService {
 
   // baseUrl = 'http://localhost:5000/api/';
   baseUrl = environment.apiUrl;
-
-  // currentAdventure: Adventure;
-  // photoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
-  // currentAdventurePhotoUrl = this.photoUrl.asObservable();
-
   constructor(private http: HttpClient) { }
 
-  // changeAdventurePhoto(photoUrl: string) {
-  //   this.photoUrl.next(photoUrl);
-  // }
-
-
-  getAdventures(page?, itemsPerPage?, adventureParams?): Observable<PaginationResult<Adventure[]>> {
+  getAdventures(page?, itemsPerPage?, adventureParams?, adventureLikeParams?): Observable<PaginationResult<Adventure[]>> {
     const paginationResult: PaginationResult<Adventure[]> = new PaginationResult<Adventure[]>();
     let params = new HttpParams();
 
     if (page != null && itemsPerPage != null) {
       params = params.append('pageNumber', page);
       params = params.append('pageSize', itemsPerPage);
-
-
-
     }
 
     if (adventureParams != null) {
       params = params.append('minDistance', adventureParams.minDistance);
       params = params.append('maxDistance', adventureParams.maxDistance);
       params = params.append('typeBicycle', adventureParams.typeBicycle);
-
       params = params.append('orderBy', adventureParams.orderBy);
+    }
+
+    if (adventureLikeParams === 'UserLikesAdventure') {
+      params = params.append('UserLikesAdventure', 'true');
     }
 
     return this.http.get<Adventure[]>(this.baseUrl + 'adventures', { observe: 'response', params })
       .pipe(
         map(response => {
-          paginationResult.result = response.body;
-          
+          paginationResult.result = response.body;          
           if (response.headers.get('Pagination') != null) {
             paginationResult.pagination = JSON.parse(response.headers.get('Pagination'));
           }
-
           return paginationResult;
         })
       );

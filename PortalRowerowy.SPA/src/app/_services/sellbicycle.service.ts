@@ -1,26 +1,21 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { SellBicycle } from '../_models/sellbicycle';
 import { PaginationResult } from '../_models/pagination';
 import { map } from 'rxjs/operators';
-
-
-
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class SellBicycleService {
-
   // baseUrl = 'http://localhost:5000/api/';
     baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
-  getSellBicycles(page?, itemsPerPage?, sellBicycleParams?): Observable<PaginationResult<SellBicycle[]>> {
+  getSellBicycles(page?, itemsPerPage?, sellBicycleParams?, sellBicycleLikeParams?): Observable<PaginationResult<SellBicycle[]>> {
     const paginationResult: PaginationResult<SellBicycle[]> = new PaginationResult<SellBicycle[]>();
     let params = new HttpParams();
 
@@ -34,19 +29,19 @@ export class SellBicycleService {
       params = params.append('maxPrice', sellBicycleParams.maxPrice);
       params = params.append('typeBicycle', sellBicycleParams.typeBicycle);
       params = params.append('orderBy', sellBicycleParams.orderBy);
-
     }
 
+    if (sellBicycleLikeParams === 'UserLikesSellBicycle') {
+      params = params.append('UserLikesSellBicycle', 'true');
+    }
 
     return this.http.get<SellBicycle[]>(this.baseUrl + 'sellbicycles', { observe: 'response', params })
       .pipe(
         map(response => {
           paginationResult.result = response.body;
-
           if (response.headers.get('Pagination') != null) {
             paginationResult.pagination = JSON.parse(response.headers.get('Pagination'));
           }
-
           return paginationResult;
         })
       );

@@ -60,6 +60,10 @@ import { AdventureCardEditComponent } from './adventures/adventure-card-edit/adv
 import { SellBicycleCardEditComponent } from './sellbicycles/sellbicycle-card-edit/sellbicycle-card-edit.component';
 import { AddAdventureComponent } from './adventures/adventure-add/adventure-add.component';
 import { AddSellBicycleComponent } from './sellbicycles/sellbicycle-add/sellbicycle-add.component';
+import { AdventureLikeComponent } from './adventureLike/adventureLike.component';
+import { AdventureLikeResolver } from './_resolvers/adventureLike.resolver';
+import { SellBicycleLikeComponent } from './sellBicycleLike/sellBicycleLike.component';
+import { SellBicycleLikeResolver } from './_resolvers/sellBicycleLike.resolver';
 
 
 export function tokenGetter() {
@@ -109,7 +113,10 @@ export class CustomHammerConfig extends HammerGestureConfig {
       UserDetailComponent,
       UserEditComponent,
       UserPhotosComponent,
-      UserMessagesComponent
+      UserMessagesComponent,
+
+      AdventureLikeComponent,
+      SellBicycleLikeComponent
 
    ],
    imports: [
@@ -156,9 +163,13 @@ export class CustomHammerConfig extends HammerGestureConfig {
       AdventureListResolver,
       AdventureEditResolver,
 
+      AdventureLikeResolver,
+
       SellBicycleListResolver,  
       SellBicycleDetailResolver,
-      SellBicycleEditResolver
+      SellBicycleEditResolver,
+
+      SellBicycleLikeResolver
    ],
    bootstrap: [
       AppComponent

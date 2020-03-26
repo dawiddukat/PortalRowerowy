@@ -1,0 +1,26 @@
+<div class="text-center mt-3">
+    <!-- <h2>{{adventureLikeParams === 'UserLikesSellBicycle' ? 'Obserwowane wyprawy' : 'Obserwowane rowery'}}
+    : {{pagination.totalItems}}</h2> -->
+</div>
+<div class="container mt-3">
+  <div class="row">
+    <div class="btn-group position-absolute-center">
+      <button class="btn btn-primary" [(ngModel)]="adventureLikeParams" btnRadio="UserLikesAdventure" (click)="loadAdventures()">
+        Obserwowane wyprawy</button>
+    </div>
+  </div>
+  <br>
+  <form #editForm="ngForm" id="editForm" (ngSubmit)="loadAdventures()">
+  <div class="row">
+    <div *ngFor="let adventure of adventures" style="text-align: center;">
+      <app-adventure-card [adventure]='adventure'> </app-adventure-card>
+    </div>
+  </div>
+</form>
+
+  <div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>

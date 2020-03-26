@@ -30,6 +30,10 @@ import { AdventureEditComponent } from './adventures/adventure-edit/adventure-ed
 import { AdventureEditResolver } from './_resolvers/adventure-edit.resolver';
 import { SellBicycleEditComponent } from './sellbicycles/sellbicycle-edit/sellbicycle-edit.component';
 import { SellBicycleEditResolver } from './_resolvers/sellBicycle-edit.resolver';
+import { AdventureLikeComponent } from './adventureLike/adventureLike.component';
+import { AdventureLikeResolver } from './_resolvers/adventureLike.resolver';
+import { SellBicycleLikeComponent } from './sellBicycleLike/sellBicycleLike.component';
+import { SellBicycleLikeResolver } from './_resolvers/sellBicycleLike.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
@@ -40,6 +44,9 @@ export const appRoutes: Routes = [
         children: [
             { path: 'uzytkownicy', component: UserListComponent, resolve: { users: UserListResolver } }, // canActivate: [AuthGuard] },
             { path: 'przyjaciele', component: FriendsComponent, resolve: { users: FriendsResolver } },
+
+            { path: 'obserwowane_wyprawy', component: AdventureLikeComponent, resolve: { adventures: AdventureLikeResolver } },
+            { path: 'obserwowane_rowery', component: SellBicycleLikeComponent, resolve: { sellBicycles: SellBicycleLikeResolver } },
 
             // tslint:disable-next-line: max-line-length
             { path: 'uzytkownik/edycja', component: UserEditComponent, resolve: { user: UserEditResolver }, canDeactivate: [PreventUnsavedChanges] },

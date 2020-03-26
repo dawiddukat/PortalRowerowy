@@ -34,8 +34,6 @@
         </button>
       </form>
       <br />
-
-
       <br />
 
       <div class="row">
@@ -43,10 +41,8 @@
           <app-adventure-card [adventure]="adventure"> </app-adventure-card>
         </div>
       </div>
-      <!-- <p>Wartości z formularza: {{adventures | json }}</p> -->
 
       <div class=footer-nav-wrapper>
-
         <div class="d-flex justify-content-center">
           <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems"
             [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage"
@@ -69,19 +65,17 @@
       </div>
     </div>
 
-
-      <div class="text-center main-button-wrapper">
-        <button class="btn btn-primary btn-lg mr-3" (click)="addAdventureToggle()">Dodaj wyprawę!</button>
-      </div>
+    <div class="text-center main-button-wrapper">
+      <button class="btn btn-primary btn-lg mr-3" (click)="addAdventureToggle()">Dodaj wyprawę!</button>
     </div>
   </div>
 
-    <div *ngIf="addAdventureMode" class="container">
-      <div class="row justify-content-center">
-        <div class="col-4">
+  <div *ngIf="addAdventureMode" class="container">
+    <div class="row justify-content-center">
+      <div class="col-4">
 
-          <!--<app-register [valuesFromHome]="values" (cancelRegister)="cancelRegisterMode($event)"> </app-register> BYŁO PRZY FORMULARZU ROZWIJALNYM-->
-          <app-adventure-add (cancelAddAdventure)="cancelAddAdventureMode($event)"> </app-adventure-add>
-        </div>
+        <!--<app-register [valuesFromHome]="values" (cancelRegister)="cancelRegisterMode($event)"> </app-register> BYŁO PRZY FORMULARZU ROZWIJALNYM-->
+        <app-adventure-add (cancelAddAdventure)="cancelAddAdventureMode($event)"> </app-adventure-add>
       </div>
     </div>
+  </div>

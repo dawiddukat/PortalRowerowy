@@ -1,0 +1,26 @@
+<div class="text-center mt-3">
+  <h2>{{sellBicycleLikeParams === 'UserLikesSellBicycle' ? 'Obserwowane wyprawy' : 'Obserwowane rowery'}}
+    : {{pagination.totalItems}}</h2>
+</div>
+<div class="container mt-3">
+  <div class="row">
+    <div class="btn-group position-absolute-center">
+      <button class="btn btn-primary" [(ngModel)]="sellBicycleLikeParams" btnRadio="UserLikesSellBicycle" (click)="loadSellBicycles()">
+        Obserwowane Rowery </button>
+    </div>
+  </div>
+  <br>
+  <form #editForm="ngForm" id="editForm" (ngSubmit)="loadSellBicycles()">
+    <div class="row"> 
+      <div *ngFor="let sellBicycle of sellBicycles" style="text-align: center;">
+        <app-sellbicycle-card [sellBicycle]='sellBicycle'> </app-sellbicycle-card>
+      </div>
+   </div>
+  </form>
+
+  <div class="d-flex justify-content-center">
+    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+    </pagination>
+  </div>

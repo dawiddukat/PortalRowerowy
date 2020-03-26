@@ -3,6 +3,7 @@ import { Adventure } from 'src/app/_models/adventure';
 import { AuthService } from 'src/app/_services/auth.service';
 import { AdventureService } from 'src/app/_services/adventure.service';
 import { AlertifyService } from 'src/app/_services/alertify.service';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-adventure-card-edit',
@@ -12,6 +13,7 @@ import { AlertifyService } from 'src/app/_services/alertify.service';
 export class AdventureCardEditComponent implements OnInit {
 
   @Input() adventure: Adventure;
+  user: User[];
   adventures: Adventure[];
 
   constructor(private authService: AuthService,
