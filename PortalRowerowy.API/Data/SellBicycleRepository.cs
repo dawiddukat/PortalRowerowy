@@ -37,6 +37,22 @@ namespace PortalRowerowy.API.Data
                 sellBicycles = sellBicycles.Where(a => a.TypeBicycle == sellBicycleParams.TypeBicycle);
 
 
+            if (sellBicycleParams.UserLikesSellBicycle)
+            {
+                // var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+                var userLikesAdventure = await GetSellBicycleLikes(sellBicycleParams.UserId, sellBicycleParams.SellBicycleIsLiked);
+                sellBicycles = sellBicycles.Where(u => userLikesAdventure.Contains(u.Id));
+            }
+
+            if (sellBicycleParams.SellBicycleIsLiked)
+            {
+                // var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+                var adventureIsLiked = await GetSellBicycleLikes(sellBicycleParams.UserId, sellBicycleParams.UserLikesSellBicycle);
+                sellBicycles = sellBicycles.Where(u => adventureIsLiked.Contains(u.Id));
+            }
+
             if (!string.IsNullOrEmpty(sellBicycleParams.OrderBy))
             {
                 switch (sellBicycleParams.OrderBy)
@@ -77,6 +93,36 @@ namespace PortalRowerowy.API.Data
             await _context.SaveChangesAsync();
 
             return sellBicycle;
+        }
+
+        public async Task<SellBicycleLike> GetSellBicycleLike(int userId, int recipientSellBicycleId)
+        {
+            return await _context.SellBicycleLikes
+            .FirstOrDefaultAsync(u => u.UserLikesSellBicycleId == userId && u.SellBicycleIsLikedId == recipientSellBicycleId);
+        }
+
+
+        private async Task<IEnumerable<int>> GetSellBicycleLikes(int id, bool userLikesSellBicycle)
+        {
+            var sellBicycle = await _context.SellBicycles
+            .Include(x => x.UserLikesSellBicycle)
+            .FirstOrDefaultAsync(u => u.Id == id);
+
+            // var user = await _context.Users
+            // .Include(x => x.AdventureIsLiked)
+            // .FirstOrDefaultAsync(u => u.Id == id);
+
+            if (userLikesSellBicycle)
+            {
+                return sellBicycle.UserLikesSellBicycle.Where(u => u.SellBicycleIsLikedId == id)
+                .Select(i => i.UserLikesSellBicycleId);
+            }
+            else
+            {
+                return sellBicycle.UserLikesSellBicycle.Where(u => u.SellBicycleIsLikedId == id)
+                .Select(i => i.UserLikesSellBicycleId);
+
+            }
         }
     }
 }

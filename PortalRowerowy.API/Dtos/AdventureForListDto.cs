@@ -16,5 +16,6 @@ namespace PortalRowerowy.API.Dtos
         public DateTime DateAdded { get; set; }
         public int UserId { get; set; }
         public string PhotoUrl { get; set; }
+        
     }
 }

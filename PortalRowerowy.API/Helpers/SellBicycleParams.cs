@@ -19,6 +19,12 @@ namespace PortalRowerowy.API.Helpers
         // public bool UserIsLiked { get; set; } = false;
         // public bool UserLikesAdventure { get; set; } = false;
         // public bool AdventureIsLiked { get; set; } = false;
+        public int UserId { get; set; } = 3;
+
+
+        public bool UserLikesSellBicycle { get; set; } = false;
+        public bool SellBicycleIsLiked { get; set; } = false;
+
 
 
     }

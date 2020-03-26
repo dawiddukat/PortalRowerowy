@@ -20,8 +20,8 @@ namespace PortalRowerowy.API.Data
         public async Task<User> GetUser(int id)
         {
             var user = await _context.Users.Include(p => p.UserPhotos)
-            .Include(a => a.Adventures)
-            .Include(s => s.SellBicycles)
+            .Include(a => a.Adventures).ThenInclude(p => p.AdventurePhotos)
+            .Include(s => s.SellBicycles).ThenInclude(p => p.SellBicyclePhotos)
             .FirstOrDefaultAsync(u => u.Id == id); //jak przypisać Adventures, UserPhotos, SellBicycles??
             return user;
         }
@@ -51,6 +51,18 @@ namespace PortalRowerowy.API.Data
             {
                 var UserIsLiked = await GetUserLikes(userParams.UserId, userParams.UserLikes);
                 users = users.Where(u => UserIsLiked.Contains(u.Id));
+            }
+
+            if (userParams.AdventureIsLiked)
+            {
+                var AdventureIsLiked = await GetUserLikesAdventure(userParams.UserId, userParams.UserLikesAdventure);
+                users = users.Where(u => AdventureIsLiked.Contains(u.Id));
+            }
+
+            if (userParams.UserLikesAdventure)
+            {
+                var userLikesAdventure = await GetUserLikesAdventure(userParams.UserId, userParams.UserLikesAdventure);
+                users = users.Where(u => userLikesAdventure.Contains(u.Id));
             }
 
             if (userParams.MinAge != 0 || userParams.MaxAge != 100)
@@ -117,6 +129,31 @@ namespace PortalRowerowy.API.Data
             }
         }
 
+        private async Task<IEnumerable<int>> GetUserLikesAdventure(int id, bool userLikesAdventure)
+        {
+            var adventure = await _context.Adventures
+            .Include(x => x.UserLikesAdventure)
+            .FirstOrDefaultAsync(u => u.Id == id);
+
+            var user = await _context.Users
+            .Include(x => x.AdventureIsLiked)
+            .FirstOrDefaultAsync(u => u.Id == id);
+
+            if (userLikesAdventure)
+            {
+                return user.AdventureIsLiked.Where(u => u.UserLikesAdventureId == id)
+                .Select(i => i.AdventureIsLikedId);
+   
+            }
+            else
+            {
+             return adventure
+                .UserLikesAdventure.Where(u => u.AdventureIsLikedId == id)
+                .Select(i => i.UserLikesAdventureId);
+
+            }
+        }
+
         public async Task<Message> GetMessage(int id)
         {
             return await _context.Messages.FirstOrDefaultAsync(m => m.Id == id);
@@ -129,10 +166,10 @@ namespace PortalRowerowy.API.Data
 
             switch (messageParams.MessageContainer)
             {
-                case "Inbox" :
+                case "Inbox":
                     messages = messages.Where(u => u.RecipientId == messageParams.UserId && u.RecipientDeleted == false);
                     break;
-                case "Outbox" :
+                case "Outbox":
                     messages = messages.Where(u => u.SenderId == messageParams.UserId && u.SenderDeleted == false);
                     break;
                 default:

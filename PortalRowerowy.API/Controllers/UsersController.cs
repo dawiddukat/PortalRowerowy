@@ -28,11 +28,13 @@ namespace PortalRowerowy.API.Controllers
         }
 
         [HttpGet] //pobieranie wszystkich użytkowników
-        public async Task<IActionResult> GetUsers([FromQuery] UserParams userParams)
+        public async Task<IActionResult> GetUsers([FromQuery] UserParams userParams, [FromQuery] AdventureParams adventureParams)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var userFromRepo = await _repo.GetUser(currentUserId);
             userParams.UserId = currentUserId;
+            // adventureParams.UserId = currentUserId;
+            // adventureParams.UserId = currentUserId;
 
             /* if (string.IsNullOrEmpty(userParams.Gender))
                  {

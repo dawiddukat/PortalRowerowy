@@ -18,6 +18,9 @@ namespace PortalRowerowy.API.Data
         public DbSet<Message> Messages { get; set; }
         public DbSet<AdventureLike> AdventureLikes { get; set; }
 
+        public DbSet<SellBicycleLike> SellBicycleLikes { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Like>()
@@ -60,6 +63,21 @@ namespace PortalRowerowy.API.Data
             .HasForeignKey(u => u.UserLikesAdventureId)
             .OnDelete(DeleteBehavior.Restrict);
 
+
+            builder.Entity<SellBicycleLike>()
+            .HasKey(k => new { k.UserLikesSellBicycleId, k.SellBicycleIsLikedId });
+
+            builder.Entity<SellBicycleLike>()
+            .HasOne(u => u.SellBicycleIsLiked)
+            .WithMany(u => u.UserLikesSellBicycle)
+            .HasForeignKey(u => u.SellBicycleIsLikedId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<SellBicycleLike>()
+            .HasOne(u => u.UserLikesSellBicycle)
+            .WithMany(u => u.SellBicycleIsLiked)
+            .HasForeignKey(u => u.UserLikesSellBicycleId)
+            .OnDelete(DeleteBehavior.Restrict);
 
             // builder.Entity<AdventureLike>()
             // .HasKey(k => new { k.UserLikesAdventureId, k.AdventureIsLikedId });

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PortalRowerowy.API.Helpers;
@@ -31,7 +32,7 @@ namespace PortalRowerowy.API.Data
             .AsQueryable();
 
 
-            // adventures = adventures.Where(a => a.TypeBicycle== adventureParams.TypeBicycle);
+            // adventures = adventures.Where(a => a.Id == adventureParams.AdventureId);
 
             if (adventureParams.MinDistance != 0 || adventureParams.MaxDistance != 10000)
             {
@@ -42,6 +43,22 @@ namespace PortalRowerowy.API.Data
 
             if (adventureParams.TypeBicycle != "Wszystkie")
                 adventures = adventures.Where(a => a.TypeBicycle == adventureParams.TypeBicycle);
+
+            if (adventureParams.UserLikesAdventure)
+            {
+                // var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+                var userLikesAdventure = await GetAdventureLikes(adventureParams.UserId, adventureParams.AdventureIsLiked);
+                adventures = adventures.Where(u => userLikesAdventure.Contains(u.Id));
+            }
+
+            if (adventureParams.AdventureIsLiked)
+            {
+                // var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+                var adventureIsLiked = await GetAdventureLikes(adventureParams.UserId, adventureParams.UserLikesAdventure);
+                adventures = adventures.Where(u => adventureIsLiked.Contains(u.Id));
+            }
 
 
             if (!string.IsNullOrEmpty(adventureParams.OrderBy))
@@ -57,14 +74,8 @@ namespace PortalRowerowy.API.Data
                 }
             }
 
-
-
-
             return await PagesList<Adventure>.CreateListAsync(adventures, adventureParams.PageNumber, adventureParams.PageSize);
         }
-
-
-
         public async Task<Adventure> Add(Adventure adventure) //dodanie wyprawy
         {
             // byte[] passwordHash, passwordSalt;
@@ -97,33 +108,49 @@ namespace PortalRowerowy.API.Data
             .FirstOrDefaultAsync(u => u.UserLikesAdventureId == userId && u.AdventureIsLikedId == recipientAdventureId);
         }
 
-        // public async Task<AdventureLike> GetAdventureLikes(int adventureId, int userLikesAdventure)
+        private async Task<IEnumerable<int>> GetAdventureLikes(int id, bool userLikesAdventure)
+        {
+            var adventure = await _context.Adventures
+            .Include(x => x.UserLikesAdventure)
+            .FirstOrDefaultAsync(u => u.Id == id);
+
+            // var user = await _context.Users
+            // .Include(x => x.AdventureIsLiked)
+            // .FirstOrDefaultAsync(u => u.Id == id);
+
+            if (userLikesAdventure)
+            {
+                return adventure.UserLikesAdventure.Where(u => u.AdventureIsLikedId == id)
+                .Select(i => i.UserLikesAdventureId);
+            }
+            else
+            {
+                return adventure.UserLikesAdventure.Where(u => u.AdventureIsLikedId == id)
+                   .Select(i => i.UserLikesAdventureId);
+
+            }
+        }
+
+
+        // adventureLikes = true;
+
+        // if (adventureLikes)
         // {
-        //     var adventure = await _context.Adventures
-        //     // .Include(x => x.AdventureIsLiked)
-        //     .Include(x => x.UserLikesAdventure)
-        //     .FirstOrDefaultAsync(a => a.UserId == adventureId);
+        //     var user = await _context.Users
+        //     .Include(x => x.AdventureIsLiked)
+        //     .FirstOrDefaultAsync(u => u.Id == id);
 
-        //     // var user = await _context.Users
-        //     // .Include(x => x.AdventureIsLiked)
-        //     // // .Include(x => x.UserLikesAdventure)
-        //     // .FirstOrDefaultAsync(u => u.Id == id);
+        //     var z = user.AdventureIsLiked.Where(u => u.UserLikesAdventureId == id)
+        //     .Select(i => i.AdventureIsLikedId);
 
-        //     // if (userLikesAdventure == 1)
-        //     {
-        //         return adventure;
-        //         // .UserLikesAdventure.Where(u => u.UserLikesAdventureId == adventureId)
-        //         // .Select(i => i.AdventureIsLikedId);
-        //     }
+        //     return z;
         // }
-
-        // public async Task<User> GetUser(int id)
+        // else
         // {
-        //     var user = await _context.Users.Include(p => p.UserPhotos)
-        //     .Include(a => a.Adventures)
-        //     .Include(s => s.SellBicycles)
-        //     .FirstOrDefaultAsync(u => u.Id == id); //jak przypisać Adventures, UserPhotos, SellBicycles??
-        //     return user;
+        //     return user.UserIsLiked.Where(u => u.UserLikesId == id)
+        //     .Select(i => i.UserIsLikedId);
+        //     return new List<int>();
+        // }
         // }
 
     }

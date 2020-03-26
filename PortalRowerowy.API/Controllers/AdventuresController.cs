@@ -28,12 +28,15 @@ namespace PortalRowerowy.API.Controllers
             _repo = repo;
             _mapper = mapper;
             _repository = repository;
+
         }
 
 
         [HttpGet] //pobieranie wszystkich rowerów
         public async Task<IActionResult> GetAdventures([FromQuery]AdventureParams adventureParams)
         {
+            adventureParams.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
             var adventures = await _repo.GetAdventures(adventureParams);
 
             var adventuresToReturn = _mapper.Map<IEnumerable<AdventureForListDto>>(adventures);
@@ -46,6 +49,7 @@ namespace PortalRowerowy.API.Controllers
         [HttpGet("{id}", Name = "GetAdventure")] //pobieranie roweru
         public async Task<IActionResult> GetAdventure(int id)
         {
+
             var adventure = await _repo.GetAdventure(id);
 
             var adventureToReturn = _mapper.Map<AdventureForDetailedDto>(adventure);
@@ -92,7 +96,7 @@ namespace PortalRowerowy.API.Controllers
         }
 
 
-        [HttpPost("{recipientAdventureId}/likeadventure/{id}")]
+        [HttpPost("{id}/likeadventure/{recipientAdventureId}")]
         public async Task<IActionResult> LikeAdventure(int id, int recipientAdventureId)
         {
             // if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))

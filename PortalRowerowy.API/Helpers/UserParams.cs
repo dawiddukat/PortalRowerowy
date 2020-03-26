@@ -11,6 +11,7 @@ namespace PortalRowerowy.API.Helpers
             set { pageSize = (value > MaxPageSize) ? MaxPageSize : value; }
         }
 
+
         public int UserId { get; set; }
         public string Gender { get; set; } = "Wszystkie";
         public string TypeBicycle { get; set; } = "Wszystkie";
@@ -25,6 +26,10 @@ namespace PortalRowerowy.API.Helpers
 
         public bool UserLikesAdventure { get; set; } = false;
         public bool AdventureIsLiked { get; set; } = false;
+
+        public bool UserLikesSellBicycle { get; set; } = false;
+        public bool SellBicycleIsLiked { get; set; } = false;
+
 
 
     }

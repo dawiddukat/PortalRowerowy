@@ -15,11 +15,14 @@ namespace PortalRowerowy.API.Helpers
         public int MinDistance { get; set; } = 0;
         public int MaxDistance { get; set; } = 10000;
         public string OrderBy { get; set; }
-        
+
         // // public bool UserLikes { get; set; } = false;
         // // public bool UserIsLiked { get; set; } = false;
-        // public bool UserLikesAdventure { get; set; } = false;
-        // public bool AdventureIsLiked { get; set; } = false;
+        public bool UserLikesAdventure { get; set; } = false;
+        public bool AdventureIsLiked { get; set; } = false;
+
+        public int UserId { get; set; }
+
 
 
     }

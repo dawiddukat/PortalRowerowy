@@ -32,6 +32,8 @@ namespace PortalRowerowy.API.Controllers
         [HttpGet] //pobieranie wszystkich rowerów
         public async Task<IActionResult> GetBicycles([FromQuery]SellBicycleParams sellBicycleParams)
         {
+            sellBicycleParams.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
             var sellBicycles = await _repo.GetSellBicycles(sellBicycleParams);
 
             var sellBicyclesToReturn = _mapper.Map<IEnumerable<SellBicycleForListDto>>(sellBicycles);
@@ -90,7 +92,7 @@ namespace PortalRowerowy.API.Controllers
             return CreatedAtRoute("GetSellBicycle", new { controller = "SellBicycles", Id = createdSellBicycle.Id }, sellBicycleToReturn);
         }
 
-        [HttpPost("{recipientSellBicycleId}/likesellbicycle/{id}")]
+        [HttpPost("{id}/likesellbicycle/{recipientSellBicycleId}")]
         public async Task<IActionResult> LikeSellBicycle(int id, int recipientSellBicycleId)
         {
             // if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
