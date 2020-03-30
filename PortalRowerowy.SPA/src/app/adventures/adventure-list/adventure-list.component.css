@@ -1,25 +1,30 @@
-
 .main-button-wrapper {
-    position: absolute;
-    right: 300px;
-    top: 13px;
+  position: absolute;
+  right: 300px;
+  top: 13px;
 }
 
 .main-button-wrapper button {
-    background: #fff;
-    color: #78C2AD;
-    text-transform: uppercase;
-    font-size: 14px;
-
+  background: #fff;
+  color: #78c2ad;
+  text-transform: uppercase;
+  font-size: 14px;
 }
+
+
+
 
 @media (max-width: 998px) {
    
     .main-button-wrapper {
-        position: static;
+        position: absolute;
+    right: 100px;
+    top: 80px;
+
+        /* position: static;
         margin: 20px auto;
         width: 100%;
-        max-width: 500px;
+        max-width: 500px; */
     } 
 
     .main-button-wrapper button {
@@ -29,9 +34,93 @@
 
 }
 
+@media (max-width: 776px) {
+   
+    .main-button-wrapper {
+        position: absolute;
+     right: 100px;
+    top: 250px;
+
+        /* position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 500px; */
+    } 
+
+    .main-button-wrapper button {
+        width: 100%;
+    
+    }
+
+}
+
+@media (max-width: 641px) {
+   
+    .main-button-wrapper {
+        position: absolute;
+     right: 100px;
+    top: 280px;
+
+        /* position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 500px; */
+    } 
+
+    .main-button-wrapper button {
+        width: 100%;
+    
+    }
+
+}
+
+@media (max-width: 575px) {
+   
+    .main-button-wrapper {
+        position: absolute;
+    right: 100px;
+    top: 380px;
+
+        /* position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 500px; */
+    } 
+
+    .main-button-wrapper button {
+        width: 100%;
+    
+    }
+
+}
+
+@media (max-width: 400px) {
+   
+    .main-button-wrapper {
+        position: absolute;
+    right: 100px;
+    top: 420px;
+
+        /* position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 500px; */
+    } 
+
+    .main-button-wrapper button {
+        width: 100%;
+    
+    }
+
+}
+
+
+
+
+
 .footer-nav-wrapper {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 40px;
 }

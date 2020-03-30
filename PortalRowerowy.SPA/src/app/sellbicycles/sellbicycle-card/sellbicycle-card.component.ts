@@ -24,7 +24,7 @@ export class SellBicycleCardComponent implements OnInit {
   sendLike(id: number) {
     this.userService.sendSellBicycleLike(this.authService.decodedToken.nameid, this.sellBicycle.id)
       .subscribe(data => {
-        this.alertify.success('Polubiłeś: ' + this.sellBicycle.sellBicycleName + '!');
+        this.alertify.success('Obserwujesz: ' + this.sellBicycle.sellBicycleName + '!');
       }, error => {
         this.alertify.error(error);
       });

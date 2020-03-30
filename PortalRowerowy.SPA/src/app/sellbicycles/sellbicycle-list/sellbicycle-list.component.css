@@ -16,10 +16,94 @@
 @media (max-width: 998px) {
    
     .main-button-wrapper {
-        position: static;
+        position: absolute;
+    right: 100px;
+    top: 80px;
+
+        /* position: static;
         margin: 20px auto;
         width: 100%;
-        max-width: 500px;
+        max-width: 500px; */
+    } 
+
+    .main-button-wrapper button {
+        width: 100%;
+    
+    }
+
+}
+
+@media (max-width: 776px) {
+   
+    .main-button-wrapper {
+        position: absolute;
+     right: 100px;
+    top: 250px;
+
+        /* position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 500px; */
+    } 
+
+    .main-button-wrapper button {
+        width: 100%;
+    
+    }
+
+}
+
+@media (max-width: 641px) {
+   
+    .main-button-wrapper {
+        position: absolute;
+     right: 100px;
+    top: 280px;
+
+        /* position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 500px; */
+    } 
+
+    .main-button-wrapper button {
+        width: 100%;
+    
+    }
+
+}
+
+@media (max-width: 575px) {
+   
+    .main-button-wrapper {
+        position: absolute;
+    right: 100px;
+    top: 380px;
+
+        /* position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 500px; */
+    } 
+
+    .main-button-wrapper button {
+        width: 100%;
+    
+    }
+
+}
+
+@media (max-width: 400px) {
+   
+    .main-button-wrapper {
+        position: absolute;
+    right: 100px;
+    top: 420px;
+
+        /* position: static;
+        margin: 20px auto;
+        width: 100%;
+        max-width: 500px; */
     } 
 
     .main-button-wrapper button {
