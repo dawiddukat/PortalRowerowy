@@ -7,25 +7,25 @@
       <div class="card">
         <img class="card-img-top img-thumbnail" src="{{sellBicycle.photoUrl || '.../../../../../assets/user2.png'}}" alt="{{sellBicycle.sellBicycleName}}">
         <div class="card-body">
-          <div>
+          <!-- <div>
             <strong>Nazwa: </strong>
             <p class="text-capitalize"> {{sellBicycle.sellBicycleName}} </p>
-          </div>
+          </div> -->
           <div>
             <strong>Cena: </strong>
-            <p> {{sellBicycle.price}} zł </p>
+            {{sellBicycle.price}} zł
           </div>
           <div>
             <strong>Typ: </strong>
-            <p>{{sellBicycle.typeBicycle}}</p>
+            {{sellBicycle.typeBicycle}}
           </div>
           <div>
             <strong>Data dodania: </strong>
-            <p> {{sellBicycle.dateAdded |  date: 'longDate'}} </p>
+            {{sellBicycle.dateAdded |  date: 'longDate'}}
           </div>
           <div>
             <strong>Lokalizacja: </strong>
-            <p>{{sellBicycle.user.country}}, {{sellBicycle.user.city}} </p>
+            {{sellBicycle.user.country}}, {{sellBicycle.user.voivodeship}}, {{sellBicycle.user.city}}
           </div>
           <!-- <div >
 
@@ -36,7 +36,7 @@
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <button class="btn btn-success w-100" (click)="sendLike(sellBicycle.id)">Lubię</button>
+            <button class="btn btn-success w-100" (click)="sendLike(sellBicycle.id)">Obserwuj</button>
             <button class="btn btn-primary w-100" [routerLink]="['/uzytkownicy/', sellBicycle.userId]" [queryParams]="{tab: 4}" (click)="$event.stopPropagation()">Wiadomość do sprzedającego</button>
           </div>
         </div>

@@ -3,7 +3,7 @@
   <div *ngIf="!addSellBicycleMode" style="text-align: center">
     <div class="row">
       <div class="text-center mt-3">
-        <h3>Znalezionych pozycji : {{ pagination.totalItems }} </h3>
+        <pre><h3>Znalezionych pozycji: {{ pagination.totalItems }}  </h3></pre>
       </div>
 
       <form class="form-inline" #form="ngForm" (ngSubmit)="loadSellBicycles()" novalidate>

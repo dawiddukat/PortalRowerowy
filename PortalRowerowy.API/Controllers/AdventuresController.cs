@@ -82,7 +82,7 @@ namespace PortalRowerowy.API.Controllers
             //return BadRequest(ModelState);
             var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            adventureForAddDto.adventureName = adventureForAddDto.adventureName.ToLower(); //z małych liter użytkownik
+            adventureForAddDto.adventureName = adventureForAddDto.adventureName; //z małych liter użytkownik
 
             adventureForAddDto.UserId = UserId;
 

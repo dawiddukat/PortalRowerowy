@@ -80,7 +80,7 @@ namespace PortalRowerowy.API.Controllers
             //return BadRequest(ModelState);
             var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            sellBicycleForAddDto.sellBicycleName = sellBicycleForAddDto.sellBicycleName.ToLower(); //z małych liter użytkownik
+            sellBicycleForAddDto.sellBicycleName = sellBicycleForAddDto.sellBicycleName; //z małych liter użytkownik
 
             sellBicycleForAddDto.UserId = UserId;
 
@@ -104,7 +104,7 @@ namespace PortalRowerowy.API.Controllers
             {
                 _repo.Delete<SellBicycleLike>(like);
                 await _repo.SaveAll();
-                return BadRequest("Już lubisz ten rower!");
+                return BadRequest("Już nie obserwujesz tego roweru!");
             }
             else
             {

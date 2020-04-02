@@ -5,6 +5,7 @@
     Password: 'password',
     Bicycles: '{{random("KROSS", "GIANT", "KELLYS", "MERIDA")}}',
     City: '{{city()}}',
+    Voivodeship: '{{voivodeship()}}',
     Country: 'Polska',    
         TypeBicycle:'{{random("MTB", "ROAD", "CITY", "EBIKE")}}',
     Created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',

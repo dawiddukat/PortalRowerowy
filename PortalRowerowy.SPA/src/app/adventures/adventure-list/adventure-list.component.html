@@ -2,13 +2,14 @@
 
   <div *ngIf="!addAdventureMode" style="text-align: center">
     <div class="row">
-      <div class="text-center mt-3">
-        <h2>Znalezionych pozycji : {{ pagination.totalItems }}</h2>
+      <div class="text-center mt-3 float:left; margin:10px;">
+                       
+        <pre><h2 >Znalezionych pozycji: {{pagination.totalItems}}  </h2></pre>
       </div>
 
       <form class="form-inline" #form="ngForm" (ngSubmit)="loadAdventures()" novalidate>
         <div class="form-group">
-          <label for="minDistance">Dystans od</label>
+          <label for="minDistance"> Dystans od</label>
           <input type="number" class="form-control ml-1" style="width: 70px" id="minDistance"
             [(ngModel)]="adventureParams.minDistance" name="minDistance" />
         </div>
@@ -33,6 +34,7 @@
           Zresetuj filtr
         </button>
       </form>
+
       <br />
       <br />
 

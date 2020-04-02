@@ -9,32 +9,33 @@
       </div>
     </div>
   </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="card">
-          <img class="card-img-top img-thumbnail" src="{{sellBicycle.photoUrl || '.../../../../../assets/user2.png'}}" alt="{{sellBicycle.sellBicycleName}}">
-          <div class="card-body">
-            <div>
-              <strong>Nazwa roweru: </strong>
-              <p class="text-capitalize"> {{sellBicycle.sellBicycleName}} </p>
-            </div>
-            <div>
-              <strong>Cena: </strong>
-              <p> {{sellBicycle.price}} </p>
-            </div>
-            <div>
-              <strong>Typ: </strong>
-              <p> {{sellBicycle.typeBicycle}} </p>
-            </div>
-            <div>
-              <strong>Data: </strong>
-              <p> {{sellBicycle.dateAdded |  date: 'longDate'}} </p>
-            </div>
-            <!-- <div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{sellBicycle.photoUrl || '.../../../../../assets/basket.png'}}"
+          alt="{{sellBicycle.sellBicycleName}}">
+        <div class="card-body">
+          <div>
+            <strong>Nazwa roweru: </strong> {{sellBicycle.sellBicycleName}}
+          </div>
+          <div>
+            <strong>Cena: </strong>
+            {{sellBicycle.price}}
+          </div>
+          <div>
+            <strong>Typ: </strong>
+            {{sellBicycle.typeBicycle}}
+          </div>
+          <div>
+            <strong>Data: </strong>
+            {{sellBicycle.dateAdded |  date: 'longDate'}}
+          </div>
+          <br>
+          <!-- <div>
               <strong>Lokalizacja: </strong>
               <p> {{sellBicycle.userId}}</p>
             </div> -->
-            <!-- <div>
+          <!-- <div>
               <strong>Typ roweru: </strong>
               <p> {{adventure.typeBicycle}} </p>
             </div>
@@ -46,54 +47,57 @@
               <strong>Ostatnia aktywność: </strong>
               <p> {{adventure.lastActive | timeAgo }} </p>
             </div> -->
-          </div>
-          <div class="card-footer">
-            <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Zapisz zmiany</button>
-          </div>
+        </div>
+        <div class="card-footer">
+          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Zapisz zmiany</button>
         </div>
       </div>
-      <div class="col-sm-8">
-        <form #editForm="ngForm" id="editForm" (ngSubmit)="updateSellBicycle()" class="tab-wrapper">
-          <div class="tab-panel">
-            <tabset class="user-tabset" #userTabs>
-              <tab heading="Informacje">
-                <table class="user-table">
-                  <tr>
-                    <td class="user-table-tb">
-                      <h5>Nazwa:</h5>
-                      <textarea class="form-control" name="sellBicycleName" rows="1" [(ngModel)]="sellBicycle.sellBicycleName"></textarea>
-                    </td>
-                    <td>
-                      <h5>Cena:</h5>
-                      <textarea class="form-control" name="price" rows="1"
-                        [(ngModel)]="sellBicycle.price"></textarea>
-                    </td>
-                </table>
-                <table class="user-table">
-                  <tr>
-                    <td class="user-table-tb">
-                      <h5>Typ roweru:</h5>
-                      <textarea class="form-control" name="typeBicycle" rows="1" [(ngModel)]="sellBicycle.typeBicycle"></textarea>
-                    </td>
-                    <td class="user-table-tb">
-                      <h5>Opis:</h5>
-                      <textarea class="form-control" name="description" rows="1" [(ngModel)]="sellBicycle.description"></textarea>
-                    </td>
-                    <!-- <td>
+    </div>
+    <div class="col-sm-8">
+      <form #editForm="ngForm" id="editForm" (ngSubmit)="updateSellBicycle()" class="tab-wrapper">
+        <div class="tab-panel">
+          <tabset class="user-tabset" #userTabs>
+            <tab heading="Informacje">
+              <table class="user-table">
+                <tr>
+                  <td class="user-table-tb">
+                    <h5>Nazwa:</h5>
+                    <textarea class="form-control" name="sellBicycleName" rows="1"
+                      [(ngModel)]="sellBicycle.sellBicycleName"></textarea>
+                  </td>
+                  <td>
+                    <h5>Cena:</h5>
+                    <textarea class="form-control" name="price" rows="1" [(ngModel)]="sellBicycle.price"></textarea>
+                  </td>
+              </table>
+              <table class="user-table">
+                <tr>
+                  <td class="user-table-tb">
+                    <h5>Typ roweru:</h5>
+                    <textarea class="form-control" name="typeBicycle" rows="1"
+                      [(ngModel)]="sellBicycle.typeBicycle"></textarea>
+                  </td>
+                  <td class="user-table-tb">
+                    <h5>Opis:</h5>
+                    <textarea class="form-control" name="description" rows="1"
+                      [(ngModel)]="sellBicycle.description"></textarea>
+                  </td>
+                  <!-- <td>
                       <h5>Rowery:</h5>
                       <textarea class="form-control" name="voivodeship" rows="1"
                         [(ngModel)]="adventure.description"></textarea>
                     </td> -->
-                </table>
-              </tab>
-              
-              <tab heading="Zdjęcia">
-                <app-sellbicyclePhotos [sellBicyclePhotos]="sellBicycle.sellBicyclePhotos" (getSellBicyclePhotoChange)="updateMainSellBicyclePhoto($event)">
-                </app-sellbicyclePhotos>
-              </tab>
-            </tabset>
-          </div>
-        </form>
-      </div>
+              </table>
+            </tab>
+
+            <tab heading="Zdjęcia">
+              <app-sellbicyclePhotos [sellBicyclePhotos]="sellBicycle.sellBicyclePhotos"
+                (getSellBicyclePhotoChange)="updateMainSellBicyclePhoto($event)">
+              </app-sellbicyclePhotos>
+            </tab>
+          </tabset>
+        </div>
+      </form>
     </div>
   </div>
+</div>

@@ -20,10 +20,10 @@ export class RegisterComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
 
   typeBicycleList=[
-  { value: 'MTB', display: 'Górski' },
-  { value: 'ROAD', display: 'Szosowy' },
-  { value: 'CITY', display: 'Miejski' },
-  { value: 'EBIKE', display: 'Elektryczny' }];
+  { value: 'Górski', display: 'Górski' },
+  { value: 'Szosowy', display: 'Szosowy' },
+  { value: 'Miejski', display: 'Miejski' },
+  { value: 'Elektryczny', display: 'Elektryczny' }];
   userParams: any = {};
 
   constructor(private authService: AuthService, private alertify: AlertifyService, private fb: FormBuilder, private router: Router) { }

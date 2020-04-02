@@ -34,12 +34,12 @@ export class AdventureCardEditComponent implements OnInit {
   // }
 
     deleteAdventure(id: number) {
-    this.alertify.confirm('Czy jesteś pewien, czy chcesz usunąć zdjęcie?', () => {
+    this.alertify.confirm('Czy jesteś pewien, czy chcesz usunąć wyprawę?', () => {
       this.adventureService.deleteAdventure(/*this.authService.decodedToken.nameid*/this.adventure.id).subscribe(() => {
         this.adventures.splice(this.adventures.findIndex(p => p.id === id), 1);
-        this.alertify.success('Zdjęcie zostało usunięte!');
+        this.alertify.success('Wyprawa zostało usunięte!');
       }, error => {
-        this.alertify.error('Nie udało się usunąć zdjęcia!');
+        this.alertify.error('Nie udało się usunąć wyprawy!');
       });
     });
   }

@@ -32,12 +32,12 @@ export class SellBicycleCardEditComponent implements OnInit {
   // }
 
   deleteSellBicycle(id: number) {
-    this.alertify.confirm('Czy jesteś pewien, czy chcesz usunąć zdjęcie?', () => {
+    this.alertify.confirm('Czy jesteś pewien, czy chcesz usunąć ogłoszenie?', () => {
       this.sellBicycleService.deleteSellBicycle(/*this.authService.decodedToken.nameid*/this.sellBicycle.id).subscribe(() => {
         this.sellBicycles.splice(this.sellBicycles.findIndex(p => p.id === id), 1);
-        this.alertify.success('Zdjęcie zostało usunięte!');
+        this.alertify.success('Ogłoszenie zostało usunięte!');
       }, error => {
-        this.alertify.error('Nie udało się usunąć zdjęcia!');
+        this.alertify.error('Nie udało się usunąć ogłoszenia!');
       });
     });
 }}

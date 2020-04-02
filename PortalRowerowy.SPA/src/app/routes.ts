@@ -45,7 +45,7 @@ export const appRoutes: Routes = [
             { path: 'uzytkownicy', component: UserListComponent, resolve: { users: UserListResolver } }, // canActivate: [AuthGuard] },
             { path: 'przyjaciele', component: FriendsComponent, resolve: { users: FriendsResolver } },
 
-            { path: 'obserwowane_wyprawy', component: AdventureLikeComponent, resolve: { adventures: AdventureLikeResolver } },
+            { path: 'polubione_wyprawy', component: AdventureLikeComponent, resolve: { adventures: AdventureLikeResolver } },
             { path: 'obserwowane_rowery', component: SellBicycleLikeComponent, resolve: { sellBicycles: SellBicycleLikeResolver } },
 
             // tslint:disable-next-line: max-line-length

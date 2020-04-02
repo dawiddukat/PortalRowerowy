@@ -19,11 +19,10 @@ export class AdventureListComponent implements OnInit {
 
   // adventure: Adventure = JSON.parse(localStorage.getItem('adventure'));
   typeBicycleList = [{ value: 'Wszystkie', display: 'Wszystkie' },
-  { value: 'MTB', display: 'Górski' },
-  { value: 'ROAD', display: 'Szosowy' },
-  { value: 'CITY', display: 'Miejski' },
-  { value: 'EBIKE', display: 'Elektryczny' }];
-
+  { value: 'Górski', display: 'Górski' },
+  { value: 'Szosowy', display: 'Szosowy' },
+  { value: 'Miejski', display: 'Miejski' },
+  { value: 'Elektryczny', display: 'Elektryczny' }];
 
   adventureParams: any = {};
 

@@ -5,23 +5,28 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{adventure.photoUrl || '.../../../../../assets/compass.png'}}" alt="{{adventure.adventureName}}">
+        <img class="card-img-top img-thumbnail" src="{{adventure.photoUrl || '.../../../../../assets/compass2.png'}}" alt="{{adventure.adventureName}}">
         <div class="card-body">
-          <div>
-            <strong>Nazwa użytkownika: </strong>
+          <!-- <div>
+            <strong>Nazwa wyprawy: </strong>
             <p class="text-capitalize"> {{adventure.adventureName}} </p>
-          </div>
+          </div> -->
           <div>
             <strong>Dystans: </strong>
-            <p> {{adventure.distance}} km </p>
+            {{adventure.distance}} km
+          </div>
+          <div>
+            <strong>Typ roweru: </strong>
+            {{adventure.typeBicycle}}
           </div>
           <div>
             <strong>Data: </strong>
-            <p> {{adventure.dateAdded |  date: 'longDate'}} </p>
+            {{adventure.dateAdded |  date: 'longDate'}}
           </div>
-          <div>
+          <br>
+          <!-- <div>
             <strong>Lokalizacja: </strong>
-          </div>
+          </div> -->
           <!-- <div>
             <strong>Id użytkownika: </strong>
             <p> {{adventure.userId}} </p>

@@ -15,35 +15,36 @@
         <img class="card-img-top img-thumbnail" src="{{photoUrl || '.../../../../../assets/user2.png'}}"
           alt="{{user.username}}">
         <div class="card-body">
-          <div>
+          <!-- <div>
             <strong>Nazwa użytkownika: </strong>
             <p class="text-capitalize"> {{user.username}} </p>
-          </div>
+          </div> -->
           <div>
             <strong>Wiek: </strong>
-            <p> {{user.age}} </p>
+            {{user.age}}
           </div>
           <div>
             <strong>Płeć: </strong>
-            <p> {{user.gender}} </p>
+            {{user.gender}}
           </div>
           <div>
             <strong>Lokalizacja: </strong>
-            <p> {{user.country}},{{user.voivodeship}},{{user.city}} </p>
+            {{user.country}}, {{user.voivodeship}}, {{user.city}}
           </div>
           <div>
             <strong>Typ roweru: </strong>
-            <p> {{user.typeBicycle}} </p>
+            {{user.typeBicycle}}
           </div>
           <div>
             <strong>Data utworzenia konta: </strong>
-            <p> {{user.created | date: 'longDate' }} </p>
+            {{user.created | date: 'longDate' }}
           </div>
           <div>
             <strong>Ostatnia aktywność: </strong>
-            <p> {{user.lastActive | timeAgo }} </p>
+            {{user.lastActive | timeAgo }}
           </div>
         </div>
+        <br>
         <div class="card-footer">
           <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Zapisz zmiany</button>
         </div>
@@ -108,7 +109,7 @@
               </app-userPhotos>
             </tab>
             <tab heading="Sprzedawane rowery">
-              <h5>Wyprawy</h5>
+              <h5>Sprzedawane rowery</h5>
 
               <div class="mce-container-body ml-5 mr-4 cart-wrapper">
                 <div *ngFor="let sellBicycle of user.sellBicycles" style="text-align: center;" class="cart-element">

@@ -19,10 +19,10 @@ export class SellBicycleListComponent implements OnInit {
 
   sellBicycle: SellBicycle = JSON.parse(localStorage.getItem('sellBicycle'));
   typeBicycleList = [{ value: 'Wszystkie', display: 'Wszystkie' },
-  { value: 'MTB', display: 'MTB' },
-  { value: 'Szosowy', display: 'Szosowy' },
-  { value: 'Miejski', display: 'Miejski' },
-  { value: 'EBIKE', display: 'EBike' }];
+    { value: 'Górski', display: 'Górski' },
+    { value: 'Szosowy', display: 'Szosowy' },
+    { value: 'Miejski', display: 'Miejski' },
+    { value: 'Elektryczny', display: 'Elektryczny' }];
 
   sellBicycleParams: any = {};
 

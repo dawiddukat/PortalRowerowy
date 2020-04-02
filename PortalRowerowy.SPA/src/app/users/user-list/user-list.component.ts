@@ -22,10 +22,10 @@ export class UserListComponent implements OnInit {
   { value: 'kobieta', display: 'Kobiety' }];
 
   typeBicycleList = [{ value: 'Wszystkie', display: 'Wszystkie' },
-  { value: 'MTB', display: 'Górski' },
-  { value: 'ROAD', display: 'Szosowy' },
-  { value: 'CITY', display: 'Miejski' },
-  { value: 'EBIKE', display: 'Elektryczny' }];
+  { value: 'Górski', display: 'Górski' },
+  { value: 'Szosowy', display: 'Szosowy' },
+  { value: 'Miejski', display: 'Miejski' },
+  { value: 'Elektryczny', display: 'Elektryczny' }];
 
   userParams: any = {};
   pagination: Pagination;
