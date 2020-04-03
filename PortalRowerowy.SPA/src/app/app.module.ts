@@ -18,8 +18,6 @@ import { AlertifyService } from './_services/alertify.service';
 import { UserService } from './_services/user.service';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { MessagesComponent } from './messages/messages.component';
-import { NewsComponent } from './news/news.component';
-import { EventsComponent } from './events/events.component';
 
 import { appRoutes } from './routes';
 import { AuthGuard } from './_guards/auth.guard';
@@ -86,9 +84,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       UserListComponent,
       FriendsComponent,
       MessagesComponent,
-      NewsComponent,
-      EventsComponent,
-
+    
       AdventureListComponent,
       AdventureCardComponent,
       AdventureDetailComponent,
@@ -130,8 +126,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
          config: {
             // tslint:disable-next-line: object-literal-shorthand
             tokenGetter: tokenGetter,
-            whitelistedDomains: ['localhost:5000'],
-            blacklistedRoutes: ['localhost:5000/api/auth']
+            whitelistedDomains: ['192.168.0.17:5000'],
+            blacklistedRoutes: ['192.168.0.17:5000/api/auth']
          }
       }),
       RouterModule.forRoot(appRoutes),

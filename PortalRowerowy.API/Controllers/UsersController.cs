@@ -88,7 +88,7 @@ namespace PortalRowerowy.API.Controllers
             if (like != null)
             {
                 _repo.Delete<Like>(like);
-                return BadRequest("Już nie lubisz tego użytkownika!");
+                return NotFound("Już nie lubisz tego użytkownika!");
             }
 
             if (await _repo.GetUser(recipientId) == null)

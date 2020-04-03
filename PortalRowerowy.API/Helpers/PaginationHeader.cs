@@ -7,7 +7,6 @@ namespace PortalRowerowy.API.Helpers
         public int TotalItems { get; set; }
         public int TotalPages { get; set; }
 
-
         public PaginationHeader(int currentPage, int itemsPerPage, int totalItems, int totalPages)
         {
             CurrentPage = currentPage;
