@@ -49,3 +49,9 @@
 .color-dark {
   color:#000;
 }
+
+@media (max-width: 450px) {
+  .card{
+      width: 100%!important;
+  }
+}

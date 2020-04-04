@@ -46,3 +46,9 @@
   .cart-element {
     float: left;
   }
+
+  @media (max-width: 450px) {
+  .user-table td {
+display: block;
+  }
+}

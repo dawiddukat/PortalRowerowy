@@ -4,3 +4,25 @@
     width: 100%;
     margin-top: 20px;
 }
+
+@media (max-width: 776px) {
+    .footer-nav-wrapper {
+        display: block;
+    }
+    .footer-nav-wrapper .btn-group {
+        float: none!important;
+        display: block;
+    }
+    .footer-nav-wrapper .btn-primary {
+        width: 100%;
+        margin-bottom: 15px;
+        float: none!important;
+        display: block;
+    }
+}
+
+@media (max-width: 450px) {
+.user-card-wrapper {
+    width: 100%;
+} 
+}

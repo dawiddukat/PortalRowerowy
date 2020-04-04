@@ -22,3 +22,9 @@
 .user-table-td {
     width: 50%;
 }
+
+@media (max-width: 450px) {
+    .user-table td {
+  display: block;
+    }
+  }

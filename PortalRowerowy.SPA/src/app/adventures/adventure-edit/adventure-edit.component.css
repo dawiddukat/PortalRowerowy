@@ -33,3 +33,9 @@
 .tab-wrapper .thumbnail {
     height: auto;
 }
+
+@media (max-width: 450px) { 
+  .user-table td{
+  display: block;
+  }
+  }

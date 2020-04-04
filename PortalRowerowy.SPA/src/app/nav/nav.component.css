@@ -10,3 +10,15 @@ img {
   border: 2px solid white;
   display: inline;
 }
+@media (max-width: 768px) {
+.navbar-nav {
+  width: 100%;
+}
+.navbar-brand {
+  width: 100%;
+  font-weight: 24px;
+}
+.navbar .dropdown {
+  margin: 0 auto;
+}
+}
