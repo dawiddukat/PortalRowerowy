@@ -63,11 +63,9 @@ import { AdventureLikeResolver } from './_resolvers/adventureLike.resolver';
 import { SellBicycleLikeComponent } from './sellBicycleLike/sellBicycleLike.component';
 import { SellBicycleLikeResolver } from './_resolvers/sellBicycleLike.resolver';
 
-
 export function tokenGetter() {
    return localStorage.getItem('token');
 }
-
 export class CustomHammerConfig extends HammerGestureConfig {
    overrides = {
       pinch: { enable: false },
@@ -81,19 +79,21 @@ export class CustomHammerConfig extends HammerGestureConfig {
       NavComponent,
       HomeComponent,
       RegisterComponent,
+
       UserListComponent,
-      FriendsComponent,
-      MessagesComponent,
-    
+      UserCardComponent,
+      UserDetailComponent,
+      UserEditComponent,
+      UserPhotosComponent,
+      UserMessagesComponent,
+
       AdventureListComponent,
       AdventureCardComponent,
       AdventureDetailComponent,
       AdventureEditComponent,
       AdventurePhotosComponent,
       AddAdventureComponent,
-
       AdventureCardEditComponent,
-
 
       SellBicycleListComponent,
       SellBicycleCardComponent,
@@ -101,15 +101,10 @@ export class CustomHammerConfig extends HammerGestureConfig {
       SellBicycleEditComponent,
       SellBicyclePhotosComponent,
       AddSellBicycleComponent,
-
       SellBicycleCardEditComponent,
 
-
-      UserCardComponent,
-      UserDetailComponent,
-      UserEditComponent,
-      UserPhotosComponent,
-      UserMessagesComponent,
+      FriendsComponent,
+      MessagesComponent,
 
       AdventureLikeComponent,
       SellBicycleLikeComponent
@@ -158,13 +153,11 @@ export class CustomHammerConfig extends HammerGestureConfig {
       AdventureDetailResolver,
       AdventureListResolver,
       AdventureEditResolver,
-
       AdventureLikeResolver,
 
       SellBicycleListResolver,  
       SellBicycleDetailResolver,
       SellBicycleEditResolver,
-
       SellBicycleLikeResolver
    ],
    bootstrap: [
