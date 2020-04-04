@@ -58,7 +58,7 @@ export class AddAdventureComponent implements OnInit {
       this.adventure = Object.assign({}, this.adventureAddForm.value);
 
       this.adventureService.addAdventure(this.adventure).subscribe((adventure: Adventure) => {
-        this.alertify.success('Rejestracja udana');
+        this.alertify.success('Wyprawa dodana!');
         this.router.navigate(['/wyprawy/' + adventure.id + '/edycja']);
 
       }, error => {

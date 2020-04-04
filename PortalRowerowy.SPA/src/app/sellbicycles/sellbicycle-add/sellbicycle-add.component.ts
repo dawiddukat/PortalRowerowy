@@ -60,7 +60,7 @@ export class AddSellBicycleComponent implements OnInit {
       this.sellBicycle = Object.assign({}, this.sellBicycleAddForm.value);
 
       this.sellBicycleService.addSellBicycle(this.sellBicycle).subscribe((sellBicycle: SellBicycle) => {
-        this.alertify.success('Pomyślnie utworzono');
+        this.alertify.success('Pomyślnie utworzon!');
         this.router.navigate(['/giełda/' + sellBicycle.id + '/edycja']);
 
       }, error => {
