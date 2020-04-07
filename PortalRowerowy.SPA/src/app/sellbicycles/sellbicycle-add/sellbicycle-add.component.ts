@@ -31,20 +31,15 @@ export class AddSellBicycleComponent implements OnInit {
   sellBicycleParams: any = {};
 
   constructor(private sellBicycleService: SellBicycleService,
-    private alertify: AlertifyService,
-    private fb: FormBuilder, private router: Router) { }
+              private alertify: AlertifyService,
+              private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.bsConfig = {
       containerClass: 'theme-blue'
     },
       this.createAddSellBicycleForm();
-    // this.registerForm = new FormGroup({
-    //   username: new FormControl('', Validators.required),
-    //   password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
-    //   confirmPassword: new FormControl('', Validators.required)
-    // }, this.passwordMatchValidator); // zastąpienie przez metodę createRegisterForm
-  }
+}
 
   createAddSellBicycleForm() {
     this.sellBicycleAddForm = this.fb.group({
@@ -61,7 +56,7 @@ export class AddSellBicycleComponent implements OnInit {
 
       this.sellBicycleService.addSellBicycle(this.sellBicycle).subscribe((sellBicycle: SellBicycle) => {
         this.alertify.success('Pomyślnie utworzon!');
-        this.router.navigate(['/giełda/' + sellBicycle.id + '/edycja']);
+        this.router.navigate(['/gielda/' + sellBicycle.id + '/edycja']);
 
       }, error => {
         this.alertify.error(error);
@@ -73,15 +68,6 @@ export class AddSellBicycleComponent implements OnInit {
       });
     }
   }
-
-    // this.authService.register(this.model).subscribe(() => {
-    //   this.alertify.success("Rejestracja udana");
-    // }, error => {
-    //   this.alertify.error("Wystąpił błąd rejestracji!");
-    // });
-    // console.log(this.registerForm.value);
-
-
 
     cancel() {
       this.cancelAddSellBicycle.emit(false);

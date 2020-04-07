@@ -19,7 +19,7 @@ export class SellBicycleEditResolver implements Resolve<SellBicycle> {
         return this.sellBicycleService.getSellBicycle(route.params.id).pipe(
             catchError(error => {
                 this.alertify.error('Problem z pobraniem danych');
-                this.router.navigate(['/giełda']);
+                this.router.navigate(['/gielda']);
                 return of(null);
             })
         );

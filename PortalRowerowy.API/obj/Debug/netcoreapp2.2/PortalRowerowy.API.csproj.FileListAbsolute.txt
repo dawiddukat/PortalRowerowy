@@ -1,5 +1,3 @@
-C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\appsettings.json
-C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\appsettings.Development.json
 C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
 C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\PortalRowerowy.API.deps.json
 C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\PortalRowerowy.API.runtimeconfig.json
@@ -15,4 +13,6 @@ C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRo
 C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.dll
 C:\projekty\__PortalRowerowy\PortalRowerowy.API\obj\Debug\netcoreapp2.2\PortalRowerowy.API.pdb
 C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\Data\UserSeedData.json
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\appsettings.json
 C:\projekty\__PortalRowerowy\PortalRowerowy.API\bin\Debug\netcoreapp2.2\package-lock.json

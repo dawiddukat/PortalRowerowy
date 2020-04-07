@@ -13,7 +13,6 @@ using PortalRowerowy.API.Models;
 namespace PortalRowerowy.API.Controllers
 {
     [ServiceFilter(typeof(LogUserActivity))]
-
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]

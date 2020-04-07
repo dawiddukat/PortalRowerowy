@@ -78,12 +78,6 @@ namespace PortalRowerowy.API.Data
         }
         public async Task<Adventure> Add(Adventure adventure) //dodanie wyprawy
         {
-            // byte[] passwordHash, passwordSalt;
-            // CreatePasswordHashSalt(password, out passwordHash, out passwordSalt);
-
-            // user.PasswordHash = passwordHash;
-            // user.PasswordSalt = passwordSalt;
-
             await _context.Adventures.AddAsync(adventure);
             await _context.SaveChangesAsync();
 
@@ -130,28 +124,5 @@ namespace PortalRowerowy.API.Data
 
             }
         }
-
-
-        // adventureLikes = true;
-
-        // if (adventureLikes)
-        // {
-        //     var user = await _context.Users
-        //     .Include(x => x.AdventureIsLiked)
-        //     .FirstOrDefaultAsync(u => u.Id == id);
-
-        //     var z = user.AdventureIsLiked.Where(u => u.UserLikesAdventureId == id)
-        //     .Select(i => i.AdventureIsLikedId);
-
-        //     return z;
-        // }
-        // else
-        // {
-        //     return user.UserIsLiked.Where(u => u.UserLikesId == id)
-        //     .Select(i => i.UserIsLikedId);
-        //     return new List<int>();
-        // }
-        // }
-
     }
 }

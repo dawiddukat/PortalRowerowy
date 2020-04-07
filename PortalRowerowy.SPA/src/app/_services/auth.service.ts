@@ -6,8 +6,6 @@ import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
 import { BehaviorSubject } from 'rxjs';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -21,28 +19,11 @@ export class AuthService {
   userPhotoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
   currentUserPhotoUrl = this.userPhotoUrl.asObservable();
 
-  // currentAdventure: Adventure;
-  // adventurePhotoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
-  // currentAdventurePhotoUrl = this.adventurePhotoUrl.asObservable();
-
-  // currentSellBicycle: SellBicycle;
-  // sellBicyclePhotoUrl = new BehaviorSubject<string>('../../assets/user.jpg');
-  // currentSellBicyclePhotoUrl = this.sellBicyclePhotoUrl.asObservable();
-
   constructor(private http: HttpClient) { }
-
 
   changeUserPhoto(photoUrl: string) {
     this.userPhotoUrl.next(photoUrl);
   }
-
-  // changeAdventurePhoto(photoUrl: string) {
-  //   this.adventurePhotoUrl.next(photoUrl);
-  // }
-
-  // changeSellBicyclePhoto(photoUrl: string) {
-  //   this.sellBicyclePhotoUrl.next(photoUrl);
-  // }
 
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model)
@@ -53,10 +34,8 @@ export class AuthService {
           localStorage.setItem('user', JSON.stringify(user.user));
           this.decodedToken = this.jwtHelper.decodeToken(user.token);
           this.currentUser = user.user;
-          // console.log(this.decodedToken);
           this.changeUserPhoto(this.currentUser.photoUrl);
         }
-
       }));
   }
 
@@ -68,5 +47,4 @@ export class AuthService {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
-
 }

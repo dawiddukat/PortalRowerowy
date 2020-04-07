@@ -19,8 +19,6 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-
-
   getUsers(page?, itemsPerPage?, userParams?, friendsParam?): Observable<PaginationResult<User[]>> {
 
     const paginationResult: PaginationResult<User[]> = new PaginationResult<User[]>();
@@ -46,8 +44,6 @@ export class UserService {
     if (friendsParam === 'UserIsLiked') {
       params = params.append('UserIsLiked', 'true');
     }
-
-
 
     return this.http.get<User[]>(this.baseUrl + 'users', { observe: 'response', params })
       .pipe(map(response => {

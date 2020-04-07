@@ -29,20 +29,15 @@ export class AddAdventureComponent implements OnInit {
   adventureParams: any = {};
 
   constructor(private adventureService: AdventureService,
-    private alertify: AlertifyService,
-    private fb: FormBuilder, private router: Router) { }
+              private alertify: AlertifyService,
+              private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.bsConfig = {
       containerClass: 'theme-blue'
     },
       this.createAddAdventureForm();
-    // this.registerForm = new FormGroup({
-    //   username: new FormControl('', Validators.required),
-    //   password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
-    //   confirmPassword: new FormControl('', Validators.required)
-    // }, this.passwordMatchValidator); // zastąpienie przez metodę createRegisterForm
-  }
+}
 
   createAddAdventureForm() {
     this.adventureAddForm = this.fb.group({
@@ -64,28 +59,14 @@ export class AddAdventureComponent implements OnInit {
       }, error => {
         this.alertify.error(error);
       }, () => {
-        // this.adventureService.getAdventure(this.adventure.adventureName).subscribe(() => {
-          // this.router.navigate(['/wyprawy/' + this.adventure.adventureName + '/edycja']);
 
-        // });
       });
     }
   }
 
-    // this.authService.register(this.model).subscribe(() => {
-    //   this.alertify.success("Rejestracja udana");
-    // }, error => {
-    //   this.alertify.error("Wystąpił błąd rejestracji!");
-    // });
-    // console.log(this.registerForm.value);
-
-
 
     cancel() {
       this.cancelAddAdventure.emit(false);
-      // error notification
-      // Shorthand for:
-      // alertify.notify( message, 'error', [wait, callback]);
       this.alertify.message('Anulowano');
     }
   }

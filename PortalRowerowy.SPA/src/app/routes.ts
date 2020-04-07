@@ -37,8 +37,11 @@ export const appRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
             { path: 'uzytkownicy', component: UserListComponent, resolve: { users: UserListResolver } }, // canActivate: [AuthGuard] },
+  
             { path: 'przyjaciele', component: FriendsComponent, resolve: { users: FriendsResolver } },
+  
             { path: 'polubione_wyprawy', component: AdventureLikeComponent, resolve: { adventures: AdventureLikeResolver } },
+  
             { path: 'obserwowane_rowery', component: SellBicycleLikeComponent, resolve: { sellBicycles: SellBicycleLikeResolver } },
             // tslint:disable-next-line: max-line-length
             { path: 'uzytkownik/edycja', component: UserEditComponent, resolve: { user: UserEditResolver }, canDeactivate: [PreventUnsavedChanges] },
@@ -51,10 +54,10 @@ export const appRoutes: Routes = [
             { path: 'wyprawy/:id/edycja', component: AdventureEditComponent, resolve: { adventure: AdventureEditResolver }, canDeactivate: [PreventUnsavedChanges] },
             { path: 'wiadomości', component: MessagesComponent, resolve: {messages: MessagesResolver} }, // canActivate: [AuthGuard]  },
             // tslint:disable-next-line: max-line-length
-            { path: 'giełda', component: SellBicycleListComponent, resolve: { sellBicycles: SellBicycleListResolver }  }, // canActivate: [AuthGuard]  },
-            { path: 'giełda/:id', component: SellBicycleDetailComponent, resolve: { sellBicycle: SellBicycleDetailResolver } },
+            { path: 'gielda', component: SellBicycleListComponent, resolve: { sellBicycles: SellBicycleListResolver }  }, // canActivate: [AuthGuard]  },
+            { path: 'gielda/:id', component: SellBicycleDetailComponent, resolve: { sellBicycle: SellBicycleDetailResolver } },
             // tslint:disable-next-line: max-line-length
-            { path: 'giełda/:id/edycja', component: SellBicycleEditComponent, resolve: { sellBicycle: SellBicycleEditResolver }, canDeactivate: [PreventUnsavedChanges] },
+            { path: 'gielda/:id/edycja', component: SellBicycleEditComponent, resolve: { sellBicycle: SellBicycleEditResolver }, canDeactivate: [PreventUnsavedChanges] },
         ]
     },
     { path: '**', redirectTo: '', pathMatch: 'full' }

@@ -13,6 +13,7 @@ body {
     background-color: #cccccc;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow-x: hidden;
    }
 
    .tab-panel {
@@ -58,5 +59,18 @@ body {
     background-color: #fff;
     border: 0;
     border-top: 1px solid #eee;
-    padding: 15px 0;
+    padding: 15px;
+  }
+
+  @media (max-width: 450px) {
+    .row{
+        display: block!important;
+    }
+    h2  {
+      font-size: 1.2rem;
+    }
+  }
+
+  h2  {
+    font-size: 1.2rem;
   }

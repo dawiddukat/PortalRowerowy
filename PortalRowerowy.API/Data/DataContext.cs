@@ -78,23 +78,6 @@ namespace PortalRowerowy.API.Data
             .WithMany(u => u.SellBicycleIsLiked)
             .HasForeignKey(u => u.UserLikesSellBicycleId)
             .OnDelete(DeleteBehavior.Restrict);
-
-            // builder.Entity<AdventureLike>()
-            // .HasKey(k => new { k.UserLikesAdventureId, k.AdventureIsLikedId });
-
-            // builder.Entity<AdventureLike>()
-            // .HasOne(u => u.AdventureIsLikedId)
-            // .WithMany(u => u.UserLikesAdventureId)
-            // .HasForeignKey(u => u.AdventureIsLikedId)
-            // .OnDelete(DeleteBehavior.Restrict);
-
-            // builder.Entity<AdventureLike>()
-            // .HasOne(u => u.UserLikes)
-            // .WithMany(u => u.UserIsLiked)
-            // .HasForeignKey(u => u.UserLikesId)
-            // .OnDelete(DeleteBehavior.Restrict);
-
-
         }
 
     }

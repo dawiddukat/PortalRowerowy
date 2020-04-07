@@ -20,7 +20,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using PortalRowerowy.API.Data;
 using PortalRowerowy.API.Helpers;
-//testowy komentarz
+
 namespace PortalRowerowy.API
 {
     public class Startup
@@ -32,7 +32,6 @@ namespace PortalRowerowy.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
@@ -62,15 +61,12 @@ namespace PortalRowerowy.API
                             };
                         });
             services.AddScoped<LogUserActivity>();
-
             services.AddMvc()
         .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
         .ConfigureApiBehaviorOptions(options =>
         {
             options.SuppressUseValidationProblemDetailsForInvalidModelStateResponses = true;
         });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,9 +78,9 @@ namespace PortalRowerowy.API
             }
             else
             {
-                app.UseExceptionHandler(builder => 
+                app.UseExceptionHandler(builder =>
                 {
-                    builder.Run(async context => 
+                    builder.Run(async context =>
                     {
                         context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
@@ -98,7 +94,6 @@ namespace PortalRowerowy.API
                     });
                 });
             }
-
             seeder.SeedUsers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();

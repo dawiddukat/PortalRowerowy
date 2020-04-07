@@ -13,7 +13,6 @@ namespace PortalRowerowy.API.Data
         public SellBicycleRepository(DataContext context) : base(context)
         {
             _context = context;
-
         }
 
         public async Task<SellBicycle> GetSellBicycle(int id)
@@ -40,7 +39,6 @@ namespace PortalRowerowy.API.Data
             if (sellBicycleParams.UserLikesSellBicycle)
             {
                 // var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
                 var userLikesAdventure = await GetSellBicycleLikes(sellBicycleParams.UserId, sellBicycleParams.SellBicycleIsLiked);
                 sellBicycles = sellBicycles.Where(u => userLikesAdventure.Contains(u.Id));
             }
@@ -48,7 +46,6 @@ namespace PortalRowerowy.API.Data
             if (sellBicycleParams.SellBicycleIsLiked)
             {
                 // var UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
                 var adventureIsLiked = await GetSellBicycleLikes(sellBicycleParams.UserId, sellBicycleParams.UserLikesSellBicycle);
                 sellBicycles = sellBicycles.Where(u => adventureIsLiked.Contains(u.Id));
             }
@@ -83,15 +80,8 @@ namespace PortalRowerowy.API.Data
 
         public async Task<SellBicycle> Add(SellBicycle sellBicycle) //dodanie wyprawy
         {
-            // byte[] passwordHash, passwordSalt;
-            // CreatePasswordHashSalt(password, out passwordHash, out passwordSalt);
-
-            // user.PasswordHash = passwordHash;
-            // user.PasswordSalt = passwordSalt;
-
             await _context.SellBicycles.AddAsync(sellBicycle);
             await _context.SaveChangesAsync();
-
             return sellBicycle;
         }
 
@@ -107,10 +97,6 @@ namespace PortalRowerowy.API.Data
             var sellBicycle = await _context.SellBicycles
             .Include(x => x.UserLikesSellBicycle)
             .FirstOrDefaultAsync(u => u.Id == id);
-
-            // var user = await _context.Users
-            // .Include(x => x.AdventureIsLiked)
-            // .FirstOrDefaultAsync(u => u.Id == id);
 
             if (userLikesSellBicycle)
             {
