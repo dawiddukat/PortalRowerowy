@@ -121,8 +121,8 @@ export class CustomHammerConfig extends HammerGestureConfig {
          config: {
             // tslint:disable-next-line: object-literal-shorthand
             tokenGetter: tokenGetter,
-            whitelistedDomains: ['192.168.0.17:5000'],
-            blacklistedRoutes: ['192.168.0.17:5000/api/auth']
+            whitelistedDomains: ['localhost:5000'], //['192.168.0.16:5000'],
+            blacklistedRoutes: ['localhost:5000/api/auth'] //['192.168.0.16:5000/api/auth']
          }
       }),
       RouterModule.forRoot(appRoutes),
